@@ -6,7 +6,7 @@ backend:
   name: github
   repo: gregdaynes/neat
   branch: master
-  base_url: https://gitlab.com
+  base_url: https://github.com
   site_domain: http://gregdaynes.com/neat
   auth_endpoint: auth
 
