@@ -5,9 +5,6 @@ backend:
   ### enable below lines for github integration ###
   name: github
   repo: gregdaynes/neat
-  branch: master
-  base_url: https://github.com
-  site_domain: http://gregdaynes.com/neat
 
 media_folder: "src/static/img"
 public_folder: "/static/img"
