@@ -3,7 +3,7 @@ backend:
   name: github
   repo: gregdaynes/gregdaynes.github.io
   branch: main
-  site_domain: gregdaynes-neat.netlify.com
+  site_domain: gregdaynes.github.io
   ### enable below lines for github integration ###
   # name: github
   # repo: gregdaynes/neat
