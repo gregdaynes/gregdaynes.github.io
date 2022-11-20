@@ -3,14 +3,16 @@ on: [push]
 
 jobs:
   build_deploy:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@master
-      - name: Build
-        uses: TartanLlama/actions-eleventy@master
+      - name: Use Node.js 18.x
+        uses: actions/setup-node@v3
         with:
-          args: --output _site
-          install_dependencies: true
+          node-version: 18
+      - run: npm ci
+      - run: npm run build
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
