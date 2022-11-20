@@ -1,7 +1,7 @@
 backend:
   # Use netlify identity as backend
   name: github
-  repo: gregdaynes/neat
+  repo: gregdaynes/gregdaynes.github.io
   branch: main
   site_domain: gregdaynes-neat.netlify.com
   ### enable below lines for github integration ###
