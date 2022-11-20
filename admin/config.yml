@@ -1,0 +1,55 @@
+backend:
+  # Use netlify identity as backend
+  name: github
+  repo: gregdaynes/neat
+  branch: main
+  site_domain: gregdaynes-neat.netlify.com
+  ### enable below lines for github integration ###
+  # name: github
+  # repo: gregdaynes/neat
+
+media_folder: "src/static/img"
+public_folder: "/static/img"
+
+# Please run "npx netlify-cms-proxy-server" for local backend
+local_backend: false
+
+# publish_mode: editorial_workflow
+
+collections:
+  - label: "Pages"
+    name: "pages"
+    folder: "src"
+    create: true
+    editor:
+      preview: true
+    fields:
+      - widget: select
+        label: "layout"
+        name: "layout"
+        multiple: false
+        create: false
+        options: ["page"]
+        default: "page"
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "string" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - label: "Settings"
+    name: "settings"
+    editor:
+      preview: false
+    files:
+      - label: "Navigation"
+        name: "items"
+        file: "src/_data/navigation.yaml"
+        fields:
+          - label: Nav Items
+            name: items
+            widget: list
+            allow_add: false
+            collapsed: false
+            fields:
+              - { label: Title, name: text, widget: string }
+              - { label: URL, name: url, widget: string }
+              - { label: Class, name: class, widget: string }
