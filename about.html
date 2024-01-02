@@ -1,0 +1,14 @@
+---
+layout: with-sidebar
+permalink: /about
+title: About
+---
+{% assign data = site.data.pages.about %}
+
+{% if data.subtitle %}
+<h2>{{ data.subtitle }} <hr></h2>
+{% endif %}
+
+{{ data.content | markdownify}}
+
+

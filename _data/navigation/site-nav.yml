@@ -1,0 +1,14 @@
+---
+title: "Site Nav"
+data:
+  - text: Home
+    href: /
+  - text: About
+    href: /about
+  - text: Resume
+    href: /resume
+  - text: Projects
+    href: /projects
+  - text: Notebook
+    href: /notebook
+---

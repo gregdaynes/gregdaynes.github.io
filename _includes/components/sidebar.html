@@ -1,0 +1,27 @@
+<section>
+  <h2>Projects <hr></h2>
+  {% assign projects = site.categories.project | shuffle %}
+  {% include components/card-list.html list=projects limit=4 %}
+
+  <span><a class="more" href="/projects">More Projects</a></span>
+</section>
+
+{% if site.categories.reading %}
+<section>
+  <h2>Reading <hr></h2>
+  {% assign reading = site.categories.reading %}
+  {% include components/toc-list.html list=reading %}
+
+  <span><a class="more" href="/notebook">More Reading</a></span>
+</section>
+{% endif %}
+
+{% if site.categories.note %}
+<section>
+  <h2>Notes <hr></h2>
+  {% assign notes = site.categories.note %}
+  {% include components/toc-list.html list=notes %}
+
+  <span><a class="more" href="/notebook">More Notes</a></span>
+</section>
+{% endif %}

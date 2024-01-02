@@ -1,0 +1,13 @@
+{% assign nav = site.data.navigation | where: "title", "Site Nav" | first %}
+
+<nav class="center">
+	{% for item in nav.data %}
+		{% assign current = false %}
+
+		{% if page.url == item.href %}
+			<a class="current">{{ item.text }}</a>
+		{% else %}
+			<a href="{{ item.href }}">{{ item.text }}</a>
+		{% endif %}
+	{% endfor %}
+</nav>

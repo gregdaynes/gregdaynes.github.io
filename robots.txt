@@ -1,0 +1,32 @@
+---
+title: Robots
+permalink: /robots.txt
+---
+User-agent: *
+Disallow: /admin/
+
+# Block OpenAI
+# For new training only
+User-agent: GPTBot
+Disallow: /
+
+# Not for training, only for user requests
+User-agent: ChatGPT-User
+Disallow: /
+
+# Block Google Bard AI & Vertex AI
+User-agent: Google-Extended
+Disallow: /
+
+# Block Common Crawl
+# Used for many other (non-commercial) purposes as well
+User-agent: CCBot
+Disallow: /
+
+# Speech synthesis Bot
+User-agent: FacebookBot
+Disallow: /
+
+# Multi-purpose, commercial uses; including LLMs
+User-agent: Omgilibot
+Disallow: /

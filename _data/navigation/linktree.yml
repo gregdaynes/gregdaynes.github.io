@@ -1,0 +1,22 @@
+---
+title: Linktree
+data:
+  - href: tel:+12507323424
+    text: +1 (250) 732-3424
+    icon: smartphone
+  - href: https://github.com/gregdaynes
+    text: github.com/gregdaynes
+    icon: github
+  - href: https://www.linkedin.com/in/gregory-daynes-9740bb55
+    text: Linked In
+    icon: linkedin
+  - href: https://after.coffee
+    text: after.coffee
+    icon: globe
+  - href: mailto:email@gregdaynes.com
+    text: email@gregdaynes.com
+    icon: mail
+  - href: https://vancouverisland.com/plan-your-trip/regions-and-towns/vancouver-island-bc-islands/cowichan-valley/
+    text: Vancouver Island, Canada
+    icon: map-pin
+---

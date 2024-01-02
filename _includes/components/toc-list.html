@@ -1,0 +1,29 @@
+{% assign list = include.list %}
+{% assign show_date = include.date %}
+{% assign show_excerpt = include.excerpt %}
+
+<ol class="toc-list">
+	{% for item in list %}
+	<li>
+		<span class="row">
+			<span class="title">
+				<a href="{{ item.url }}">{{ item.title }}</a>
+				{% if show_date %}
+				<span class="leaders"></span>
+				{% endif %}
+			</span>
+
+			{% if show_date %}
+			<span class="page">
+				<span class="visually-hidden">Date&nbsp;</span>
+				<time datetime="item.date">{{ item.date | date: "%Y-%m-%d" }}</time>
+			</span>
+			{% endif %}
+		</span>
+
+		{% if show_excerpt %}
+		{{ item.excerpt }}
+		{% endif %}
+	</li>
+	{% endfor %}
+</ol>

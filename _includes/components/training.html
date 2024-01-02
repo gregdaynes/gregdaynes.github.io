@@ -1,0 +1,57 @@
+{% assign data = include.data %}
+{% assign component_name = include.name %}
+{% assign title_tag = include.title_tag | default: "h3" %}
+{% assign display_grid = include.display_grid | default: "false" %}
+
+<section data-{{component_name}}="{{ data.name | safe }}" data-display-grid="{{ display_grid }}">
+	<h2>{{ data.name }} <hr></h2>
+
+	{% for data in data.data %}
+	<div>
+		<{{ title_tag }} class="title">
+			{{ data.title }}
+
+			<small>
+				{% if data.subtitle %}
+				{{ data.subtitle }}
+				&bull;
+				{% endif %}
+
+
+				{% unless data.datestart == "" %}
+				<span data-daterange>
+					<time datetime="{{ data.datestart }}" data-date>
+						{{ data.datestart | date: "%B %Y" }}
+					</time>
+
+					&mdash;
+
+					{% if data.dateend == "" %}
+					Current
+					{% else %}
+					<time datetime="{{ data.dateend }}" data-date>
+						{{ data.dateend | date: "%B %Y" }}
+					</time>
+					{% endif %}
+				</span>
+				{% endunless %}
+			</small>
+		</{{ title_tag }}>
+
+		{{ data.content | markdownify}}
+
+		{% if data.level == "" %}
+		{% elsif data.level >= 0 %}
+		<progress data-level value="{{data.level}}" max="5"></progress>
+		{% endif %}
+
+		{% if data.notes %}
+		<div class="notes">
+			{% for note in data.notes %}
+			{{ note | markdownify}}
+			{% endfor %}
+		</div>
+		{% endif %}
+	</div>
+	{% endfor %}
+</section>

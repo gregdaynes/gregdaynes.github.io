@@ -1,0 +1,27 @@
+---
+layout: with-sidebar
+permalink: /resume
+title: Resume
+css:
+  - resume.css
+---
+{% assign data = site.data.pages.resume %}
+
+{{ data.content | markdownify }}
+
+{% assign experience = site.data.skills | where: 'name', 'Experience' | first %}
+{% include components/training.html data=experience name="experience" %}
+
+{% contentfor sidebar %}
+	{% include components/linktree.html %}
+
+	{% include components/training.html data=site.data.skills.education name="education" title_tag="span"  %}
+
+	{% include components/training.html data=site.data.skills.interests name="interests" title_tag="span" %}
+
+	{% include components/training.html data=site.data.skills.languages name="training" title_tag="span" display_grid="true" %}
+
+	{% include components/training.html data=site.data.skills.frameworks name="training" title_tag="span" display_grid="true" %}
+
+	{% include components/training.html data=site.data.skills.services name="training" title_tag="span" display_grid="true" %}
+{% endcontentfor %}

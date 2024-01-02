@@ -1,0 +1,36 @@
+---
+name: Languages
+data:
+  - title: HTML
+    level: 5
+    datestart: ""
+    dateend: ""
+  - title: CSS/SCSS
+    level: 5
+    datestart: ""
+    dateend: ""
+  - title: Javascript
+    level: 5
+    datestart: ""
+    dateend: ""
+  - title: Shell
+    level: 4
+    datestart: ""
+    dateend: ""
+  - title: PHP
+    level: 4
+    datestart: ""
+    dateend: ""
+  - title: Ruby
+    level: 3
+    datestart: ""
+    dateend: ""
+  - title: Elixir
+    level: 3
+    datestart: ""
+    dateend: ""
+  - title: Python
+    level: 2
+    datestart: ""
+    dateend: ""
+---

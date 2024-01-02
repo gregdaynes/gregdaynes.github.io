@@ -1,0 +1,29 @@
+---
+layout: compress
+css:
+  - variables.css
+  - reset.css
+  - utils.css
+  - base.css
+  - header.css
+  - footer.css
+  - toc-list.css
+js:
+  - fittext.js
+  - header.js
+---
+<!DOCTYPE html>
+{% include html/license.html -%}
+<html lang="{{site.data.config.data.lang}}">
+{% include html/head.html %}
+{% include fragment/body-tag.html %}
+	{% include components/header.html %}
+
+  <div class="main-wrapper">
+    {{content}}
+  </div>
+
+	{% include components/footer.html %}
+  {% include html/scripts.html %}
+</body>
+</html>

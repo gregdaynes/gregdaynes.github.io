@@ -1,0 +1,47 @@
+#markdown-toc {
+	ul, li {
+		margin-block-end: 0;
+	}
+}
+
+.toc-list {
+	max-width: 60ch;
+	width: 100%;
+	list-style-type: none;
+	padding: 0;
+
+	.toc-list {
+		padding-inline-start: 2ch;
+	}
+
+	li > .row {
+		text-decoration: none;
+		display: grid;
+		grid-template-columns: auto max-content;
+		align-items: end;
+
+		> .page {
+			text-align: right;
+			font-family: monospace;
+			padding-inline-start: 0.5ch;
+		}
+
+		> .title {
+			position: relative;
+			overflow: hidden;
+		}
+
+		.leaders::after {
+			position: absolute;
+			content: '. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . '
+			'. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . '
+			'. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . '
+			'. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ';
+			text-align: right;
+		}
+	}
+
+	li {
+		margin-block-end: var(--s-2);
+	}
+}

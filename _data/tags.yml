@@ -1,0 +1,12 @@
+data:
+  - title: ruby
+  - title: testing
+  - title: minitest
+  - title: rspec
+  - title: elixir
+  - title: dependency injection
+  - title: code design
+  - title: html
+  - title: css
+  - title: javascript
+  - title: fp

@@ -1,0 +1,13 @@
+{% hyde_fonts link %}
+
+{% for file in page.css_files %}
+<link rel="stylesheet" href="{{ file | prepend: '/' | prepend: site.baseurl }}?">
+{% endfor %}
+
+{% if site.ownership %}
+<link rel="me" href="{{ site.ownership }}">
+{% endif %}
+
+<link rel="author" href="{{ '/humans.txt' | prepend: site.baseurl }}" />
+
+{% feed_meta %}

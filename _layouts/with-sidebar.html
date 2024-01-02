@@ -1,0 +1,18 @@
+---
+layout: base
+css:
+  - card.css
+---
+
+<main>
+{{ content }}
+</main>
+
+<aside>
+  {% ifhascontent sidebar %}
+    {% contentblock sidebar %}
+  {% endifhascontent %}
+  {% ifnothascontent sidebar %}
+    {% include components/sidebar.html %}
+  {% endifnothascontent %}
+</aside>

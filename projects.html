@@ -1,0 +1,18 @@
+---
+layout: with-sidebar
+permalink: /projects
+title: Projects
+---
+{% assign data = site.data.pages.projects %}
+
+{% if data.subtitle %}
+<h2>{{ data.subtitle }} <hr></h2>
+{% endif %}
+
+{{ data.content | markdownify}}
+
+<section>
+  <h2>Projects <hr></h2>
+  {% assign projects = site.categories.project %}
+  {% include components/toc-list.html list=projects date=true %}
+</section>

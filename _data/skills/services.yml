@@ -1,0 +1,39 @@
+---
+name: Services & Platforms
+data:
+  - title: Redis
+    level: 3
+    datestart: ""
+    dateend: ""
+  - title: Postgres
+    level: 4
+    datestart: ""
+    dateend: ""
+  - title: SQLite
+    level: 3
+    datestart: ""
+    dateend: ""
+  - title: MonogoDB
+    level: 3
+    datestart: ""
+    dateend: ""
+  - title: AWS Cloud
+    level: 4
+    datestart: ""
+    dateend: ""
+  - title: Docker
+    level: 5
+    datestart: ""
+    dateend: ""
+  - title: Consul
+    level: 3
+    datestart: ""
+    dateend: ""
+  - title: Vault
+    level: 2
+    datestart: ""
+    dateend: ""
+  - title: Kubernetes
+    level: 3
+    datestart: ""
+    dateend: ""

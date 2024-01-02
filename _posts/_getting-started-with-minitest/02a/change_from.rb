@@ -1,0 +1,1 @@
+class CoffeeTest < Minitest::Test

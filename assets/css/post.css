@@ -1,0 +1,26 @@
+article {
+	& * + * {
+		margin-block-end: var(--s-1);
+	}
+
+	div:has(> pre),
+	figure:has(> pre) {
+		padding: var(--s1);
+		box-shadow: inset 0 0 0 1px var(--_color-decoration-shadow);
+		border-radius: 4px;
+		overflow: scroll;
+		background: #0001;
+		display: flex;
+	}
+
+	code {
+		opacity: 0.75;
+		white-space: wrap;
+	}
+
+	#markdown-toc {
+		ul {
+			padding-inline-start: 2ch;
+		}
+	}
+}

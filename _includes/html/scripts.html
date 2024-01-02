@@ -1,0 +1,3 @@
+{%- for file in page.js_files -%}
+<script src="{{ file | prepend: '/' | prepend: site.baseurl }}"></script>
+{%- endfor %}

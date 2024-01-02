@@ -1,0 +1,16 @@
+---
+title: "Foot Nav"
+data:
+  - text: Contact
+    href: mailto:email@gregdaynes.com
+  - text: Privacy
+    href: /privacy.txt
+  - text: Humans
+    href: /humans.txt
+  - text: Robots
+    href: /robots.txt
+  - text: Site Map
+    href: /sitemap.xml
+  - text: RSS
+    href: /feed.xml
+---
