@@ -1,0 +1,24 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+Gregory Daynes - Developer - https://gregdaynes.com
+
+# SITE
+
+Last update: 2024-01-02 06:11:20 +0000
+
+# Resource & Copyrights
+
+Jekyll v4.3.2 | MIT License | github.com/jekyll/jekyll
+Modern Normalize v2.0.0 | MIT License | https://github.com/sindresorhus/modern-normalize
+Modern Font stacks | CC0 License | https://github.com/system-fonts/modern-font-stacks
+Feather Icons | MIT License | https://github.com/feathericons/feather
+Decap CMS v3.0.0 | MIT License | github.com/decaporg/decap-cms
+Reset by Matt Brictson | https://mattbrictson.com/blog/css-normalize-and-reset#my-recommendation
+FitText | WTFPL License | https://github.com/adactio/FitText.js
+Hyde Fonts | MIT License | https://github.com/gregdaynes/hyde-fonts
+Hyde Page CSS | MIT License | https://github.com/gregdaynes/hyde-page-css
+Hyde Page JS | MIT License | https://github.com/gregdaynes/hyde-page-js
+Hyde Decap | MIT License | https://github.com/gregdaynes/hyde-decap
