@@ -1,6 +1,11 @@
 {% assign list = include.list %}
 {% assign show_date = include.date %}
 {% assign show_excerpt = include.excerpt %}
+{% assign limit = include.limit %}
+
+{% if limit %}
+{% assign list = list | slice: 0, limit %}
+{% endif %}
 
 <ol class="toc-list">
 	{% for item in list %}
