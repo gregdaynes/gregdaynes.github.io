@@ -7,7 +7,7 @@ Gregory Daynes - Developer - https://gregdaynes.com
 
 # SITE
 
-Last update: 2024-01-03 04:10:36 +0000
+Last update: 2024-01-03 04:20:22 +0000
 
 # Resource & Copyrights
 
@@ -23,3 +23,4 @@ Hyde Page CSS | MIT License | https://github.com/gregdaynes/hyde-page-css
 Hyde Page JS | MIT License | https://github.com/gregdaynes/hyde-page-js
 Hyde Decap | MIT License | https://github.com/gregdaynes/hyde-decap
 Font stacks by Chris Coyier | https://css-tricks.com/snippets/css/font-stacks/
+RealFaviconGenerator | https://realfavicongenerator.net/svg-favicon
