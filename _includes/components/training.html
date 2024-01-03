@@ -3,20 +3,16 @@
 {% assign title_tag = include.title_tag | default: "h3" %}
 {% assign display_grid = include.display_grid | default: "false" %}
 
-<section data-{{component_name}}="{{ data.name | safe }}" data-display-grid="{{ display_grid }}">
-	<h2>{{ data.name }} <hr></h2>
+<section class="stack" data-component="{{ data.name | safe }}" data-display-grid="{{ display_grid }}">
+	<h2 class="banner">{{ data.name }} <hr></h2>
 
 	{% for data in data.data %}
-	<div>
+	<div class="stack">
 		<{{ title_tag }} class="title">
 			{{ data.title }}
 
 			<small>
-				{% if data.subtitle %}
 				{{ data.subtitle }}
-				&bull;
-				{% endif %}
-
 
 				{% unless data.datestart == "" %}
 				<span data-daterange>
@@ -46,11 +42,11 @@
 		{% endif %}
 
 		{% if data.notes %}
-		<div class="notes">
+		<ul class="notes">
 			{% for note in data.notes %}
-			{{ note | markdownify}}
+			<li>{{ note | markdownify}}</li>
 			{% endfor %}
-		</div>
+		</ul>
 		{% endif %}
 	</div>
 	{% endfor %}

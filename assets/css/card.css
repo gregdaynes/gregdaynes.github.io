@@ -1,14 +1,10 @@
-.card-deck {
-	display: flex;
-	flex-direction: column;
-	gap: var(--s1);
-}
-
 .card {
 	text-align: center;
-	padding: var(--s-2);
-	border: 1px solid;
+	padding: var(--s-3);
+	outline: 1px solid;
 	font-weight: bold;
 	text-decoration: none;
-	line-height: 1.5;
+	line-height: 1;
+	font-size: 1rem;
 }
+

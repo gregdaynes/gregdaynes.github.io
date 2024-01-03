@@ -1,5 +1,5 @@
-<section>
-  <h2>Projects <hr></h2>
+<section class="stack">
+  <h2 class="banner">Projects <hr></h2>
   {% assign projects = site.categories.project | shuffle %}
   {% include components/card-list.html list=projects limit=4 %}
 
@@ -7,8 +7,8 @@
 </section>
 
 {% if site.categories.reading %}
-<section>
-  <h2>Reading <hr></h2>
+<section class="stack">
+  <h2 class="banner">Reading <hr></h2>
   {% assign reading = site.categories.reading %}
   {% include components/toc-list.html list=reading %}
 
@@ -17,8 +17,8 @@
 {% endif %}
 
 {% if site.categories.note %}
-<section>
-  <h2>Notes <hr></h2>
+<section class="stack">
+  <h2 class="banner">Notes <hr></h2>
   {% assign notes = site.categories.note %}
   {% include components/toc-list.html list=notes %}
 

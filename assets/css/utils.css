@@ -7,3 +7,11 @@
 	width: 1px;
 	white-space: nowrap;
 }
+
+/* line-height debug */
+/** /
+body {
+	background: repeating-linear-gradient(180deg, black 0, white 1px, white 16px, black 16px);
+	background: repeating-linear-gradient(180deg, white 0, black 1px, black 1rem, white 1rem);
+}
+/**/

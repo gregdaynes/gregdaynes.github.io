@@ -1,7 +1,7 @@
 {% assign list = include.list %}
 {% assign limit = include.limit %}
 
-<div class="card-deck">
+<div class="stack">
 	{% for item in list limit:limit %}
 		<a class="card" href="{{item.url}}">{{ item.title }}</a>
 	{% endfor %}

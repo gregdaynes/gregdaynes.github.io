@@ -6,12 +6,12 @@ permalink: /notebook
 {% assign data = site.data.pages.notebook %}
 
 {% if data.subtitle %}
-<h2>{{ data.subtitle }} <hr></h2>
+<h2 class="banner">{{ data.subtitle }} <hr></h2>
 {% endif %}
 
 {{ data.content | markdownify}}
 
-<section>
-  <h2>Entries <hr></h2>
+<section class="stack">
+  <h2 class="banner">Entries <hr></h2>
 	{% include components/toc-list.html list=site.posts date=true excerpt=true %}
 </section>

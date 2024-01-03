@@ -4,11 +4,11 @@ css:
   - card.css
 ---
 
-<main>
+<main class="stack">
 {{ content }}
 </main>
 
-<aside>
+<aside class="stack">
   {% ifhascontent sidebar %}
     {% contentblock sidebar %}
   {% endifhascontent %}
