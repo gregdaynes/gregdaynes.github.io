@@ -1,6 +1,12 @@
+#markdown-toc {
+	ul, li {
+		margin-block-end: 0;
+	}
+}
+
 article {
 	& * + * {
-		margin-block-end: var(--s-1);
+		margin-block-start: var(--s-1);
 	}
 
 	div:has(> pre),
