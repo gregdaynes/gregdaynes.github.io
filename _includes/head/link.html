@@ -3,7 +3,13 @@
 {% endcomment %}
 
 {% for file in page.css_files %}
-<link rel="stylesheet" href="{{ file | prepend: '/' | prepend: site.baseurl }}?">
+	{% if forloop.first %}
+		<style>
+			{{ file.content }}
+		</style>
+	{% else %}
+		<link rel="stylesheet" href="{{ file.path | prepend: '/' | prepend: site.baseurl }}">
+	{% endif %}
 {% endfor %}
 
 {% if site.ownership %}
