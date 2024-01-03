@@ -17,7 +17,7 @@ jobs:
         with:
           ruby-version: "3.3"
       - run: bundle
-      - run: jekyll build
+      - run: jekyll build --config _config.yml,_config.production.yml
       - uses: peaceiris/actions-gh-pages@v3
         # If you're changing the branch from main,
         # also change the `main` in `refs/heads/main`
