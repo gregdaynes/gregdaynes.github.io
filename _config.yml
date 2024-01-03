@@ -13,7 +13,6 @@ plugins:
   - jekyll-seo-tag
   - hyde-page-css
   - hyde-page-js
-  - hyde-fonts
   - hyde-decap
 
 hyde_page_css:

@@ -22,7 +22,6 @@ Feather Icons | MIT License | https://github.com/feathericons/feather
 Decap CMS v3.0.0 | MIT License | github.com/decaporg/decap-cms
 Reset by Matt Brictson | https://mattbrictson.com/blog/css-normalize-and-reset#my-recommendation
 Fitty | MIT License | https://github.com/rikschennink/fitty
-Hyde Fonts | MIT License | https://github.com/gregdaynes/hyde-fonts
 Hyde Page CSS | MIT License | https://github.com/gregdaynes/hyde-page-css
 Hyde Page JS | MIT License | https://github.com/gregdaynes/hyde-page-js
 Hyde Decap | MIT License | https://github.com/gregdaynes/hyde-decap

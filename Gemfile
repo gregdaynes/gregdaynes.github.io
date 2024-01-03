@@ -19,7 +19,6 @@ group :jekyll_plugins do
   gem "jekyll-seo-tag"
   gem "jekyll-compose"
   gem "jekyll-contentblocks"
-  gem 'hyde-fonts'
   gem 'hyde-page-css'
   gem 'hyde-page-js'
   gem "hyde-decap"
