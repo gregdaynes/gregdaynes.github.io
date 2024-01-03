@@ -205,10 +205,16 @@ header {
 	font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", Charcoal, "Helvetica Inserat", "Bitstream Vera Sans Bold", "Arial Black", sans-serif;
 	flex-direction: column;
 	text-transform: uppercase;
+	text-align: center;
 	gap: var(--s1);
 
 	h1 {
+		font-size: clamp(1rem, 10rem, 16dvw);
 		line-height: .9;
+	}
+
+	h2 {
+		font-size: clamp(1rem, 2rem, 8dvw);
 	}
 
 	nav {
