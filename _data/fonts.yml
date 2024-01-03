@@ -1,9 +1,0 @@
-fonts:
-  faces:
-    - name: Inter
-      provider: google
-      weights:
-        - value: 800
-          italic: false
-        - value: 400
-          italic: false

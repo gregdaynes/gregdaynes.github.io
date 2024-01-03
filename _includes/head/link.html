@@ -1,4 +1,6 @@
+{% comment %}
 {% hyde_fonts link %}
+{% endcomment %}
 
 {% for file in page.css_files %}
 <link rel="stylesheet" href="{{ file | prepend: '/' | prepend: site.baseurl }}?">
