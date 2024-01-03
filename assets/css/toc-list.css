@@ -3,10 +3,6 @@
 	list-style-type: none;
 	padding: 0;
 
-	.toc-list {
-		padding-inline-start: 2ch;
-	}
-
 	li > .row {
 		text-decoration: none;
 		display: grid;

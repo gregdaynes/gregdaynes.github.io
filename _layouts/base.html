@@ -2,9 +2,10 @@
 layout: compress
 css:
   - variables.css
-  - reset.css
+  - critical.css
   - utils.css
   - toc-list.css
+  - card.css
 js:
   - fitty.js
   - header.js
@@ -17,7 +18,19 @@ js:
 	{% include components/header.html %}
 
   <div class="main-wrapper">
-    {{content}}
+    <main class="stack">
+      {{ content }}
+    </main>
+
+    <aside class="stack">
+      {% ifhascontent sidebar %}
+        {% contentblock sidebar %}
+      {% endifhascontent %}
+
+      {% ifnothascontent sidebar %}
+        {% include components/sidebar.html %}
+      {% endifnothascontent %}
+    </aside>
   </div>
 
 	{% include components/footer.html %}
