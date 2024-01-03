@@ -1,29 +1,21 @@
 header {
-	width: 100%; /* required for fittext to scale down */
+	font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", Charcoal, "Helvetica Inserat", "Bitstream Vera Sans Bold", "Arial Black", sans-serif;
 	display: flex;
 	flex-direction: column;
 	text-transform: uppercase;
 	gap: var(--s1);
+	line-height: 1;
 
 	h1 {
-		margin-left: calc(0.4dvw * -1);
-		white-space: nowrap;
-		line-height: 0.8;
-	}
-
-	h2 {
-		/* line-height: 1; */
+		line-height: .9;
 	}
 
 	nav {
 		display: flex;
 		flex-wrap: wrap;
-		gap: var(--s1);
+		gap: var(--s-1);
 		justify-content: center;
-
-		@media (min-width: 768px) {
-			font-size: 1.375rem;
-		}
+		font-size: clamp(1rem, 1.375rem, 4dvw);
 	}
 
 	a {

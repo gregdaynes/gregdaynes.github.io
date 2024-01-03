@@ -43,11 +43,12 @@
 }
 /*! modern-normalize v2.0.0 | MIT License | https://github.com/sindresorhus/modern-normalize */
 /*! reset by Matt Brictson | https://mattbrictson.com/blog/css-normalize-and-reset#my-recommendation */
-/*! Modern Font stacks | CC0 License | https://github.com/system-fonts/modern-font-stacks */
+/*! Font stacks by Chris Coyier | https://css-tricks.com/snippets/css/font-stacks/ */
 :root {
   font-size: 100%;
   line-height: 1.5;
-  font-family: Inter, Roboto, "Helvetica Neue", "Arial Nova", "Nimbus Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Segoe UI", Candara, "Bitstream Vera Sans", "DejaVu Sans", "Bitstream Vera Sans", "Trebuchet MS", Verdana, "Verdana Ref", sans-serif;
   color-scheme: dark light;
 }
 
@@ -124,7 +125,7 @@ code,
 kbd,
 samp,
 pre {
-  font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace; /* 1 */
+  font-family: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace;
   font-size: 1rem; /* 2 */
 }
 
@@ -432,30 +433,22 @@ section > * + * {
 }
 
 header {
-  width: 100%; /* required for fittext to scale down */
+  font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", Charcoal, "Helvetica Inserat", "Bitstream Vera Sans Bold", "Arial Black", sans-serif;
   display: flex;
   flex-direction: column;
   text-transform: uppercase;
   gap: var(--s1);
+  line-height: 1;
 }
 header h1 {
-  margin-left: -0.4dvw;
-  white-space: nowrap;
-  line-height: 0.8;
-}
-header h2 {
-  /* line-height: 1; */
+  line-height: 0.9;
 }
 header nav {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--s1);
+  gap: var(--s-1);
   justify-content: center;
-}
-@media (min-width: 768px) {
-  header nav {
-    font-size: 1.375rem;
-  }
+  font-size: clamp(1rem, 1.375rem, 4dvw);
 }
 header a {
   text-decoration: none;
