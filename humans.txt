@@ -27,3 +27,4 @@ Hyde Page JS | MIT License | https://github.com/gregdaynes/hyde-page-js
 Hyde Decap | MIT License | https://github.com/gregdaynes/hyde-decap
 Font stacks by Chris Coyier | https://css-tricks.com/snippets/css/font-stacks/
 RealFaviconGenerator | https://realfavicongenerator.net/svg-favicon
+URL Encoder for SVG by Yorksel | https://yoksel.github.io/url-encoder/
