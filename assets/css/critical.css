@@ -15,18 +15,18 @@
 	margin: 0;
 }
 
-*, *::before, *::after {
+*, ::after, ::before {
 	box-sizing: border-box;
 }
 
-*:focus {
+:focus {
 	outline-width: thin;
 	outline-style: solid;
 	outline-offset: var(--s-3);
 }
 
 html {
-	font-weight: normal;
+	font-weight: 400;
 	-webkit-text-size-adjust: 100%; /* 2. Prevent adjustments of font size after orientation changes in iOS. */
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
@@ -62,8 +62,8 @@ strong {
 
 code,
 kbd,
-samp,
-pre {
+pre,
+samp {
 	font-family: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace;
 	font-size: 1rem; /* 2 */
 }
@@ -81,11 +81,11 @@ sup {
 }
 
 sub {
-	bottom: -0.25em;
+	bottom: -.25em;
 }
 
 sup {
-	top: -0.5em;
+	top: -.5em;
 }
 
 img {
@@ -93,7 +93,7 @@ img {
   max-inline-size: 100%;
 }
 
-ul, ol {
+ol, ul {
 	padding-inline-start: 2ch;
 }
 
@@ -184,12 +184,12 @@ aside {
 }
 
 .more {
-	font-weight: bold;
+	font-weight: 700;
 	text-transform: uppercase;
 	float: right;
 }
 
-header, footer {
+footer, header {
 	line-height: 1;
 	display: flex;
 
@@ -223,7 +223,7 @@ header {
 
 	a {
 		text-decoration: none;
-		font-weight: bold;
+		font-weight: 700;
 
 		&.current {
 			text-decoration: underline;
