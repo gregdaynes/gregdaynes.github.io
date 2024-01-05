@@ -20,10 +20,10 @@
 	--_color-background-primary: white;
 	--_color-background-secondary: lightgray;
 	--_color-link-normal: blue;
-	--_color-link-hover: magenta;
+	--_color-link-hover: firebrick;
 	--_color-link-active: cyan;
 	--_color-link-visited: blue;
-	--_color-link-current: magenta;
+	--_color-link-current: firebrick;
 
 	--_width-aside: 350px;
 }
