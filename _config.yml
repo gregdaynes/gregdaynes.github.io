@@ -5,6 +5,8 @@ description: >- # this means to ignore newlines until "baseurl:"
   The website and home of Gregory Daynes. Find links to projects, notebooks, and resume.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://gregdaynes.com" # the base hostname & protocol for your site, e.g. http://example.com
+incremental: true
+ownership: "https://mastodon.social/@gregdaynes"
 
 # Build settings
 plugins:

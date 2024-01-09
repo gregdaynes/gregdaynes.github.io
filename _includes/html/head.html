@@ -1,9 +1,27 @@
 <head>
-{% include head/meta.html %}
-{% include head/title.html %}
-{% comment %}
-{% hyde_fonts link %}
-{% endcomment %}
-{% include head/link.html %}
-{% include head/icons.html %}
-{% include head/graph.html %}
+{% assign page_keywords = page.keywords | split: ', ' | compact %}
+{% assign site_keywords = site.keywords | split: ', ' | compact %}
+{% assign keywords = page_keywords | concat: site_keywords | join: ', ' %}
+
+{% seo %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="page-datetime" content="{% if page.date-modified %}{{page.date-modified}}{% else if page.date-created %}{{page.date-created}}{% else %}{{site.time | date: "%Y-%m-%d"}}{% endif %}">
+<meta name="author" content="{{ '/humans.txt' | prepend: site.baseurl }}">
+<meta name="keywords" content="{{ keywords }}">
+<meta name="no-email-collection" content="{{ '/privacy.txt' | prepend: site.baseurl }}">
+<meta name='HandheldFriendly' content='True'>
+<meta name='MobileOptimized' content='375'>
+
+<link rel="me" href="{{ site.ownership }}">
+<link rel="author" href="{{ '/humans.txt' | prepend: site.baseurl }}" />
+<link rel="shortcut icon" href="{{ '/assets/images/favicon.png' | prepend: site.baseurl }}" />
+<link rel="icon" type="image/png" href="{{ '/assets/images/favicon.png' | prepend: site.baseurl }}">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' class='feather feather-smile' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M8 14s1.5 2 4 2 4-2 4-2M9 9h0m6 0h0'/%3E%3C/svg%3E%3Cstyle%3E@media (prefers-color-scheme:light)%7B:root%7Bfilter:contrast(1) brightness(1)%7D%7D@media (prefers-color-scheme:dark)%7B:root%7Bfilter:invert(100%25)%7D%7D%3C/style%3E%3C/svg%3E%0A" />
+{% feed_meta %}
+
+{% for file in page.css_files %}
+	<style>
+		{{ file.content }}
+	</style>
+{% endfor %}
+</head>
