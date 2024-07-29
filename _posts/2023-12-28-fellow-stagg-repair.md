@@ -30,11 +30,17 @@ Desoldering the rotary encoder was straight forward, I used a solder-sucker and 
 
 Re-assembly is disassembly in reverse, be mindful of the thin wires routing around the center. Use a bit of Kapton tape to keep things in place.
 
+### Outcome
+
+I can use my kettle again. I broke the display, but it works enough to not warrant a replacement base $100 USD from their parts shop, which when factored in CAD and shipping, is more than new kettle from a Canadian distributer.
+
+I like my Fellow Stagg EKG Kettle, but I don't think I will buy another Fellow product with electronics (I love the Prismo - Aeropress accessory).
+
 ### Notes
 
 The screws use a triangle security bit, which I didn't have on hand, however a T-6 Torx bit worked well.
 
-The LCD is fixed to the main control board, which proves to be very fragile. I managed to crack the LCD even while attempting to be gentle. Beware.
+The LCD is fixed (more than solder joints) to the main control board, which turns out is very fragile. I managed to crack the LCD even while attempting to be gentle, I didn't touch the board except disconnect and reconnect of the rotary daughter board connector. Beware.
 
 I did not measure the stem prior to this repair, the donor rotary encoder stem was much longer. Beware of this and make sure to measure and find the appropriate stem. A long one of course workse, but the knob stands above the case now, and is easier for water to find ingress into the electronics.
 
