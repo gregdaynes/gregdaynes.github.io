@@ -2,6 +2,8 @@
 layout: post
 title: Hexdump shell command
 date: 2024-02-09 19:52 -0800
+categories:
+  - note
 ---
 
 I was asked to help understand the following command
