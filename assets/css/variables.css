@@ -19,6 +19,7 @@
 	--_color-decoration-shadow: black;
 	--_color-background-primary: white;
 	--_color-background-secondary: lightgray;
+	--_color-background-code: ghostwhite;
 	--_color-link-normal: blue;
 	--_color-link-hover: firebrick;
 	--_color-link-active: cyan;
@@ -39,6 +40,7 @@
 		--_color-link-current: magenta;
 		--_color-decoration-primary: white;
 		--_color-background-secondary: dimgray;
+    --_color-background-code: ghostwhite;
 		--_color-decoration-shadow: dimgray;
 	}
 }
