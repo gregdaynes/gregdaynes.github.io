@@ -13,6 +13,8 @@ plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-seo-tag
+  - jekyll-compose
+  - jekyll-contentblocks
   - hyde-page-css
   - hyde-page-js
   - hyde-decap
