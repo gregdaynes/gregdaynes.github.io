@@ -6,9 +6,7 @@ title: About
 {% assign data = site.data.pages.about %}
 
 {% if data.subtitle %}
-<h2 class="banner">{{ data.subtitle }} <hr></h2>
+<h2>{{ data.subtitle }}</h2>
 {% endif %}
 
 {{ data.content | markdownify}}
-
-

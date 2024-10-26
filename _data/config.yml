@@ -1,4 +1,9 @@
 data:
   title: 'Greg Daynes'
-  title-delimiter: '&bull;'
+  title-delimiter: '•'
   lang: 'en-GB'
+  creator: 'Greg Daynes'
+  description: 'The website and home of Gregory Daynes. Find links to projects, notebooks, and resume.'
+  ownership: 'https://mastodon.social/@gregdaynes'
+  email: email@gregdaynes.com
+  domain: 'gregdaynes.com'

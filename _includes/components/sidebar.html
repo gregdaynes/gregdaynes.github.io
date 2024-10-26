@@ -1,27 +1,21 @@
-<section class="stack">
-  <h2 class="banner">Projects <hr></h2>
-  {% assign projects = site.categories.project | shuffle %}
-  {% include components/card-list.html list=projects limit=4 %}
+<h2>Projects</h2>
+{% assign projects = site.categories.project | shuffle -%}
+{% include components/toc-list.html list=projects limit=4 -%}
 
-  <span><a class="more" href="/projects">More Projects</a></span>
-</section>
+{% include components/more.html url="/projects" text="More Projects" -%}
 
-{% if site.categories.reading %}
-<section class="stack">
-  <h2 class="banner">Reading <hr></h2>
-  {% assign reading = site.categories.reading %}
-  {% include components/toc-list.html list=reading %}
+{% if site.categories.reading -%}
+<h2>Reading</h2>
+{% assign reading = site.categories.reading -%}
+{% include components/toc-list.html list=reading -%}
 
-  <span><a class="more" href="/notebook">More Reading</a></span>
-</section>
-{% endif %}
+{% include components/more.html url="/reading" text="More Reading" -%}
+{% endif -%}
 
-{% if site.categories.note %}
-<section class="stack">
-  <h2 class="banner">Notes <hr></h2>
-  {% assign notes = site.categories.note %}
-  {% include components/toc-list.html list=notes %}
+{% if site.categories.note -%}
+<h2>Notes</h2>
+{% assign notes = site.categories.note -%}
+{% include components/toc-list.html list=notes -%}
 
-  <span><a class="more" href="/notebook">More Notes</a></span>
-</section>
-{% endif %}
+{% include components/more.html url="/notebook" text="More Notes" -%}
+{% endif -%}
