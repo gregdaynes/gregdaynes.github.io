@@ -1,4 +1,130 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://gregdaynes.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://gregdaynes.com/" rel="alternate" type="text/html" /><updated>2024-10-26T20:20:05+00:00</updated><id>https://gregdaynes.com/feed.xml</id><entry><title type="html">Callable Class Instance</title><link href="https://gregdaynes.com/note/2024/07/30/callable-class-instance.html" rel="alternate" type="text/html" title="Callable Class Instance" /><published>2024-07-30T01:55:00+00:00</published><updated>2024-07-30T01:55:00+00:00</updated><id>https://gregdaynes.com/note/2024/07/30/callable-class-instance</id><content type="html" xml:base="https://gregdaynes.com/note/2024/07/30/callable-class-instance.html"><![CDATA[<p>I encountered a situation in Javascript, where I needed a Class instance that could be called like a function.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://gregdaynes.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://gregdaynes.com/" rel="alternate" type="text/html" /><updated>2024-10-26T21:52:56+00:00</updated><id>https://gregdaynes.com/feed.xml</id><entry><title type="html">2024 Refresh</title><link href="https://gregdaynes.com/post/2024/10/26/2024-refresh.html" rel="alternate" type="text/html" title="2024 Refresh" /><published>2024-10-26T20:26:00+00:00</published><updated>2024-10-26T20:26:00+00:00</updated><id>https://gregdaynes.com/post/2024/10/26/2024-refresh</id><content type="html" xml:base="https://gregdaynes.com/post/2024/10/26/2024-refresh.html"><![CDATA[<p>It’s October, I’m on vacation after a very long, arduous stint building a new Theme for Shopify. Staying in a small single room cabin on the edge of the Pacific Ocean with a limited internet connection, what better place to catch up on sleep, reading, and putting some of those readings to practice.</p>
+
+<p><em>For context, building a theme for Shopify Theme Store is a large task, there are infinite variables to consider, and choices to be made. There is no knowing what a merchant will actually want or try to do, so the code needs to be stable, resiliant and incredibly flexible. This has given my skills in HTML (Liquid), CSS and Javascript a real world push, mastering the new (baseline availability) techniques available.</em></p>
+
+<p>At the outset of this refresh, the goal was to apply more modern CSS approaches to last years design, removing anything that isn’t necessary, and cleaning up the design. It should still be the same old design, where decorative elements are replaced with space, JS replaced with CSS, and HTML rigerously refined to be the bare minimum required to represent each page.</p>
+
+<h2 id="collecting-resource">Collecting Resource</h2>
+
+<p>I started thinking about an update back in July. Roman Komarov wrote a post on how to achieve text that scales to the container width<sup id="fnref:4" role="doc-noteref"><a href="#fn:4" class="footnote" rel="footnote">1</a></sup>. The header of <a href="https://gregdaynes.com">gregdaynes.com</a> site uses Fitty<sup id="fnref:5" role="doc-noteref"><a href="#fn:5" class="footnote" rel="footnote">2</a></sup> in the header for the title and subtitle. Fitty works, but requires Javascript, and has a flicker on load when rendering. So this technique kicked off the whole thing, but I wouldn’t get around to trying it out until yesterday.</p>
+
+<p>Throughout the year, reading posts, books, toots, newsletters, anything around current frontend trends. There are were definitely a few stand out pieces and tools.</p>
+
+<h2 id="layout">Layout</h2>
+
+<p>I finally got around to reading through Every Layout<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">3</a></sup> from Andy Bell<sup id="fnref:8" role="doc-noteref"><a href="#fn:8" class="footnote" rel="footnote">4</a></sup> and Heydon Pickering<sup id="fnref:11" role="doc-noteref"><a href="#fn:11" class="footnote" rel="footnote">5</a></sup>. It’s definitely worth the money, and time to catch up on modern approaches to layouts. The book-site has generators, and the applied / practical approaches laid out are fantastic.</p>
+
+<p>This refresh utilized the Sidebar layout this year, and abandoned the Stack approach from last year (also from Every Layout).</p>
+
+<p>Similarily continuing use of Utopia<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">6</a></sup> generators to produce spacing, and typography, though I found I didn’t need much of the spacing custom properties.</p>
+
+<h2 id="markup">Markup</h2>
+
+<p>In my spare time, I’ve been working on a SaaS idea (that I won’t go into details about now). I set out a goal there to move fast (it’s been anything but), however the UI is where I’ve been the most productive. It started out with Tailwind (Yes, I know. It was for the component library). Then onto Bootstrap (because it’s familiar, less annoying that Tailwind, and had all the components I really needed). Both being chonky and unfriendly to write, I did some bespoke CSS, but realized it was slowing me down. I landed on Pico.css<sup id="fnref:12" role="doc-noteref"><a href="#fn:12" class="footnote" rel="footnote">7</a></sup>, I have to admit it’s fantastic. The classless approach to using semantic markup to produce a MVP UI is definitely worth it.</p>
+
+<p>Huh? What does some SaaS and CSS frameworks have to do with the refresh?</p>
+
+<p>Pico.css got me into the groove of writing less selectors, less divs, less everything.</p>
+
+<p>Coincidentally, I also sat down to read all of Jens Oliver Meiert<sup id="fnref:7" role="doc-noteref"><a href="#fn:7" class="footnote" rel="footnote">8</a></sup> Upgrade your HTML series<sup id="fnref:13" role="doc-noteref"><a href="#fn:13" class="footnote" rel="footnote">9</a></sup>. They’re quick little looks at writing HTML and how to rethink old practices which you may still be stuck on. These tips all reinforced the idea of removing as much as possible from the markup, until it is lean.</p>
+
+<p><strong>Which was the first optimization for the refresh - Remove everything that doesn’t matter.</strong></p>
+
+<p>This means I got rid of all the selectors I didn’t need (most of them, I think there are 3 or 4 left, that could also be removed now that I think about it).</p>
+
+<p>Then I got rid of all the decoration elements, all the <code class="language-plaintext highlighter-rouge">&lt;hr&gt;</code> I use for headings and delimiters.</p>
+
+<p>Speaking of decoration, I hate favicons. At least there’s no need for my website. If it was a PWA or a branded entity, yes, use them. Otherwise, no, it’s a request you don’t need, it is not always visible, so why? I stubbed the favicon out with</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  &lt;link rel="icon" href="data:;base64,iVBORw0KGgo="&gt;
+</code></pre></div></div>
+
+<p>Jekyll SEO was a good idea, at one point in time. But we’re in the age of bad AI and LLM everything. Google and Bing do everything they can to <em>not</em> crawl websites anymore. I was mostly using it for Open Graph and metadata generation. Jens once again to the rescue with a look at Minimal Social Markup<sup id="fnref:15" role="doc-noteref"><a href="#fn:15" class="footnote" rel="footnote">10</a></sup>. Going from 15-20 metatags to 5 is great. But I also lost <code class="language-plaintext highlighter-rouge">&lt;title&gt;</code> and <code class="language-plaintext highlighter-rouge">description</code>, so those were added manually.</p>
+
+<p>After that, I looked at all the elements in use, and systematically removed or replaced the ones that didn’t matter anymore.</p>
+
+<p>On the home page, this brought DOM count from 151 to 113. Heck yes!</p>
+
+<h2 id="styling">Styling</h2>
+
+<p>Next up, I took a very-dull metaphoric axe to the CSS.</p>
+
+<p>Without class selectors in the markup, those could all be removed.</p>
+
+<p>CSS reset? Gone. No need for many of the rules in most/all resets. Even Andy Bell’s Modern Reset<sup id="fnref:14" role="doc-noteref"><a href="#fn:14" class="footnote" rel="footnote">11</a></sup> (which is great, and you should review it).</p>
+
+<p>I did keep the colors from the previous design. Though it could still use work to reduce the contrast.</p>
+
+<p><code class="language-plaintext highlighter-rouge">text-wrap: balance</code> made an appearance now, simplifying places I’d use flexbox to wrap reasonably. No need to manage the box model now!</p>
+
+<p>Font stacks were removed, not replaced. <code class="language-plaintext highlighter-rouge">sans-serif</code> and <code class="language-plaintext highlighter-rouge">impact</code> are viable enough for everywhere.</p>
+
+<p>Table of Contents with it’s fancy dotted lines between the link and the created/published date, replaced with an approach using less markup, even if less reliable for all layouts. I felt this was a tradeoff worth making.</p>
+
+<p>Every Layout<sup id="fnref:1:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">3</a></sup> - Sidebar layout gave a minimal, but capable 2 column layout (or main with sidebar). Like the previous design, but less overhead of markup and styling to achieve the same effect.</p>
+
+<p>After all the work refactoring the CSS, the home page went from 18.09 kB to 8.94 kB. I’ll say 50%.</p>
+
+<h2 id="more-on-page-size">More on page size</h2>
+
+<p>50% request transfer reduction is great. Getting to less than 14 kB<sup id="fnref:16" role="doc-noteref"><a href="#fn:16" class="footnote" rel="footnote">12</a></sup> is important and a great achievement. Now we have single HTTP Request with a single packet response. Think of all the routing infrastructure between your device, and this site’s host. Now it’s only got 1 packet to loose (bad) but only 1 packet to retry (good).</p>
+
+<p>But what about Gzip / Brotli?</p>
+
+<p>The previous design, of course fell into the 1 packet threshold before, at ~9 kB compressed. But the new design starting at under 9 kB? it’s now 3 kB (2.3 kB with Brotli). We’re under 1/4 of the available space in the packet, meaning we have a lot of room for content. My article on <a href="https://gregdaynes.com/post/2018/09/08/getting-started-with-minitest.html">Minitest</a> which is the largest on the site comes in at 11.5 kB transferred. Still within the 1 packet. My <a href="https://gregdaynes.com/resume">Resume</a> complete with the silly SVG icons that <em>should</em> be removed, comes in at 6.62 kB. I might even be able to squeeze a headshot into the leftover space.</p>
+
+<h2 id="what-else">What else?</h2>
+
+<p>That’s pretty much it.</p>
+
+<p>I made some miscellaneous changes to data structures for other refactorings, reuse of liquid snippets. Bumped Jekyll, and fixed a bug in my gems used to build and optimize CSS and HTML.</p>
+
+<p>One thing I haven’t done yet, other than this post, is revisit the content. It’s time for a new Bio and introductory text, and some new posts about things that have been in my mind. But for now, vacation should be the only thing on my mind (this is not reasonable).</p>
+
+<p>Reach out to me on <a href="https://mastodon.social/@gregdaynes">Mastodon</a>, or <a href="email@gregdaynes.com">email</a> with questions feedback or comments. I want to hear what you think. Is this optimization too much?</p>
+
+<h2 id="references">References</h2>
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:4" role="doc-endnote">
+      <p><a href="https://kizu.dev/fit-to-width">Kizu.dev/fit-to-width</a> <a href="#fnref:4" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:5" role="doc-endnote">
+      <p><a href="https://github.com/rikschennink/fitty">Fitty</a> <a href="#fnref:5" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:1" role="doc-endnote">
+      <p><a href="https://every-layout.dev">Every Layout</a> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a> <a href="#fnref:1:1" class="reversefootnote" role="doc-backlink">&#8617;<sup>2</sup></a></p>
+    </li>
+    <li id="fn:8" role="doc-endnote">
+      <p><a href="https://piccalil.li">Andy Bell</a> <a href="#fnref:8" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:11" role="doc-endnote">
+      <p><a href="https://heydonworks.com">Heydon Pickering</a> <a href="#fnref:11" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:2" role="doc-endnote">
+      <p><a href="https://buildexcellentwebsit.es">Build Excellent Websites</a> <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:12" role="doc-endnote">
+      <p><a href="https://picocss.com">Pico.css</a> <a href="#fnref:12" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:7" role="doc-endnote">
+      <p><a href="https://meiert.com">Jens Oliver Meiert</a> <a href="#fnref:7" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:13" role="doc-endnote">
+      <p><a href="https://leanpub.com/u/j9t">Upgrade your HTML</a> <a href="#fnref:13" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:15" role="doc-endnote">
+      <p><a href="https://meiert.com/en/blog/minimal-social-markup">Minimal Social Markup</a> <a href="#fnref:15" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:14" role="doc-endnote">
+      <p><a href="https://piccalil.li/blog/a-more-modern-css-reset">A More Modern CSS Reset</a> <a href="#fnref:14" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:16" role="doc-endnote">
+      <p><a href="https://endtimes.dev/why-your-website-should-be-under-14kb-in-size/">Why your website should be under 14kB in size</a> <a href="#fnref:16" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>]]></content><author><name></name></author><category term="post" /><summary type="html"><![CDATA[It’s October, I’m on vacation after a very long, arduous stint building a new Theme for Shopify. Staying in a small single room cabin on the edge of the Pacific Ocean with a limited internet connection, what better place to catch up on sleep, reading, and putting some of those readings to practice.]]></summary></entry><entry><title type="html">Callable Class Instance</title><link href="https://gregdaynes.com/note/2024/07/30/callable-class-instance.html" rel="alternate" type="text/html" title="Callable Class Instance" /><published>2024-07-30T01:55:00+00:00</published><updated>2024-07-30T01:55:00+00:00</updated><id>https://gregdaynes.com/note/2024/07/30/callable-class-instance</id><content type="html" xml:base="https://gregdaynes.com/note/2024/07/30/callable-class-instance.html"><![CDATA[<p>I encountered a situation in Javascript, where I needed a Class instance that could be called like a function.</p>
 
 <p>StackOverflow to the rescue<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup></p>
 
@@ -312,23 +438,4 @@ Each layout and page can have as many CSS/JS files as wanted, but will be concat
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name></name></author><category term="project" /><summary type="html"><![CDATA[A plugin for Jekyll that automates adding Google Fonts to your site.]]></summary></entry><entry><title type="html">Turing Pi</title><link href="https://gregdaynes.com/project/2023/11/11/turing-pi.html" rel="alternate" type="text/html" title="Turing Pi" /><published>2023-11-11T00:00:00+00:00</published><updated>2023-11-11T00:00:00+00:00</updated><id>https://gregdaynes.com/project/2023/11/11/turing-pi</id><content type="html" xml:base="https://gregdaynes.com/project/2023/11/11/turing-pi.html"><![CDATA[<p><a href="https://turingpi.com/product/turing-pi-2/">Turing Pi 2</a>
-<a href="https://docs.turingpi.com/docs">docs</a></p>
-
-<h3 id="mini-atx-case">Mini ATX Case</h3>
-
-<p><a href="https://www.amazon.ca/ZZEW-Mini-ITX-Computer-Aluminum-Reverse/dp/B0BX2KQV8M">ZZEW Mini ITX</a></p>
-
-<h3 id="rotate-touch-interface-to-match-90deg-screen-rotation">Rotate touch interface to match 90deg screen rotation</h3>
-
-<p>https://forums.raspberrypi.com/viewtopic.php?t=324035</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dtoverlay=vc4-kms-v3d
-dtoverlay=vc4-kms-dsi-7inch,swapxy,invx
-max_framebuffers=2
-ignore_lcd=1
-</code></pre></div></div>
-
-<h3 id="external-power-switch">External Power Switch</h3>
-
-<p><a href="https://howchoo.com/pi/how-to-add-a-power-button-to-your-raspberry-pi/">Rpi 4 Power Switch</a></p>]]></content><author><name></name></author><category term="project" /><summary type="html"><![CDATA[The Turing Pi is a clustering mainboard for various single board computers providing up to 4 modules.]]></summary></entry></feed>
+</ul>]]></content><author><name></name></author><category term="project" /><summary type="html"><![CDATA[A plugin for Jekyll that automates adding Google Fonts to your site.]]></summary></entry></feed>
