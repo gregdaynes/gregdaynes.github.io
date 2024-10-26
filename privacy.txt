@@ -1,5 +1,5 @@
 Privacy Policy for https://gregdaynes.com
-Last update: 2024-07-30 04:15:16 +0000
+Last update: 2024-10-26 20:20:05 +0000
 
 This may come as a surprise on the modern web, but
 - This website does not collect your data.
@@ -16,4 +16,4 @@ This website links to many other places on the web, including Amazon and other r
 
 I hope you enjoy your time on https://gregdaynes.com, and leave knowing whatever you did during your visit is for you alone.
 
-If you would like to contact me with praises, complaints, or have a conversation, please email me email@gregdaynes.com, message me on Mastodon https://mastodon.social/@gregdaynes or Github https://github.com/gregdaynes
+If you would like to contact me with praises, complaints, or have a conversation, please email me , message me on Mastodon https://mastodon.social/@gregdaynes or Github https://github.com/gregdaynes

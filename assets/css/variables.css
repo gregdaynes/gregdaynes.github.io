@@ -1,22 +1,22 @@
 :root {
   --ratio: 1.5;
   --s-5: calc(var(--s-4) / var(--ratio));
-  --s-4: calc(var(--s-3) / var(--ratio));
-  --s-3: calc(var(--s-2) / var(--ratio));
+  /* --s-4: calc(var(--s-3) / var(--ratio)); */
+  /* --s-3: calc(var(--s-2) / var(--ratio)); */
   --s-2: calc(var(--s-1) / var(--ratio));
   --s-1: calc(var(--s0) / var(--ratio));
   --s0: 1rem;
   --s1: calc(var(--s0) * var(--ratio));
-  --s2: calc(var(--s1) * var(--ratio));
-  --s3: calc(var(--s2) * var(--ratio));
-  --s4: calc(var(--s3) * var(--ratio));
-  --s5: calc(var(--s4) * var(--ratio));
+  /* --s2: calc(var(--s1) * var(--ratio)); */
+  /* --s3: calc(var(--s2) * var(--ratio)); */
+  /* --s4: calc(var(--s3) * var(--ratio)); */
+  /* --s5: calc(var(--s4) * var(--ratio)); */
 
   --_color-type-primary: black;
   --_color-type-secondary: silver;
   --_color-type-highlight: magenta;
-  --_color-decoration-primary: black;
-  --_color-decoration-shadow: black;
+  /* --_color-decoration-primary: black; */
+  /* --_color-decoration-shadow: black; */
   --_color-background-primary: white;
   --_color-background-secondary: lightgray;
   --_color-background-code: ghostwhite;
@@ -25,8 +25,6 @@
   --_color-link-active: cyan;
   --_color-link-visited: blue;
   --_color-link-current: firebrick;
-
-  --_width-aside: 350px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -38,9 +36,9 @@
     --_color-link-active: cyan;
     --_color-link-visited: dodgerblue;
     --_color-link-current: magenta;
-    --_color-decoration-primary: white;
-    --_color-background-secondary: dimgray;
+    /* --_color-decoration-primary: white; */
+    /* --_color-background-secondary: dimgray; */
     --_color-background-code: color-mix(in srgb, slategray 20%, transparent);
-    --_color-decoration-shadow: dimgray;
+    /* --_color-decoration-shadow: dimgray; */
   }
 }

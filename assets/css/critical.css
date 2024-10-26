@@ -1,32 +1,14 @@
-/*! modern-normalize v2.0.0 | MIT License | https://github.com/sindresorhus/modern-normalize */
-/*! Font stacks by Chris Coyier | https://css-tricks.com/snippets/css/font-stacks/ */
+/* Settings -------------------------------------------------------- */
 
 :root {
-	font-size: 100%;
 	line-height: 1.5;
-	font-family: "Segoe UI", Candara, "Bitstream Vera Sans", "DejaVu Sans", "Bitstream Vera Sans", "Trebuchet MS", Verdana, "Verdana Ref", sans-serif;
-
-	@media (min-width: 768px) {
-		font-size: clamp(1rem, 1.125rem, 4dvw);
-	}
+  font-family: sans-serif;
+  font-size: clamp(1.1rem, 1.5vw, 1.3rem);
 }
 
-* {
-	margin: 0;
-}
-
-*, ::after, ::before {
-	box-sizing: border-box;
-}
-
-:focus {
-	outline-width: thin;
-	outline-style: solid;
-	outline-offset: var(--s-3);
-}
+/* Elements --------------------------------------------------------- */
 
 html {
-	-webkit-text-size-adjust: 100%;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
@@ -36,70 +18,13 @@ body {
 	color: var(--_color-type-primary);
 	max-width: 1024px;
 	margin-inline: auto;
-	display: flex;
-	flex-direction: column;
+  display: flex;
+  flex-direction: column;
 	min-height: 100dvh;
-	padding: var(--s1);
-	gap: var(--s1);
-}
-
-hr {
-	height: unset;
-	color: inherit;
-	border: none;
-	background-color: var(--_color-background-secondary);
-}
-
-abbr[title] {
-	text-decoration: underline dotted;
-}
-
-b,
-strong {
-	font-weight: bolder;
-}
-
-code,
-kbd,
-pre,
-samp {
-	font-family: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace;
-	font-size: 1rem; /* 2 */
-}
-
-small {
-	font-size: 0.8em;
-}
-
-sub,
-sup {
-	font-size: 0.75em;
-	line-height: 0;
-	position: relative;
-	vertical-align: baseline;
-}
-
-sub {
-	bottom: -.25em;
-}
-
-sup {
-	top: -.5em;
-}
-
-img {
-  display: block;
-  max-inline-size: 100%;
-}
-
-ol, ul {
-	padding-inline-start: 2ch;
+	padding-inline: var(--s0);
 }
 
 a {
-	text-decoration: underline;
-	text-underline-offset: 0.25rem;
-	text-decoration-style: dotted;
 	color: var(--_color-link-normal);
 
 	&:visited {
@@ -121,125 +46,81 @@ a {
 	&:has(svg) {
 		display: inline-flex;
 		align-items: center;
-		gap: 0.5rem;
-
-		svg {
-			opacity: 0.75;
-		}
-	}
-}
-
-.main-wrapper {
-	flex: 1 1;
-	display: flex;
-	gap: var(--s1);
-	flex-wrap: wrap;
-	flex-direction: column;
-	margin-inline: auto;
-
-	@media (min-width: 768px) {
-		flex-direction: row;
-	}
-}
-
-main {
-	flex-grow: 1;
-	flex-shrink: 1;
-
-  @media (min-width: 768px) {
-    max-width: calc(100% - calc(100% / 3) - var(--s1) / 2);
-  }
-}
-
-aside {
-	flex-grow: 1;
-	flex-shrink: 1;
-	flex-basis: calc(100% / 3 - var(--s1) / 2);
-}
-
-.banner {
-	width: 100%;
-	display: inline-flex;
-	gap: var(--s-2);
-	line-height: 1;
-	text-transform: uppercase;
-	font-size: 1rem;
-
-	hr {
-		flex: 1;
-		display: inline-block;
-	}
-}
-
-.stack {
-	display: flex;
-	flex-direction: column;
-	gap: var(--s1);
-
-	.stack {
-		gap: var(--s0);
-
-		.stack {
-			gap: var(--s-2);
-		}
-	}
-}
-
-.more {
-	font-weight: 700;
-	text-transform: uppercase;
-	float: right;
-}
-
-footer, header {
-	line-height: 1;
-	display: flex;
-
-	nav {
-		display: flex;
-		justify-content: center;
-		flex-wrap: wrap;
 		gap: var(--s-1);
 	}
 }
 
+h2 {
+  margin-block-end: var(--s-5);
+}
+
+/* Objects ---------------------------------------------------------- */
+
+main :first-child {
+  margin-block-start: 0;
+}
+
+aside :first-child {
+  @media screen and (min-width: 768px) {
+    margin-block-start: 0;
+  }
+}
+
+.with-sidebar {
+  @media screen and (min-width: 768px) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s1);
+
+    > aside {
+      flex-basis: 30%;  
+      flex-grow: 1;
+    }
+
+    > main {
+      flex-basis: 0;
+      flex-grow: 999;
+      min-inline-size: 50%;
+    }
+  }
+}
+
+/* Components ------------------------------------------------------- */
+
 header {
-	font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", Charcoal, "Helvetica Inserat", "Bitstream Vera Sans Bold", "Arial Black", sans-serif;
-	flex-direction: column;
-	text-transform: uppercase;
-	text-align: center;
-	gap: var(--s1);
+  font-family: impact;
+  text-transform: uppercase;
+  text-align: center;
+  text-wrap: balance;
+  line-height: 1;
+  
+  * { 
+    margin: 0;
+  }
 
-	h1 {
-		font-size: clamp(1rem, 10rem, 16dvw);
-		line-height: .9;
-	}
+  a {
+    text-decoration: none;
+  }
 
-	h2 {
-		font-size: clamp(1rem, 2rem, 8dvw);
-	}
+  nav {
+    font-size: var(--s1);
+    margin-block: var(--s1);
+  }
 
-	nav {
-		font-size: clamp(1rem, 1.375rem, 4dvw);
-	}
-
-	a {
-		text-decoration: none;
-		font-weight: 700;
-
-		&.current {
-			text-decoration: underline;
-		}
-	}
+  .current {
+    text-decoration: underline;
+  }
 }
 
 footer {
+  /* push footer to bottom of page if screen taller than content */
+  margin-block-start: auto;
 	text-align: center;
-	gap: var(--s-1);
-	flex-wrap: wrap;
-	justify-content: center;
-
-	p {
-		opacity: 0.5;
-	}
+  text-wrap: balance;
 }
+
+/* Utilities -------------------------------------------------------- */
+
+/* Templates -------------------------------------------------------- */
+
+/* Vendor ----------------------------------------------------------- */

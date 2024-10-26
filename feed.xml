@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://gregdaynes.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://gregdaynes.com/" rel="alternate" type="text/html" /><updated>2024-07-30T04:15:16+00:00</updated><id>https://gregdaynes.com/feed.xml</id><title type="html">Greg Daynes</title><subtitle>The website and home of Gregory Daynes. Find links to projects, notebooks, and resume.</subtitle><entry><title type="html">Callable Class Instance</title><link href="https://gregdaynes.com/note/2024/07/30/callable-class-instance.html" rel="alternate" type="text/html" title="Callable Class Instance" /><published>2024-07-30T01:55:00+00:00</published><updated>2024-07-30T01:55:00+00:00</updated><id>https://gregdaynes.com/note/2024/07/30/callable-class-instance</id><content type="html" xml:base="https://gregdaynes.com/note/2024/07/30/callable-class-instance.html"><![CDATA[<p>I encountered a situation in Javascript, where I needed a Class instance that could be called like a function.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://gregdaynes.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://gregdaynes.com/" rel="alternate" type="text/html" /><updated>2024-10-26T20:20:05+00:00</updated><id>https://gregdaynes.com/feed.xml</id><entry><title type="html">Callable Class Instance</title><link href="https://gregdaynes.com/note/2024/07/30/callable-class-instance.html" rel="alternate" type="text/html" title="Callable Class Instance" /><published>2024-07-30T01:55:00+00:00</published><updated>2024-07-30T01:55:00+00:00</updated><id>https://gregdaynes.com/note/2024/07/30/callable-class-instance</id><content type="html" xml:base="https://gregdaynes.com/note/2024/07/30/callable-class-instance.html"><![CDATA[<p>I encountered a situation in Javascript, where I needed a Class instance that could be called like a function.</p>
 
 <p>StackOverflow to the rescue<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup></p>
 
@@ -286,23 +286,33 @@ el.addEventListener('some-event', this)
     <p>Heirarchy of Layouts - with Jekyll, a page may have 0 or more layouts, in a heriarchical fasion, for example: <code class="language-plaintext highlighter-rouge">base.html &gt; blog.hmtl &gt; post.html &gt; page</code>
 Each layout and page can have as many CSS/JS files as wanted, but will be concatenated to a single file per layout/page in the heirarchy.</p>
   </li>
-</ul>]]></content><author><name></name></author><category term="project" /><summary type="html"><![CDATA[A pair of plugins that provide frontmatter options to include CSS and JS files on specific pages and layouts.]]></summary></entry><entry><title type="html">Hyde Fonts</title><link href="https://gregdaynes.com/project/2023/12/03/hyde-fonts.html" rel="alternate" type="text/html" title="Hyde Fonts" /><published>2023-12-03T00:00:00+00:00</published><updated>2023-12-03T00:00:00+00:00</updated><id>https://gregdaynes.com/project/2023/12/03/hyde-fonts</id><content type="html" xml:base="https://gregdaynes.com/project/2023/12/03/hyde-fonts.html"><![CDATA[A plugin for Jekyll that automates adding Google Fonts to your site.
+</ul>]]></content><author><name></name></author><category term="project" /><summary type="html"><![CDATA[A pair of plugins that provide frontmatter options to include CSS and JS files on specific pages and layouts.]]></summary></entry><entry><title type="html">Hyde Fonts</title><link href="https://gregdaynes.com/project/2023/12/03/hyde-fonts.html" rel="alternate" type="text/html" title="Hyde Fonts" /><published>2023-12-03T00:00:00+00:00</published><updated>2023-12-03T00:00:00+00:00</updated><id>https://gregdaynes.com/project/2023/12/03/hyde-fonts</id><content type="html" xml:base="https://gregdaynes.com/project/2023/12/03/hyde-fonts.html"><![CDATA[<p>A plugin for Jekyll that automates adding Google Fonts to your site.</p>
 
-_The repository has instructions to get up and running._
+<p><em>The repository has instructions to get up and running.</em></p>
 
-- [Hyde Fonts Repo](https://github.com/gregdaynes/hyde-fonts)
-- [Ruby Gems](https://rubygems.org/gems/hyde-fonts)
+<ul>
+  <li><a href="https://github.com/gregdaynes/hyde-fonts">Hyde Fonts Repo</a></li>
+  <li><a href="https://rubygems.org/gems/hyde-fonts">Ruby Gems</a></li>
+</ul>
 
-### Features
+<h3 id="features">Features</h3>
 
-- Utilizes a configuration file to specify fonts and variants to include in your site.
-
-- Creates CSS declrations for each font.
-   - This can be included as a file or inline with other CSS on your site.
-
-   - Exposes a liquid tag `{% hyde_fonts link %}` to include  the fonts in your site using a link tag. Or `{% hyde_fonts inline %}` to include the CSS for inclusion in other CSS files or `<style>` tags.]]></content><author><name></name></author><category term="project" /><summary type="html"><![CDATA[A plugin for Jekyll that automates adding Google Fonts to your site.]]></summary></entry><entry><title type="html">Turing Pi</title><link href="https://gregdaynes.com/project/2023/11/11/turing-pi.html" rel="alternate" type="text/html" title="Turing Pi" /><published>2023-11-11T00:00:00+00:00</published><updated>2023-11-11T00:00:00+00:00</updated><id>https://gregdaynes.com/project/2023/11/11/turing-pi</id><content type="html" xml:base="https://gregdaynes.com/project/2023/11/11/turing-pi.html"><![CDATA[<h3 id="turing-pi">Turing Pi</h3>
-
-<p><a href="https://turingpi.com/product/turing-pi-2/">Turing Pi 2</a>
+<ul>
+  <li>
+    <p>Utilizes a configuration file to specify fonts and variants to include in your site.</p>
+  </li>
+  <li>
+    <p>Creates CSS declrations for each font.</p>
+    <ul>
+      <li>
+        <p>This can be included as a file or inline with other CSS on your site.</p>
+      </li>
+      <li>
+        <p>Exposes a liquid tag <code class="language-plaintext highlighter-rouge">{% hyde_fonts link %}</code> to include  the fonts in your site using a link tag. Or <code class="language-plaintext highlighter-rouge">{% hyde_fonts inline %}</code> to include the CSS for inclusion in other CSS files or <code class="language-plaintext highlighter-rouge">&lt;style&gt;</code> tags.</p>
+      </li>
+    </ul>
+  </li>
+</ul>]]></content><author><name></name></author><category term="project" /><summary type="html"><![CDATA[A plugin for Jekyll that automates adding Google Fonts to your site.]]></summary></entry><entry><title type="html">Turing Pi</title><link href="https://gregdaynes.com/project/2023/11/11/turing-pi.html" rel="alternate" type="text/html" title="Turing Pi" /><published>2023-11-11T00:00:00+00:00</published><updated>2023-11-11T00:00:00+00:00</updated><id>https://gregdaynes.com/project/2023/11/11/turing-pi</id><content type="html" xml:base="https://gregdaynes.com/project/2023/11/11/turing-pi.html"><![CDATA[<p><a href="https://turingpi.com/product/turing-pi-2/">Turing Pi 2</a>
 <a href="https://docs.turingpi.com/docs">docs</a></p>
 
 <h3 id="mini-atx-case">Mini ATX Case</h3>
