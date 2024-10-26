@@ -6,13 +6,13 @@ title: Projects
 {% assign data = site.data.pages.projects %}
 
 {% if data.subtitle %}
-<h2 class="banner">{{ data.subtitle }} <hr></h2>
+<h2>{{ data.subtitle }}</h2>
 {% endif %}
 
 {{ data.content | markdownify}}
 
-<section class="stack">
-  <h2 class="banner">Projects <hr></h2>
+<section>
+  <h2>Projects</h2>
   {% assign projects = site.categories.project %}
-  {% include components/toc-list.html list=projects date=true %}
+  {% include components/toc-list.html list=projects date=true toc=true %}
 </section>

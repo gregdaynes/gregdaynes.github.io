@@ -13,7 +13,8 @@ css:
 {% include components/training.html data=experience name="experience" %}
 
 {% contentfor sidebar %}
-	{% include components/linktree.html %}
+  {% assign nav = site.data.navigation | where: "title", "Linktree" | first %}
+  {% include components/toc-list.html list= nav.data icon=true %}
 
 	{% include components/training.html data=site.data.skills.education name="education" title_tag="span"  %}
 

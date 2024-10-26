@@ -1,0 +1,5 @@
+{%- assign data = site.data.config.data -%}
+
+{%- if page.title %}{{ page.title }} {{ data.title-delimiter }} {% endif -%}
+
+{%- if data.title %}{{ data.title }}{% endif -%}

@@ -1,47 +1,22 @@
-.toc-list {
-	width: 100%;
-	list-style-type: none;
-	padding: 0;
+nav:has(ol, ul) {
+  ol, ul {
+    list-style: none;
+    padding: 0;
+  }
 
-	li > .row {
-		text-decoration: none;
-		display: grid;
-		grid-template-columns: auto max-content;
-		align-items: end;
+  &.toc li :first-child {
+    display: flex;
+    align-items: baseline;
+    gap: var(--s-2);
+    line-height: 1.5;
+  }
 
-		> .page {
-			text-align: right;
-			font-family: monospace;
-			padding-inline-start: 0.5ch;
-		}
+  .leaders {
+    flex-grow: 1;
+    border-bottom: 2px dotted;
+  }
 
-		> .title {
-			position: relative;
-			overflow: hidden;
-		}
-
-		.leaders::after {
-			position: absolute;
-			content: '. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . '
-			'. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . '
-			'. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . '
-			'. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ';
-			text-align: right;
-		}
-
-		&:has(a:focus) {
-			outline-width: thin;
-			outline-style: solid;
-			outline-offset: var(--s-3);
-			outline-color: currentColor;
-
-			a:focus {
-				outline: none;
-			}
-		}
-	}
-
-	li {
-		margin-block-end: var(--s-2);
-	}
+  p {
+    margin-block: 0 var(--s-2);
+  }
 }

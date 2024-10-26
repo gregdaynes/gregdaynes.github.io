@@ -5,7 +5,6 @@ categories:
   - project
 excerpt:
 ---
-
 A plugin for Jekyll that automates adding Google Fonts to your site.
 
 _The repository has instructions to get up and running._
