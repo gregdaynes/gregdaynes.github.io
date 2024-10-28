@@ -1,9 +1,6 @@
 ---
 title: Linktree
 data:
-  - url: tel:+12507323424
-    title: +1 (250) 732-3424
-    icon: smartphone
   - url: https://github.com/gregdaynes
     title: github.com/gregdaynes
     icon: github
