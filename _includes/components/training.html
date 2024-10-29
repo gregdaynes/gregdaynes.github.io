@@ -16,7 +16,8 @@
 
 				{% unless data.datestart == "" %}
 				<span data-daterange>
-					<time datetime="{{ data.datestart }}" data-date>
+
+					<time datetime="{{ data.datestart | date: "%Y-%m-%d" }}" data-date>
 						{{ data.datestart | date: "%B %Y" }}
 					</time>
 
@@ -25,7 +26,7 @@
 					{% if data.dateend == "" %}
 					Current
 					{% else %}
-					<time datetime="{{ data.dateend }}" data-date>
+					<time datetime="{{ data.dateend | date: "%Y-%m-%d" }}" data-date>
 						{{ data.dateend | date: "%B %Y" }}
 					</time>
 					{% endif %}

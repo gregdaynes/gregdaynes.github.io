@@ -1,21 +1,18 @@
 <h2>Projects</h2>
-{% assign projects = site.categories.project | shuffle -%}
-{% include components/toc-list.html list=projects limit=4 -%}
+{% assign projects = site.categories.project | shuffle %}
+{% include components/toc-list.html list=projects limit=4 %}
+{% include components/more.html url="/projects" text="More Projects" %}
 
-{% include components/more.html url="/projects" text="More Projects" -%}
+{% if site.categories.reading %}
+  <h2>Reading</h2>
+  {% assign reading = site.categories.reading %}
+  {% include components/toc-list.html list=reading %}
+  {% include components/more.html url="/reading" text="More Reading" %}
+{% endif %}
 
-{% if site.categories.reading -%}
-<h2>Reading</h2>
-{% assign reading = site.categories.reading -%}
-{% include components/toc-list.html list=reading -%}
-
-{% include components/more.html url="/reading" text="More Reading" -%}
-{% endif -%}
-
-{% if site.categories.note -%}
-<h2>Notes</h2>
-{% assign notes = site.categories.note -%}
-{% include components/toc-list.html list=notes -%}
-
-{% include components/more.html url="/notebook" text="More Notes" -%}
-{% endif -%}
+{% if site.categories.note %}
+  <h2>Notes</h2>
+  {% assign notes = site.categories.note %}
+  {% include components/toc-list.html list=notes %}
+  {% include components/more.html url="/notebook" text="More Notes" %}
+{% endif %}

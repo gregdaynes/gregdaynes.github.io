@@ -1,13 +1,13 @@
-{%- assign tag = include.tag | default: 'p' -%}
-{%- assign text = include.text -%}
-{%- assign href = include.href -%}  
+{% assign tag = include.tag | default: 'p' %}
+{% assign text = include.text %}
+{% assign href = include.href %}  
 <{{ tag }} class="text-fit">
   <span>
-    {%- if href -%}
+    {% if href %}
     <a href="{{ href }}">{{ text }}</a>
-    {%- else -%}
+    {% else %}
     <span>{{ text }}</span>
-    {%- endif -%}
+    {% endif %}
   </span>
   <span aria-hidden="true">{{ text }}</span>
 </{{ tag }}>

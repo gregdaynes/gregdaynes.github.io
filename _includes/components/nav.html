@@ -1,16 +1,16 @@
-{%- assign nav = site.data.navigation | where: "title", "Site Nav" | first -%}
-{%- capture nav -%}
-  {%- for item in nav.data -%}
-  {%- assign current = false -%}
+{% assign nav = site.data.navigation | where: "title", "Site Nav" | first %}
+{% capture nav %}
+  {% for item in nav.data %}
+  {% assign current = false %}
 
-  {%- if page.url == item.href %}
+  {% if page.url == item.href %}
   <a href="{{ item.href }}" class="current">{{ item.text }}</a>
-  {%- else %}
+  {% else %}
   <a href="{{ item.href }}">{{ item.text }}</a>
-  {%- endif %}
+  {% endif %}
 
-{%- endfor -%}
-{%- endcapture -%}
+{% endfor %}
+{% endcapture %}
 <nav>
   {{ nav }}
 </nav>

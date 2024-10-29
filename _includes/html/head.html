@@ -1,22 +1,22 @@
-{%- assign page_keywords = page.keywords | split: ', ' | compact -%}
-{%- assign site_keywords = site.keywords | split: ', ' | compact -%}
-{%- assign keywords = page_keywords | concat: site_keywords | join: ', ' -%}
+{% assign page_keywords = page.keywords | split: ', ' | compact %}
+{% assign site_keywords = site.keywords | split: ', ' | compact %}
+{% assign keywords = page_keywords | concat: site_keywords | join: ', ' %}
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="keywords" content="{{ keywords }}">
   <meta name="no-email-collection" content="{{ '/privacy.txt' | prepend: site.baseurl }}">
   <meta name=twitter:card content=summary_large_image>
-  <meta property=og:title content="{%- include fragment/title.html -%}">
+  <meta property=og:title content="{% include fragment/title.html %}">
   <meta property="og:description" name="description" content="{% include fragment/description.html %}">
   <meta property="og:image" content="data:;base64,iVBORw0KGgo=">
-  <title>{%- include fragment/title.html -%}</title>
+  <title>{% include fragment/title.html %}</title>
   <link rel="me" href="{{ site.data.config.data.ownership }}">
   <link rel="author" href="{{ '/humans.txt' | prepend: site.baseurl }}">
   <link rel="icon" href="data:;base64,iVBORw0KGgo=">
   <link type="application/atom+xml" rel="alternate" href="{{ '/feed.xml' | prepend: site.baseurl }}">
-  {%- for file in page.css_files %}
+  {% for file in page.css_files %}
   <style>
     {{ file.content }}
   </style>
-  {%- endfor %}
+  {% endfor %}
 </head>

@@ -1,39 +1,39 @@
-{%- assign list = include.list -%}
-{%- assign show_date = include.date -%}
-{%- assign show_excerpt = include.excerpt -%}
-{%- assign limit = include.limit -%}
-{%- assign tag = include.tag | default: 'ul' -%}
-{%- assign toc = include.toc | default: false -%}
-{%- assign icon = include.icon | false -%}
+{% assign list = include.list %}
+{% assign show_date = include.date %}
+{% assign show_excerpt = include.excerpt %}
+{% assign limit = include.limit %}
+{% assign tag = include.tag | default: 'ul' %}
+{% assign toc = include.toc | default: false %}
+{% assign icon = include.icon | false %}
 
-{%- if limit -%}
-{%- assign list = list | slice: 0, limit -%}
-{%- endif -%}
+{% if limit %}
+{% assign list = list | slice: 0, limit %}
+{% endif %}
 
-<nav {% if toc %}class="toc"{% endif %}>
+<nav{% if toc %} class="toc"{% endif %}>
   <{{ tag }}>
-    {% for item in list -%}
+    {% for item in list %}
     <li>
-      {% if show_date -%}
+      {% if show_date %}
       <div class="row">
-        {% endif -%}
+        {% endif %}
         <a href="{{ item.url }}">
-          {%- if icon -%}
-            {%- include icons/{{ item.icon }}.svg -%}
-          {%- endif -%}
+          {% if icon %}
+            {% include icons/{{ item.icon }}.svg %}
+          {% endif %}
 
           {{- item.title -}}
         </a>
-        {% if show_date -%}
+        {% if show_date %}
         <span class="leaders"></span>
         <time datetime="{{ item.date | date: "%Y-%m-%d" }}">{{ item.date | date: "%Y-%m-%d" }}</time>
       </div>
-      {%- endif -%}
+      {% endif %}
 
-      {% if show_excerpt -%}
+      {% if show_excerpt %}
       {{ item.excerpt }}
       {% endif %}
     </li>
-    {%- endfor %}
+    {% endfor %}
   </{{ tag }}>
 </nav>

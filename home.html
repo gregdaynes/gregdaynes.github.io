@@ -3,18 +3,18 @@ layout: base
 permalink: /
 title: Home
 ---
-{%- assign data = site.data.pages.home -%}
+{% assign data = site.data.pages.home %}
 
-{%- if data.subtitle %}
+{% if data.subtitle %}
 <h2>{{ data.subtitle }}</h2>
-{% endif -%}
+{% endif %}
 
-{{- data.content | markdownify -}}
+{{ data.content | markdownify }}
 
 <section>
 	<h2>Posts</h2>
 
-	{% assign posts = site.posts -%}
-	{% include components/toc-list.html list=posts limit=10 date=true toc=true -%}
-  {% include components/more.html url="/notebook" text="More Posts" -%}
+	{% assign posts = site.posts %}
+	{% include components/toc-list.html list=posts limit=10 date=true toc=true %}
+  {% include components/more.html url="/notebook" text="More Posts" %}
 </section>
