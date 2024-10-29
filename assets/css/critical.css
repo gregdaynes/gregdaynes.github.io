@@ -108,6 +108,10 @@ header {
   nav {
     font-size: var(--s1);
     margin-block: var(--s1);
+
+    a + a::before {
+      content: ' ';
+    }
   }
 
   .current {
