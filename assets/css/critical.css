@@ -90,6 +90,14 @@ aside :first-child {
 
 /* Components ------------------------------------------------------- */
 
+:is(header, footer) li {
+  display: inline;
+
+  + li::before {
+    content: ' ';
+  }
+}
+
 header {
   font-family: impact;
   text-transform: uppercase;
@@ -108,10 +116,6 @@ header {
   nav {
     font-size: var(--s1);
     margin-block: var(--s1);
-
-    a + a::before {
-      content: ' ';
-    }
   }
 
   .current {
