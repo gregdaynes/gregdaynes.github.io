@@ -9,14 +9,14 @@
   <meta property=og:title content="{% include fragment/title.html %}">
   <meta property="og:description" name="description" content="{% include fragment/description.html %}">
   <meta property="og:image" content="data:;base64,iVBORw0KGgo=">
+
   <title>{% include fragment/title.html %}</title>
   <link rel="me" href="{{ site.data.config.data.ownership }}">
   <link rel="author" href="{{ '/humans.txt' | prepend: site.baseurl }}">
   <link rel="icon" href="data:;base64,iVBORw0KGgo=">
   <link type="application/atom+xml" rel="alternate" href="{{ '/feed.xml' | prepend: site.baseurl }}">
-  {% for file in page.css_files %}
-  <style>
-    {{ file.content }}
-  </style>
+
+  {% for style in page.automatic_styles %}
+    {{ style }}
   {% endfor %}
 </head>

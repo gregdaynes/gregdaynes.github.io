@@ -16,16 +16,17 @@ plugins:
 hyde_page_css:
   keep_files: true
   dev_mode: true
+  livereload: true
 
 hyde_page_js:
   keep_files: true
   dev_mode: true
 
 hyde_page_html:
-  enable: enable
+  enable: true
   validate: false
   validator_uri: 'http://0.0.0.0:8888/'
-  beautify: false
+  beautify: true
   minify: false
 
 hyde_decap:

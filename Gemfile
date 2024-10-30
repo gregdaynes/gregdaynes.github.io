@@ -18,7 +18,7 @@ group :jekyll_plugins do
   gem "jekyll-sitemap"
   gem "jekyll-compose"
   gem "jekyll-contentblocks"
-  gem "hyde-page-css"
+  gem "hyde-page-css", "~> 0.6.0"
   gem "hyde-page-html"
   gem "hyde-page-js"
   gem "hyde-decap"
