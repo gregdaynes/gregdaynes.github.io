@@ -4,9 +4,13 @@
 	<p>©2024 Gregory Daynes</p>
 
 	<nav>
-		{% for item in nav.data %}
-			<a href="{{ item.href }}">{{ item.text }}</a>
-		{% endfor %}
+    <ul>
+      {% for item in nav.data %}
+        <li>
+          <a href="{{ item.href }}">{{ item.text }}</a>
+        </li>
+      {% endfor %}
+    </ul>
 	</nav>
 
 	<p><small>Content on this site is licensed under Creative Common Attribution-ShareAlike 4.0 International License. All code content is licensed under the MIT license, unless an excerpt from a larger work under another license.</small></p>
