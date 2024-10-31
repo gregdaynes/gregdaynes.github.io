@@ -4,7 +4,7 @@ nav:has(ol, ul) {
     padding: 0;
   }
 
-  &.toc li :first-child {
+  div {
     display: flex;
     align-items: baseline;
     gap: var(--s-2);
@@ -14,6 +14,10 @@ nav:has(ol, ul) {
   .leaders {
     flex-grow: 1;
     border-bottom: 2px dotted;
+  }
+
+  time {
+    flex-shrink: 0;
   }
 
   p {

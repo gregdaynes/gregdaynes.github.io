@@ -6,6 +6,14 @@
   font-size: clamp(1.1rem, 1.5vw, 1.3rem);
 }
 
+:is(*, *:visited):focus {
+  --bg: var(--_color-link-normal);
+  outline: none;
+  box-shadow: 0 0 0 0.25rem var(--bg);
+  background: var(--bg);
+  color: var(--_color-background-primary);
+}
+
 /* Elements --------------------------------------------------------- */
 
 html {
@@ -29,6 +37,8 @@ body {
 
 a {
 	color: var(--_color-link-normal);
+  text-underline-offset: 0.1em;
+  text-decoration-thickness: 0.05em;
 
 	&:visited {
 		color: var(--_color-link-visited);
