@@ -14,8 +14,8 @@ plugins:
   - hyde-decap
 
 hyde_page_css:
+  minify: true
   keep_files: true
-  dev_mode: true
   livereload: true
 
 hyde_page_js:
@@ -27,7 +27,7 @@ hyde_page_html:
   validate: false
   validator_uri: 'http://0.0.0.0:8888/'
   beautify: true
-  minify: false
+  minify: true
 
 hyde_decap:
   keep_files: false
