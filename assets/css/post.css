@@ -12,3 +12,9 @@ div.highlight {
   overflow: scroll;
   background: var(--_color-background-code);
 }
+
+pre {
+  margin-block: 0;
+  padding: var(--s-1);
+  border-radius: 3px;
+}
