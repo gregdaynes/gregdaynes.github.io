@@ -6,7 +6,7 @@ enabled: true
 backend:
   name: github
   repo: gregdaynes/gregdaynes.github.io
-  site_domain: gregdaynes.com
+  site_domain: gregdaynes.github.io
   branch: main
 local_backend: true
 publish_mode: editorial_workflow
