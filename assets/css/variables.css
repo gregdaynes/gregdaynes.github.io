@@ -25,21 +25,20 @@
   --_color-link-active: cyan;
   --_color-link-visited: blue;
   --_color-link-current: firebrick;
-
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --_color-type-primary: floralwhite;
-    --_color-background-primary: #111;
-    --_color-link-normal: darkorange;
-    --_color-link-hover: gold;
-    --_color-link-active: gold;
-    --_color-link-visited: darkorange;
-    --_color-link-current: orangered;
+    --_color-type-primary: white;
+    --_color-background-primary: black;
+    --_color-link-normal: dodgerblue;
+    --_color-link-hover: magenta;
+    --_color-link-active: cyan;
+    --_color-link-visited: dodgerblue;
+    --_color-link-current: magenta;
     /* --_color-decoration-primary: white; */
     /* --_color-background-secondary: dimgray; */
-    --_color-background-code: color-mix(in srgb, slategray 30%, black);
+    --_color-background-code: color-mix(in srgb, slategray 20%, transparent);
     /* --_color-decoration-shadow: dimgray; */
   }
 }
