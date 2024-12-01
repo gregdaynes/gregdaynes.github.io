@@ -1,19 +1,28 @@
 ---
 title: Linktree
 data:
+  - url: tel:+12507323424
+    title: +1 (250) 732-3424
+    icon: phone
+    display: print
   - url: https://github.com/gregdaynes
     title: github.com/gregdaynes
     icon: github
+    display: screen|print
   - url: https://www.linkedin.com/in/gregory-daynes-9740bb55
     title: Linked In
     icon: linkedin
-  - url: https://after.coffee
-    title: after.coffee
+    display: screen
+  - url: https://gregdaynes.com
+    title: gregdaynes.com
     icon: globe
+    display: screen|print
   - url: mailto:hire@gregdaynes.com
     title: hire@gregdaynes.com
     icon: mail
+    display: screen|print
   - url: https://vancouverisland.com/plan-your-trip/regions-and-towns/vancouver-island-bc-islands/cowichan-valley/
     title: Vancouver Island, Canada
     icon: map-pin
+    display: screen|print
 ---

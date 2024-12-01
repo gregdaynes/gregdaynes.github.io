@@ -1,0 +1,27 @@
+---
+---
+<!DOCTYPE html>
+<html lang="{{site.data.config.data.lang}}">
+{% include html/head.html %}
+{% include fragment/body-tag.html %}
+  {% include components/header.html %}
+  <div class="with-sidebar">
+    <main>
+      {{ content }}
+    </main>
+
+    <aside>
+      {% ifhascontent sidebar %}
+        {% contentblock sidebar %}
+      {% endifhascontent %}
+
+      {% ifnothascontent sidebar %}
+        {% include components/sidebar.html %}
+      {% endifnothascontent %}
+    </aside>
+  </div>
+
+  {% include components/footer.html %}
+  {% include html/scripts.html %}
+</body>
+</html>

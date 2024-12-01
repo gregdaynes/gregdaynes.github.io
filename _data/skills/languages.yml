@@ -5,12 +5,16 @@ data:
     level: 5
     datestart: ""
     dateend: ""
-  - title: CSS/SCSS
+  - title: CSS
     level: 5
     datestart: ""
     dateend: ""
   - title: Javascript
     level: 5
+    datestart: ""
+    dateend: ""
+  - title: Typescript
+    level: 3
     datestart: ""
     dateend: ""
   - title: Shell

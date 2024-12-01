@@ -4,7 +4,7 @@
 <{{ tag }} class="text-fit">
   <span>
     {% if href %}
-    <a href="{{ href }}">{{ text }}</a>
+    <a data-text="{{ text }}" href="{{ href }}">{{ text }}</a>
     {% else %}
     <span>{{ text }}</span>
     {% endif %}

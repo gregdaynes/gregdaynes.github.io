@@ -6,49 +6,52 @@
 <section data-component="{{ data.name | safe }}" data-display-grid="{{ display_grid }}">
 	<h2>{{ data.name }}</h2>
 
-	{% for data in data.data %}
-	<div>
-		<{{ title_tag }} class="title">
-			{{ data.title }}
+  {% if include.sort %}
+    {% assign orderedData = data.data | sort: include.sort | reverse %}
+  {% else %}
+    {% assign orderedData = data.data | sort: 'datestart' | reverse %}
+  {% endif %}
 
-			<small>
-				{{ data.subtitle }}
+	{% for data in orderedData %}
+  <div>
+    <{{ title_tag }}>
+        {{ data.title }}
 
-				{% unless data.datestart == "" %}
-				<span data-daterange>
+        <small>
+            {{ data.subtitle }}<br>
 
-					<time datetime="{{ data.datestart | date: "%Y-%m-%d" }}" data-date>
-						{{ data.datestart | date: "%B %Y" }}
-					</time>
+            {% unless data.datestart == "" %}
+            <time datetime="{{ data.datestart | date: "%Y-%m-%d" }}" data-date>
+                {{ data.datestart | date: "%B %Y" }}
+            </time>
 
-					&mdash;
+            &mdash;
 
-					{% if data.dateend == "" %}
-					Current
-					{% else %}
-					<time datetime="{{ data.dateend | date: "%Y-%m-%d" }}" data-date>
-						{{ data.dateend | date: "%B %Y" }}
-					</time>
-					{% endif %}
-				</span>
-				{% endunless %}
-			</small>
-		</{{ title_tag }}>
+            {% if data.dateend == "" %}
+            Current
+            {% else %}
+            <time datetime="{{ data.dateend | date: "%Y-%m-%d" }}" data-date>
+                {{ data.dateend | date: "%B %Y" }}
+            </time>
+            {% endif %}
+            {% endunless %}
+        </small>
+    </{{ title_tag }}>
 
-		{{ data.content | markdownify}}
+    {{ data.content | markdownify}}
 
-		{% if data.level == "" %}
-		{% elsif data.level >= 0 %}
-		<progress data-level value="{{data.level}}" max="5"></progress>
-		{% endif %}
+    {% if data.level == "" %}
+    {% elsif data.level >= 0 %}
+    <progress data-level value="{{data.level}}" max="5"></progress>
+    {% endif %}
 
-		{% if data.notes %}
-		<ul>
-			{% for note in data.notes %}
-			<li>{{ note | markdownify}}</li>
-			{% endfor %}
-		</ul>
-		{% endif %}
-	</div>
+    {% if data.notes %}
+    <ul>
+        {% for note in data.notes %}
+        <li>{{ note | markdownify}}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+  </div>
 	{% endfor %}
 </section>

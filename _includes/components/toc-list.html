@@ -13,27 +13,29 @@
 <nav{% if toc %} class="toc"{% endif %}>
   <{{ tag }}>
     {% for item in list %}
-    <li>
-      {% if show_date %}
-      <div>
-        {% endif %}
-        <a href="{{ item.url }}">
-          {% if icon %}
-            {% include icons/{{ item.icon }}.svg %}
-          {% endif %}
+      {% assign display = item.display | split: '|' | join: ' ' %}
 
-          {{- item.title -}}
-        </a>
+      <li class="{{ display }}">
         {% if show_date %}
-        <span class="leaders"></span>
-        <time datetime="{{ item.date | date: "%Y-%m-%d" }}">{{ item.date | date: "%Y-%m-%d" }}</time>
-      </div>
-      {% endif %}
+        <div>
+          {% endif %}
+          <a href="{{ item.url }}">
+            {% if icon %}
+              {% include icons/{{ item.icon }}.svg %}
+            {% endif %}
 
-      {% if show_excerpt %}
-      {{ item.excerpt }}
-      {% endif %}
-    </li>
+            {{- item.title -}}
+          </a>
+          {% if show_date %}
+          <span class="leaders"></span>
+          <time datetime="{{ item.date | date: "%Y-%m-%d" }}">{{ item.date | date: "%Y-%m-%d" }}</time>
+        </div>
+        {% endif %}
+
+        {% if show_excerpt %}
+        {{ item.excerpt }}
+        {% endif %}
+      </li>
     {% endfor %}
   </{{ tag }}>
 </nav>

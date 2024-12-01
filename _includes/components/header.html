@@ -2,4 +2,8 @@
   {% include components/text-fit.html tag="h1" text="Greg Daynes" href="/" %}
   {% include components/text-fit.html tag="p" text="Full Stack Software Design, Development & Management" %}
   {% include components/nav.html %}
+
+  {% ifhascontent header %}
+    {% contentblock header %}
+  {% endifhascontent %}
 </header>

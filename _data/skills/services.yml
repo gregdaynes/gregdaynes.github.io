@@ -10,7 +10,7 @@ data:
     datestart: ""
     dateend: ""
   - title: SQLite
-    level: 3
+    level: 4
     datestart: ""
     dateend: ""
   - title: MonogoDB
@@ -34,6 +34,6 @@ data:
     datestart: ""
     dateend: ""
   - title: Kubernetes
-    level: 3
+    level: 2
     datestart: ""
     dateend: ""
