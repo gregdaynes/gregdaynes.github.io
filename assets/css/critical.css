@@ -1,9 +1,15 @@
 /* Settings -------------------------------------------------------- */
 
 :root {
-	line-height: 1.5;
-  font-family: sans-serif;
-  font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+    line-height: 1.5;
+    font-family: sans-serif;
+    font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+    font-synthesis: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: none;
+    -moz-text-size-adjust: none;
+    text-size-adjust: none;
 }
 
 :is(*, *:visited):focus {
@@ -16,21 +22,13 @@
 
 /* Elements --------------------------------------------------------- */
 
-html {
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-  -moz-text-size-adjust: none;
-  -webkit-text-size-adjust: none;
-  text-size-adjust: none;
-}
-
 body {
 	background-color: var(--_color-background-primary);
 	color: var(--_color-type-primary);
 	max-width: 1024px;
 	margin-inline: auto;
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 	min-height: 100dvh;
 	padding-inline: var(--s0);
 }
@@ -86,7 +84,7 @@ aside :first-child {
     gap: var(--s1);
 
     > aside {
-      flex-basis: 30%;  
+      flex-basis: 30%;
       flex-grow: 1;
     }
 
@@ -109,13 +107,13 @@ aside :first-child {
 }
 
 header {
-  font-family: impact;
   text-transform: uppercase;
   text-align: center;
   text-wrap: balance;
   line-height: 1;
-  
-  * { 
+  font-family: impact, sans-serif;
+
+  * {
     margin: 0;
   }
 
