@@ -1,4 +1,30 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://gregdaynes.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://gregdaynes.com/" rel="alternate" type="text/html" /><updated>2024-12-01T20:51:42+00:00</updated><id>https://gregdaynes.com/feed.xml</id><entry><title type="html">Advent of Code 2024 - Day 1</title><link href="https://gregdaynes.com/post/2024/12/01/advent-of-code-day-01.html" rel="alternate" type="text/html" title="Advent of Code 2024 - Day 1" /><published>2024-12-01T15:45:00+00:00</published><updated>2024-12-01T15:45:00+00:00</updated><id>https://gregdaynes.com/post/2024/12/01/advent-of-code-day-01</id><content type="html" xml:base="https://gregdaynes.com/post/2024/12/01/advent-of-code-day-01.html"><![CDATA[<p>Each time Advent of Code comes around, I have the intention of participating, read the first puzzle, maybe solve it and then forget to continue through the rest.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://gregdaynes.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://gregdaynes.com/" rel="alternate" type="text/html" /><updated>2024-12-01T21:01:43+00:00</updated><id>https://gregdaynes.com/feed.xml</id><entry><title type="html">Advent of Code 2024 - Day 1</title><link href="https://gregdaynes.com/post/2024/12/01/advent-of-code-day-01.html" rel="alternate" type="text/html" title="Advent of Code 2024 - Day 1" /><published>2024-12-01T15:45:00+00:00</published><updated>2024-12-01T15:45:00+00:00</updated><id>https://gregdaynes.com/post/2024/12/01/advent-of-code-day-01</id><content type="html" xml:base="https://gregdaynes.com/post/2024/12/01/advent-of-code-day-01.html"><![CDATA[<ul id="markdown-toc">
+  <li><a href="#introduction" id="markdown-toc-introduction">Introduction</a></li>
+  <li><a href="#solving-day-1" id="markdown-toc-solving-day-1">Solving Day 1</a>    <ul>
+      <li><a href="#day-1-part-1" id="markdown-toc-day-1-part-1">Day 1: Part 1</a>        <ul>
+          <li><a href="#first-pass" id="markdown-toc-first-pass">First Pass</a></li>
+          <li><a href="#second-pass" id="markdown-toc-second-pass">Second Pass</a></li>
+        </ul>
+      </li>
+      <li><a href="#day-1-part-2" id="markdown-toc-day-1-part-2">Day 1: Part 2</a>        <ul>
+          <li><a href="#first-pass-1" id="markdown-toc-first-pass-1">First pass</a></li>
+          <li><a href="#second-pass-1" id="markdown-toc-second-pass-1">Second pass</a></li>
+          <li><a href="#third-pass" id="markdown-toc-third-pass">Third Pass</a></li>
+          <li><a href="#fourth-pass" id="markdown-toc-fourth-pass">Fourth pass</a></li>
+          <li><a href="#fifth-pass-for-funzies" id="markdown-toc-fifth-pass-for-funzies">Fifth pass (for funzies)</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#summary--timings" id="markdown-toc-summary--timings">Summary &amp; Timings</a>    <ul>
+      <li><a href="#additional-findings" id="markdown-toc-additional-findings">Additional Findings</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="introduction">Introduction</h3>
+
+<p>Each time Advent of Code comes around, I have the intention of participating, read the first puzzle, maybe solve it and then forget to continue through the rest.</p>
 
 <p>There’s a few culprits to my abandonment.</p>
 
@@ -10,7 +36,15 @@
   <li>But it’s mostly work and freetime.</li>
 </ul>
 
-<p>This year is different. It overlaps with funemployment! Which means I don’t have much preventing me from bashing out some terrible solutions. I am going to do it in NodeJS, removing the language distraction. Wall of text; behavioral changes are hard, reading comprehension on meandering text has always been a struggle for me-A symptom of an undiagnosed attention problem perhaps. Instead of trying to find problem solving named algorithms, start with solving the problem, then making the solution better [faster, cleaner, less complex, etc] and maybe something will emerge, or not, this is practice and fun. So have at it!</p>
+<p>This year is different. It overlaps with funemployment! Which means I don’t have much preventing me from bashing out some terrible solutions.</p>
+
+<p>As solutions to the above:</p>
+
+<ul>
+  <li>I am going to do it in NodeJS, removing the language distraction.</li>
+  <li>Wall of text; behavioral changes are hard, reading comprehension on meandering text is a struggle. Perhaps a symptom of an undiagnosed attention problem.
+Instead of trying to find problem solving algorithms; start with solving the problem. Make it better. Maybe an algorithm will emerge, this is practice and shoud be fun. So have at it!</li>
+</ul>
 
 <h3 id="solving-day-1">Solving Day 1</h3>
 
@@ -275,15 +309,7 @@ Finally sum the scores.</p>
 <span class="p">}</span>
 </code></pre></div></div>
 
-<table>
-  <tbody>
-    <tr>
-      <td>The code is about the same, though I don’t think the</td>
-      <td> </td>
-      <td>(OR) operators are doing favours for readability.</td>
-    </tr>
-  </tbody>
-</table>
+<p>The code is about the same, though I don’t think the <code class="language-plaintext highlighter-rouge">||</code> (OR) operators are doing favours for readability.</p>
 
 <p>The object is a little easier to reason about if you’ve don’t know how a map works.</p>
 
@@ -316,15 +342,7 @@ Finally sum the scores.</p>
 <span class="p">}</span>
 </code></pre></div></div>
 
-<table>
-  <tbody>
-    <tr>
-      <td>Instead of the</td>
-      <td> </td>
-      <td>(OR) operators, what about nullish coallescence (??)</td>
-    </tr>
-  </tbody>
-</table>
+<p>Instead of the <code class="language-plaintext highlighter-rouge">||</code> (OR) operators, what about nullish coallescence (??)</p>
 
 <p>This turns out to be more faster than the OR operator, and more stable in timing, but still slower than map.</p>
 
@@ -457,7 +475,7 @@ Finally sum the scores.</p>
 
 <hr />
 
-<p>Overall, first day was fun! I learned some things about the approaches, and in writing this blog post out, I learned some things about myself.</p>]]></content><author><name></name></author><category term="post" /><category term="aoc" /><category term="nodejs" /><summary type="html"><![CDATA[Each time Advent of Code comes around, I have the intention of participating, read the first puzzle, maybe solve it and then forget to continue through the rest.]]></summary></entry><entry><title type="html">2024 Refresh</title><link href="https://gregdaynes.com/post/2024/10/26/2024-refresh.html" rel="alternate" type="text/html" title="2024 Refresh" /><published>2024-10-26T20:26:00+00:00</published><updated>2024-10-26T20:26:00+00:00</updated><id>https://gregdaynes.com/post/2024/10/26/2024-refresh</id><content type="html" xml:base="https://gregdaynes.com/post/2024/10/26/2024-refresh.html"><![CDATA[<p>It’s October, I’m on vacation after a very long, arduous stint building a new Theme for Shopify. Staying in a small single room cabin on the edge of the Pacific Ocean with a limited internet connection, what better place to catch up on sleep, reading, and putting some of those readings to practice.</p>
+<p>Overall, first day was fun! I learned some things about the approaches, and in writing this blog post out, I learned some things about myself.</p>]]></content><author><name></name></author><category term="post" /><category term="aoc" /><category term="nodejs" /></entry><entry><title type="html">2024 Refresh</title><link href="https://gregdaynes.com/post/2024/10/26/2024-refresh.html" rel="alternate" type="text/html" title="2024 Refresh" /><published>2024-10-26T20:26:00+00:00</published><updated>2024-10-26T20:26:00+00:00</updated><id>https://gregdaynes.com/post/2024/10/26/2024-refresh</id><content type="html" xml:base="https://gregdaynes.com/post/2024/10/26/2024-refresh.html"><![CDATA[<p>It’s October, I’m on vacation after a very long, arduous stint building a new Theme for Shopify. Staying in a small single room cabin on the edge of the Pacific Ocean with a limited internet connection, what better place to catch up on sleep, reading, and putting some of those readings to practice.</p>
 
 <p><em>For context, building a theme for Shopify Theme Store is a large task, there are infinite variables to consider, and choices to be made. There is no knowing what a merchant will actually want or try to do, so the code needs to be stable, resiliant and incredibly flexible. This has given my skills in HTML (Liquid), CSS and Javascript a real world push, mastering the new (baseline availability) techniques available.</em></p>
 
