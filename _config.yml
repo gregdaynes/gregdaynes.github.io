@@ -14,7 +14,7 @@ plugins:
   - hyde-decap
 
 hyde_page_css:
-  minify: true
+  minify: false
   keep_files: true
   livereload: true
 
