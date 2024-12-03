@@ -1,4 +1,75 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://gregdaynes.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://gregdaynes.com/" rel="alternate" type="text/html" /><updated>2024-12-01T21:01:43+00:00</updated><id>https://gregdaynes.com/feed.xml</id><entry><title type="html">Advent of Code 2024 - Day 1</title><link href="https://gregdaynes.com/post/2024/12/01/advent-of-code-day-01.html" rel="alternate" type="text/html" title="Advent of Code 2024 - Day 1" /><published>2024-12-01T15:45:00+00:00</published><updated>2024-12-01T15:45:00+00:00</updated><id>https://gregdaynes.com/post/2024/12/01/advent-of-code-day-01</id><content type="html" xml:base="https://gregdaynes.com/post/2024/12/01/advent-of-code-day-01.html"><![CDATA[<ul id="markdown-toc">
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://gregdaynes.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://gregdaynes.com/" rel="alternate" type="text/html" /><updated>2024-12-03T02:49:08+00:00</updated><id>https://gregdaynes.com/feed.xml</id><entry><title type="html">Advent of Code 2024 - Day 2</title><link href="https://gregdaynes.com/post/2024/12/03/advent-of-code-day-02.html" rel="alternate" type="text/html" title="Advent of Code 2024 - Day 2" /><published>2024-12-03T01:35:00+00:00</published><updated>2024-12-03T01:35:00+00:00</updated><id>https://gregdaynes.com/post/2024/12/03/advent-of-code-day-02</id><content type="html" xml:base="https://gregdaynes.com/post/2024/12/03/advent-of-code-day-02.html"><![CDATA[<h4 id="day-2">Day 2</h4>
+
+<p>Code for <a href="https://github.com/gregdaynes/advent-of-code-2024/tree/day02">Day 02</a></p>
+
+<p>I’ll be honest, this one broke me. Part 1 was easy, but part two came in and just stomped on everything.</p>
+
+<p>I almost gave up. I did a few times throughout the day.</p>
+
+<p>I also cheated by going through reddit for more edge cases to test.</p>
+
+<p>Which in the end may not have been necessary. It turns out, even though my downloaded data looked clean, I didn’t run <code class="language-plaintext highlighter-rouge">.trim</code> on it before processing, which lead to overcounting the safe reports by 1.</p>
+
+<p>Starting off with a good reminder.</p>
+
+<p><strong>CLEAN YOUR DATA FIRST</strong></p>
+
+<p>It may look clean, and if you’re dealing with line based data, always trim off empty lines.</p>
+
+<h3 id="my-solution">My solution</h3>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">solve</span> <span class="p">(</span><span class="nx">input</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">reports</span> <span class="o">=</span> <span class="nx">input</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="dl">'</span><span class="se">\n</span><span class="dl">'</span><span class="p">)</span>
+
+  <span class="kd">function</span> <span class="nf">isValid</span> <span class="p">(</span><span class="nx">levels</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">inc</span> <span class="o">=</span> <span class="kc">true</span>
+    <span class="kd">let</span> <span class="nx">dec</span> <span class="o">=</span> <span class="kc">true</span>
+
+    <span class="k">for </span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">levels</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">c</span> <span class="o">=</span> <span class="nx">levels</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
+      <span class="kd">const</span> <span class="nx">n</span> <span class="o">=</span> <span class="nx">levels</span><span class="p">[</span><span class="nx">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+
+      <span class="k">if </span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="nx">c</span> <span class="o">&lt;</span> <span class="nx">n</span> <span class="o">&amp;&amp;</span> <span class="nx">n</span> <span class="o">&lt;=</span> <span class="nx">c</span> <span class="o">+</span> <span class="mi">3</span><span class="p">))</span> <span class="p">{</span>
+        <span class="nx">inc</span> <span class="o">=</span> <span class="kc">false</span>
+      <span class="p">}</span>
+
+      <span class="k">if </span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="nx">c</span> <span class="o">&gt;</span> <span class="nx">n</span> <span class="o">&amp;&amp;</span> <span class="nx">n</span> <span class="o">&gt;=</span> <span class="nx">c</span> <span class="o">-</span> <span class="mi">3</span><span class="p">))</span> <span class="p">{</span>
+        <span class="nx">dec</span> <span class="o">=</span> <span class="kc">false</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">if </span><span class="p">(</span><span class="nx">inc</span> <span class="o">||</span> <span class="nx">dec</span><span class="p">)</span> <span class="k">return</span> <span class="kc">true</span>
+
+    <span class="k">return</span> <span class="kc">false</span>
+  <span class="p">}</span>
+
+  <span class="k">for </span><span class="p">(</span><span class="kd">const</span> <span class="nx">report</span> <span class="k">in</span> <span class="nx">reports</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">levels</span> <span class="o">=</span> <span class="nx">reports</span><span class="p">[</span><span class="nx">report</span><span class="p">].</span><span class="nf">split</span><span class="p">(</span><span class="dl">'</span><span class="s1"> </span><span class="dl">'</span><span class="p">).</span><span class="nf">map</span><span class="p">(</span><span class="nb">Number</span><span class="p">)</span>
+    <span class="kd">let</span> <span class="nx">safe</span> <span class="o">=</span> <span class="kc">true</span>
+
+    <span class="kd">let</span> <span class="nx">arrays</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for </span><span class="p">(</span><span class="kd">const</span> <span class="nx">i</span> <span class="k">in</span> <span class="nx">levels</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">levelsClone</span> <span class="o">=</span> <span class="p">[...</span><span class="nx">levels</span><span class="p">]</span>
+      <span class="nx">levelsClone</span><span class="p">.</span><span class="nf">splice</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+      <span class="nx">arrays</span><span class="p">.</span><span class="nf">push</span><span class="p">(</span><span class="nx">levelsClone</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="nx">arrays</span> <span class="o">=</span> <span class="nx">arrays</span><span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="nx">isValid</span><span class="p">).</span><span class="nf">filter</span><span class="p">(</span><span class="nb">Boolean</span><span class="p">)</span>
+
+    <span class="c1">//we need at least 1 valid set of levels</span>
+    <span class="k">if </span><span class="p">(</span><span class="o">!</span><span class="nx">arrays</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="nx">safe</span> <span class="o">=</span> <span class="kc">false</span>
+
+    <span class="nx">reports</span><span class="p">[</span><span class="nx">report</span><span class="p">]</span> <span class="o">=</span> <span class="nx">safe</span>
+  <span class="p">}</span>
+
+  <span class="c1">// return made safe report count</span>
+  <span class="k">return</span> <span class="nx">reports</span><span class="p">.</span><span class="nf">reduce</span><span class="p">((</span><span class="nx">acc</span><span class="p">,</span> <span class="nx">item</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">item</span> <span class="p">?</span> <span class="nx">acc</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:</span> <span class="nx">acc</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>What’s incredibly frustrating about this challenge, is that the way to do it is through brute-force. I can’t imagine any other way to handle it. And the brute-force approach is tedious at best.</p>
+
+<p>I wouldn’t want to inherit this code, even with substantial tests and documentation. It would likely become marked with here-be-dragons and I would dread needing to make any change. It’s brittle, and has a high cognitive load.</p>]]></content><author><name></name></author><category term="post" /><category term="aoc" /><category term="nodejs" /><summary type="html"><![CDATA[Day 2]]></summary></entry><entry><title type="html">Advent of Code 2024 - Day 1</title><link href="https://gregdaynes.com/post/2024/12/01/advent-of-code-day-01.html" rel="alternate" type="text/html" title="Advent of Code 2024 - Day 1" /><published>2024-12-01T15:45:00+00:00</published><updated>2024-12-01T15:45:00+00:00</updated><id>https://gregdaynes.com/post/2024/12/01/advent-of-code-day-01</id><content type="html" xml:base="https://gregdaynes.com/post/2024/12/01/advent-of-code-day-01.html"><![CDATA[<ul id="markdown-toc">
   <li><a href="#introduction" id="markdown-toc-introduction">Introduction</a></li>
   <li><a href="#solving-day-1" id="markdown-toc-solving-day-1">Solving Day 1</a>    <ul>
       <li><a href="#day-1-part-1" id="markdown-toc-day-1-part-1">Day 1: Part 1</a>        <ul>
@@ -857,36 +928,4 @@ el.addEventListener('some-event', this)
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo chown</span> <span class="nt">-R</span> <span class="si">$(</span><span class="nb">whoami</span><span class="si">)</span> <span class="si">$(</span>brew <span class="nt">--prefix</span><span class="si">)</span>/<span class="k">*</span>
 </code></pre></div></div>
 
-<p>Original post on <a href="https://stackoverflow.com/questions/16432071/how-to-fix-homebrew-permissions">Stackoverflow</a></p>]]></content><author><name></name></author><category term="note" /><summary type="html"><![CDATA[Ruby Gem management with ASDF-VM sometimes encounters issues with permissions when using bundler to manage gems.]]></summary></entry><entry><title type="html">Hyde Page CSS &amp;amp; JS</title><link href="https://gregdaynes.com/project/2023/12/04/hyde-page-css-js.html" rel="alternate" type="text/html" title="Hyde Page CSS &amp;amp; JS" /><published>2023-12-04T00:00:00+00:00</published><updated>2023-12-04T00:00:00+00:00</updated><id>https://gregdaynes.com/project/2023/12/04/hyde-page-css-js</id><content type="html" xml:base="https://gregdaynes.com/project/2023/12/04/hyde-page-css-js.html"><![CDATA[<p>Hyde Page CSS / JS are plugins that provide the ability to declare CSS and JS in the frontmatter of a page or layout.</p>
-
-<p><em>The repository has instructions to get up and running.</em></p>
-
-<ul>
-  <li><a href="https://github.com/gregdaynes/hyde-page-css">Hyde Page CSS Repo</a></li>
-  <li>
-    <p><a href="https://rubygems.org/gems/hyde-page-css">Ruby Gems</a></p>
-  </li>
-  <li><a href="https://github.com/gregdaynes/hyde-page-js">Hyde Page JS Repo</a></li>
-  <li><a href="https://rubygems.org/gems/hyde-page-js">Ruby Gems</a></li>
-</ul>
-
-<h3 id="preamble">Preamble</h3>
-
-<p>These gems eschew the firmly established pattern of bundle your CSS and JS files together and serving them as single payloads.</p>
-
-<p>This may be a bad idea in the long run, but so far, it’s been successful for the sites I’ve used them and their predecessors on.</p>
-
-<h3 id="features">Features</h3>
-
-<ul>
-  <li>
-    <p>Frontmatter option <code class="language-plaintext highlighter-rouge">css</code> or <code class="language-plaintext highlighter-rouge">js</code> which takes an array of file names in the <code class="language-plaintext highlighter-rouge">/assets/css</code> or <code class="language-plaintext highlighter-rouge">/assets/js</code> folder. Thes files are concatenated, minified and fingerprinted.</p>
-  </li>
-  <li>
-    <p>Adds absolute urls to <code class="language-plaintext highlighter-rouge">page.css_files</code> or <code class="language-plaintext highlighter-rouge">page.js_files</code> for adding link tags to the page through liquid.</p>
-  </li>
-  <li>
-    <p>Heirarchy of Layouts - with Jekyll, a page may have 0 or more layouts, in a heriarchical fasion, for example: <code class="language-plaintext highlighter-rouge">base.html &gt; blog.hmtl &gt; post.html &gt; page</code>
-Each layout and page can have as many CSS/JS files as wanted, but will be concatenated to a single file per layout/page in the heirarchy.</p>
-  </li>
-</ul>]]></content><author><name></name></author><category term="project" /><summary type="html"><![CDATA[A pair of plugins that provide frontmatter options to include CSS and JS files on specific pages and layouts.]]></summary></entry></feed>
+<p>Original post on <a href="https://stackoverflow.com/questions/16432071/how-to-fix-homebrew-permissions">Stackoverflow</a></p>]]></content><author><name></name></author><category term="note" /><summary type="html"><![CDATA[Ruby Gem management with ASDF-VM sometimes encounters issues with permissions when using bundler to manage gems.]]></summary></entry></feed>
