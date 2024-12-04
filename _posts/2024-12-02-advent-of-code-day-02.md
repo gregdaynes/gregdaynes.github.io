@@ -8,8 +8,7 @@ tags:
   - aoc
   - nodejs
 ---
-
-#### Day 2
+{% include components/post/toc.html %}
 
 Code for [Day 02](https://github.com/gregdaynes/advent-of-code-2024/tree/day02)
 
