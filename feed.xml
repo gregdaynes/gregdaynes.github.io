@@ -1,4 +1,581 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://gregdaynes.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://gregdaynes.com/" rel="alternate" type="text/html" /><updated>2024-12-03T06:51:19+00:00</updated><id>https://gregdaynes.com/feed.xml</id><entry><title type="html">Advent of Code 2024 - Day 3</title><link href="https://gregdaynes.com/post/2024/12/03/advent-of-code-day-03.html" rel="alternate" type="text/html" title="Advent of Code 2024 - Day 3" /><published>2024-12-03T05:27:00+00:00</published><updated>2024-12-03T05:27:00+00:00</updated><id>https://gregdaynes.com/post/2024/12/03/advent-of-code-day-03</id><content type="html" xml:base="https://gregdaynes.com/post/2024/12/03/advent-of-code-day-03.html"><![CDATA[<h3 id="day-3">Day 3</h3>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://gregdaynes.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://gregdaynes.com/" rel="alternate" type="text/html" /><updated>2024-12-05T01:30:01+00:00</updated><id>https://gregdaynes.com/feed.xml</id><entry><title type="html">Advent of Code 2024 - Day 4</title><link href="https://gregdaynes.com/post/2024/12/04/advent-of-code-day-04.html" rel="alternate" type="text/html" title="Advent of Code 2024 - Day 4" /><published>2024-12-04T18:28:00+00:00</published><updated>2024-12-04T18:28:00+00:00</updated><id>https://gregdaynes.com/post/2024/12/04/advent-of-code-day-04</id><content type="html" xml:base="https://gregdaynes.com/post/2024/12/04/advent-of-code-day-04.html"><![CDATA[<ul id="markdown-toc">
+  <li><a href="#part-1" id="markdown-toc-part-1">Part 1</a></li>
+  <li><a href="#part-2" id="markdown-toc-part-2">Part 2</a></li>
+  <li><a href="#cleanup-time" id="markdown-toc-cleanup-time">Cleanup Time</a>    <ul>
+      <li><a href="#cleanup-pt-1-first-pass" id="markdown-toc-cleanup-pt-1-first-pass">Cleanup Pt 1: First Pass</a></li>
+      <li><a href="#cleanup-pt-1-second-pass" id="markdown-toc-cleanup-pt-1-second-pass">Cleanup Pt 1: Second Pass</a></li>
+      <li><a href="#cleanup-pt-1-third-pass" id="markdown-toc-cleanup-pt-1-third-pass">Cleanup Pt 1: Third Pass</a></li>
+      <li><a href="#cleanup-pt-1-fourth-pass" id="markdown-toc-cleanup-pt-1-fourth-pass">Cleanup Pt 1: Fourth Pass</a></li>
+      <li><a href="#cleanup-pt-1-fifth-pass" id="markdown-toc-cleanup-pt-1-fifth-pass">Cleanup Pt 1: Fifth Pass</a></li>
+      <li><a href="#cleanup-pt-2-first-pass" id="markdown-toc-cleanup-pt-2-first-pass">Cleanup Pt 2: First pass</a></li>
+      <li><a href="#cleaup-both-parts-final-pass" id="markdown-toc-cleaup-both-parts-final-pass">Cleaup Both Parts: Final Pass</a></li>
+    </ul>
+  </li>
+  <li><a href="#summary--benchmarks" id="markdown-toc-summary--benchmarks">Summary &amp; Benchmarks</a></li>
+</ul>
+
+<p>Code for <a href="https://github.com/gregdaynes/advent-of-code-2024/tree/day04">Day 04</a></p>
+
+<p>Today’s challenge is based around matricies, or in JS, 2D arrays and coordinates. This kind of challenge is when I wish there was a better standard library, as well as matrix operations.</p>
+
+<h4 id="part-1">Part 1</h4>
+
+<p>Crossword style challenge
+From given input, find all occurrances of XMAS
+Can be horizontal, vertical, or diagonal - this includes backwards</p>
+
+<p>Today I decided to think about the problem and write out a plan before coding.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>if we turn the input into a 2d array, we can use [x,y] coordinates to find characters
+a function to calculate each direction
+when converting to 2d array, index all X positions
+ for each X
+ - take [x,y]
+ - compute the horizontal coordinates for each letter M A S - [x+1,y][x+2,y][x+3,y]
+ - repeat for direction - should be 8 in total
+ - if direction can't be computed - eg: too close to an edge, skip it.
+ - test each direction letter coords for a match
+ - sum complete matches per X
+ sum all matches
+</code></pre></div></div>
+
+<p>Makes sense. The next thing to do is remember that coordinates will be in [y,x] not [x,y]. One of those human things where we think horizontally first, where as the easiest operations are row first. Maybe a transform would be a good brain saving step, but would take more time and memory to perform instead of removing the problem before code - fix the human programmer.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">verticalBackwards</span><span class="p">([</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="p">])</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">[[</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="nx">x</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="nx">x</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="nx">x</span><span class="p">]]</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nf">upright</span><span class="p">([</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="p">])</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">[[</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="nx">x</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="nx">x</span><span class="o">+</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="nx">x</span><span class="o">+</span><span class="mi">3</span><span class="p">]]</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nf">horizontal</span><span class="p">([</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="p">])</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">[[</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="o">+</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="o">+</span><span class="mi">3</span><span class="p">]]</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nf">downright</span><span class="p">([</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="p">])</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">[[</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="nx">x</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span><span class="nx">x</span><span class="o">+</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span><span class="nx">x</span><span class="o">+</span><span class="mi">3</span><span class="p">]]</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nf">vertical</span><span class="p">([</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="p">])</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">[[</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="nx">x</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span><span class="nx">x</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span><span class="nx">x</span><span class="p">]]</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nf">downleft</span><span class="p">([</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="p">])</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">[[</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="nx">x</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span><span class="nx">x</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span><span class="nx">x</span><span class="o">-</span><span class="mi">3</span><span class="p">]]</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nf">horizontalBackwards</span><span class="p">([</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="p">])</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">[[</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="o">-</span><span class="mi">3</span><span class="p">]]</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nf">upleft</span><span class="p">([</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="p">])</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">[[</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="nx">x</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="nx">x</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="nx">x</span><span class="o">-</span><span class="mi">3</span><span class="p">]]</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nf">solve</span> <span class="p">(</span><span class="nx">input</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// convert input into 2d array.</span>
+  <span class="kd">const</span> <span class="nx">input2dArray</span> <span class="o">=</span> <span class="nx">input</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="dl">'</span><span class="se">\n</span><span class="dl">'</span><span class="p">).</span><span class="nf">map</span><span class="p">(</span><span class="nx">row</span> <span class="o">=&gt;</span> <span class="nx">row</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="dl">''</span><span class="p">))</span>
+
+  <span class="c1">// find all X with coords [y,x]</span>
+  <span class="kd">const</span> <span class="nx">xMap</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="k">for </span><span class="p">(</span><span class="kd">const</span> <span class="nx">y</span> <span class="k">in</span> <span class="nx">input2dArray</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for </span><span class="p">(</span><span class="kd">const</span> <span class="nx">x</span> <span class="k">in</span> <span class="nx">input2dArray</span><span class="p">[</span><span class="nx">y</span><span class="p">])</span> <span class="p">{</span>
+      <span class="k">if </span><span class="p">(</span><span class="nx">input2dArray</span><span class="p">[</span><span class="nx">y</span><span class="p">][</span><span class="nx">x</span><span class="p">]</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">X</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">xMap</span><span class="p">.</span><span class="nf">push</span><span class="p">([</span><span class="nc">Number</span><span class="p">(</span><span class="nx">y</span><span class="p">),</span> <span class="nc">Number</span><span class="p">(</span><span class="nx">x</span><span class="p">)])</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="kd">const</span> <span class="nx">xValidDirections</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="k">for </span><span class="p">(</span><span class="kd">const</span> <span class="nx">coord</span> <span class="k">of</span> <span class="nx">xMap</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">allCoords</span> <span class="o">=</span> <span class="p">[</span>
+      <span class="nx">verticalBackwards</span><span class="p">,</span>
+      <span class="nx">upright</span><span class="p">,</span>
+      <span class="nx">horizontal</span><span class="p">,</span>
+      <span class="nx">downright</span><span class="p">,</span>
+      <span class="nx">vertical</span><span class="p">,</span>
+      <span class="nx">downleft</span><span class="p">,</span>
+      <span class="nx">horizontalBackwards</span><span class="p">,</span>
+      <span class="nx">upleft</span>
+    <span class="p">].</span><span class="nf">map</span><span class="p">(</span><span class="nx">fn</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nf">fn</span><span class="p">(</span><span class="nx">coord</span><span class="p">)</span>
+    <span class="p">})</span>
+
+    <span class="nx">xValidDirections</span><span class="p">.</span><span class="nf">push</span><span class="p">(</span><span class="nx">allCoords</span><span class="p">)</span>
+  <span class="p">}</span>
+
+  <span class="kd">let</span> <span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="k">for </span><span class="p">(</span><span class="kd">const</span> <span class="nx">validDirections</span> <span class="k">of</span> <span class="nx">xValidDirections</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for </span><span class="p">(</span><span class="kd">const</span> <span class="nx">direction</span> <span class="k">of</span> <span class="nx">validDirections</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if </span><span class="p">(</span><span class="o">!</span><span class="nx">direction</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
+
+      <span class="kd">const</span> <span class="nx">word</span> <span class="o">=</span> <span class="nx">direction</span><span class="p">.</span><span class="nf">map</span><span class="p">(([</span><span class="nx">y</span><span class="p">,</span> <span class="nx">x</span><span class="p">])</span> <span class="o">=&gt;</span> <span class="nx">input2dArray</span><span class="p">[</span><span class="nx">y</span><span class="p">]?.[</span><span class="nx">x</span><span class="p">]).</span><span class="nf">join</span><span class="p">(</span><span class="dl">''</span><span class="p">)</span>
+
+      <span class="k">if </span><span class="p">(</span><span class="nx">word</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">XMAS</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">//console.log(direction, word)</span>
+        <span class="nx">count</span> <span class="o">+=</span> <span class="mi">1</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="nx">count</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Great, this works and returns the correct result for both sample and actual datasets. Done.</p>
+
+<p>I had notions of guard clauses using yMax and xMax to skip calculating directions that would be clipped by the length, however it was overzealous and broke with sample dataset so I scrapped it before submitting.</p>
+
+<p>Theres lots of loops here, 8 if I’m counting correctly. This can be cleaned up later.</p>
+
+<h4 id="part-2">Part 2</h4>
+
+<p>Of course it wouldn’t be Advent of Code if the second part didn’t crush all your hard work of the first part.</p>
+
+<p>This time the task is to look for X-MAS, which is the word MAS in an X like shape (2 MAS with A in the center).</p>
+
+<p>Immediately we can scrap the horizontal and vertical checks, meaning we have 4 directions to check.</p>
+
+<p>And we can simplify our operations by changing the starting letter to A. Which allows us to check the immediate 4 coordinates on at the diagonals.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">solve</span> <span class="p">(</span><span class="nx">input</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// convert input into 2d array.</span>
+  <span class="kd">const</span> <span class="nx">input2dArray</span> <span class="o">=</span> <span class="nx">input</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="dl">'</span><span class="se">\n</span><span class="dl">'</span><span class="p">).</span><span class="nf">map</span><span class="p">(</span><span class="nx">row</span> <span class="o">=&gt;</span> <span class="nx">row</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="dl">''</span><span class="p">))</span>
+
+  <span class="kd">const</span> <span class="nx">aMap</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="k">for </span><span class="p">(</span><span class="kd">const</span> <span class="nx">y</span> <span class="k">in</span> <span class="nx">input2dArray</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for </span><span class="p">(</span><span class="kd">const</span> <span class="nx">x</span> <span class="k">in</span> <span class="nx">input2dArray</span><span class="p">[</span><span class="nx">y</span><span class="p">])</span> <span class="p">{</span>
+      <span class="k">if </span><span class="p">(</span><span class="nx">input2dArray</span><span class="p">[</span><span class="nx">y</span><span class="p">][</span><span class="nx">x</span><span class="p">]</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">A</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">aMap</span><span class="p">.</span><span class="nf">push</span><span class="p">([</span><span class="nc">Number</span><span class="p">(</span><span class="nx">y</span><span class="p">),</span> <span class="nc">Number</span><span class="p">(</span><span class="nx">x</span><span class="p">)])</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="kd">const</span> <span class="nx">matches</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="k">for </span><span class="p">(</span><span class="kd">const</span> <span class="p">[</span><span class="nx">aY</span><span class="p">,</span> <span class="nx">aX</span><span class="p">]</span> <span class="k">of</span> <span class="nx">aMap</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// tl tr br bl</span>
+    <span class="kd">const</span> <span class="nx">quadrants</span> <span class="o">=</span> <span class="p">[</span>
+      <span class="p">[</span><span class="nx">aY</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">aX</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span>
+      <span class="p">[</span><span class="nx">aY</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">aX</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span>
+      <span class="p">[</span><span class="nx">aY</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">aX</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span>
+      <span class="p">[</span><span class="nx">aY</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">aX</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="p">]</span>
+
+    <span class="kd">const</span> <span class="nx">results</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="kd">let</span> <span class="nx">letters</span> <span class="o">=</span> <span class="dl">''</span>
+
+    <span class="k">for </span><span class="p">(</span><span class="kd">const</span> <span class="p">[</span><span class="nx">y</span><span class="p">,</span> <span class="nx">x</span><span class="p">]</span> <span class="k">of</span> <span class="nx">quadrants</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">charAtCoord</span> <span class="o">=</span> <span class="nx">input2dArray</span><span class="p">[</span><span class="nx">y</span><span class="p">]?.[</span><span class="nx">x</span><span class="p">]</span>
+
+      <span class="k">if </span><span class="p">([</span><span class="dl">'</span><span class="s1">M</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">S</span><span class="dl">'</span><span class="p">].</span><span class="nf">includes</span><span class="p">(</span><span class="nx">charAtCoord</span><span class="p">))</span> <span class="p">{</span>
+        <span class="nx">letters</span> <span class="o">+=</span> <span class="nx">charAtCoord</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">if </span><span class="p">(</span><span class="nx">letters</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">4</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">results</span><span class="p">.</span><span class="nf">push</span><span class="p">(</span><span class="nx">letters</span><span class="p">)</span>
+    <span class="p">}</span>
+
+
+    <span class="k">for </span><span class="p">(</span><span class="kd">const</span> <span class="nx">possibleMatch</span> <span class="k">of</span> <span class="nx">results</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">switch </span><span class="p">(</span><span class="nx">possibleMatch</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="dl">'</span><span class="s1">MMSS</span><span class="dl">'</span><span class="p">:</span>
+        <span class="k">case</span> <span class="dl">'</span><span class="s1">MSSM</span><span class="dl">'</span><span class="p">:</span>
+        <span class="k">case</span> <span class="dl">'</span><span class="s1">SSMM</span><span class="dl">'</span><span class="p">:</span>
+        <span class="k">case</span> <span class="dl">'</span><span class="s1">SMMS</span><span class="dl">'</span><span class="p">:</span>
+          <span class="nx">matches</span><span class="p">.</span><span class="nf">push</span><span class="p">(</span><span class="nx">possibleMatch</span><span class="p">)</span>
+          <span class="k">break</span><span class="p">;</span>
+        <span class="nl">default</span><span class="p">:</span>
+          <span class="k">break</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="nx">matches</span><span class="p">.</span><span class="nx">length</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Done.</p>
+
+<p>Still a lot of loops like part 1 solution.</p>
+
+<p>Opting for the manually defined quadrants was easier than reusing the functions from part 1.</p>
+
+<p>Because the the results of X-MAS really is looking for positions of M and S around the A, I wrote out the 4 possible permutations of the pattern in order of <code class="language-plaintext highlighter-rouge">top left, top right, bottom right, bottom left</code>.</p>
+
+<p>This makes a switch to patch each set of found letters a pretty good use case. I don’t see a way to make this easier. But if we were looking for more letters, or the other 4 cardinal directions, this would be a more painful. Luckily, we can keep it simple. The hope and dream of call code.</p>
+
+<h3 id="cleanup-time">Cleanup Time</h3>
+
+<p>Those loops will keep me up at night if they’re not reduced at least a little.</p>
+
+<p>Starting with Part 1, lets sort some things out.</p>
+
+<h4 id="cleanup-pt-1-first-pass">Cleanup Pt 1: First Pass</h4>
+
+<p>Instead of generating coordinates, and then going through each set to find the letter, then going through each set to check the word - we can check the word in the first pass. It still requires looking up each letter, but now its done in 1 loop.</p>
+
+<p>This introduces a gastly amount of bloat to each of the direction functions</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">verticalBackwards</span><span class="p">(</span><span class="nx">input</span><span class="p">,</span> <span class="p">[</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="p">])</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">lookups</span> <span class="o">=</span> <span class="p">[[</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="nx">x</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="nx">x</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="nx">x</span><span class="p">]]</span>
+
+  <span class="kd">let</span> <span class="nx">word</span> <span class="o">=</span> <span class="dl">''</span>
+  <span class="k">for </span><span class="p">(</span><span class="kd">const</span> <span class="p">[</span><span class="nx">y</span><span class="p">,</span> <span class="nx">x</span><span class="p">]</span> <span class="k">of</span> <span class="nx">lookups</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">word</span> <span class="o">+=</span> <span class="nx">input</span><span class="p">[</span><span class="nx">y</span><span class="p">]?.[</span><span class="nx">x</span><span class="p">]</span>
+  <span class="p">}</span>
+
+  <span class="k">if </span><span class="p">(</span><span class="nx">word</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">XMAS</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">word</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// rest of them skipped for brevity.</span>
+</code></pre></div></div>
+
+<p>Now we receive the word if it matches, or undefined if not.</p>
+
+<p>Next I extracted the input to 2d array parser to a function (light code resuse, also so I don’t have to look at it). And then did the same with the map creation for a specific letter. These are not performance oriented operations, they’re still the same operations.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">solve</span> <span class="p">(</span><span class="nx">input</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">input2dArray</span> <span class="o">=</span> <span class="nf">parseInputToArray</span><span class="p">(</span><span class="nx">input</span><span class="p">)</span>
+  <span class="kd">const</span> <span class="nx">map</span> <span class="o">=</span> <span class="nf">findallLetterCoordiates</span><span class="p">(</span><span class="nx">input2dArray</span><span class="p">,</span> <span class="dl">'</span><span class="s1">X</span><span class="dl">'</span><span class="p">)</span>
+
+  <span class="kd">const</span> <span class="nx">validWords</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="k">for </span><span class="p">(</span><span class="kd">const</span> <span class="nx">coord</span> <span class="k">of</span> <span class="nx">map</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">validWord</span> <span class="o">=</span> <span class="p">[</span>
+      <span class="nx">verticalBackwards</span><span class="p">,</span>
+      <span class="nx">upright</span><span class="p">,</span>
+      <span class="nx">horizontal</span><span class="p">,</span>
+      <span class="nx">downright</span><span class="p">,</span>
+      <span class="nx">vertical</span><span class="p">,</span>
+      <span class="nx">downleft</span><span class="p">,</span>
+      <span class="nx">horizontalBackwards</span><span class="p">,</span>
+      <span class="nx">upleft</span>
+    <span class="p">].</span><span class="nf">map</span><span class="p">(</span><span class="nx">fn</span> <span class="o">=&gt;</span> <span class="nf">fn</span><span class="p">(</span><span class="nx">input2dArray</span><span class="p">,</span> <span class="nx">coord</span><span class="p">))</span>
+    <span class="p">.</span><span class="nf">filter</span><span class="p">(</span><span class="nb">Boolean</span><span class="p">)</span>
+
+    <span class="nx">validWords</span><span class="p">.</span><span class="nf">push</span><span class="p">(</span><span class="nx">validWord</span><span class="p">)</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="nx">validWords</span><span class="p">.</span><span class="nf">flat</span><span class="p">().</span><span class="nx">length</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The solver drops a for loop and a nested loop, but does gain a filter, and flat(), simpler operations are better right?</p>
+
+<h4 id="cleanup-pt-1-second-pass">Cleanup Pt 1: Second Pass</h4>
+
+<p>This time instead of mapping and filtering, and appending words to an array, flattening, and then counting, we can increment a counter if the we receive a result from the map.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">solve</span> <span class="p">(</span><span class="nx">input</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">input2dArray</span> <span class="o">=</span> <span class="nf">parseInputToArray</span><span class="p">(</span><span class="nx">input</span><span class="p">)</span>
+  <span class="kd">const</span> <span class="nx">map</span> <span class="o">=</span> <span class="nf">findallLetterCoordiates</span><span class="p">(</span><span class="nx">input2dArray</span><span class="p">,</span> <span class="dl">'</span><span class="s1">X</span><span class="dl">'</span><span class="p">)</span>
+
+  <span class="kd">const</span> <span class="nx">fns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="nx">verticalBackwards</span><span class="p">,</span>
+    <span class="nx">upright</span><span class="p">,</span>
+    <span class="nx">horizontal</span><span class="p">,</span>
+    <span class="nx">downright</span><span class="p">,</span>
+    <span class="nx">vertical</span><span class="p">,</span>
+    <span class="nx">downleft</span><span class="p">,</span>
+    <span class="nx">horizontalBackwards</span><span class="p">,</span>
+    <span class="nx">upleft</span>
+  <span class="p">]</span>
+
+  <span class="kd">let</span> <span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="k">for </span><span class="p">(</span><span class="kd">const</span> <span class="nx">coord</span> <span class="k">of</span> <span class="nx">map</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">fns</span><span class="p">.</span><span class="nf">forEach</span><span class="p">(</span><span class="nx">fn</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">if </span><span class="p">(</span><span class="nf">fn</span><span class="p">(</span><span class="nx">input2dArray</span><span class="p">,</span> <span class="nx">coord</span><span class="p">))</span> <span class="p">{</span>
+        <span class="nx">count</span> <span class="o">+=</span> <span class="mi">1</span>
+      <span class="p">}</span>
+    <span class="p">})</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="nx">count</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>In addition to removing filter, push, flat, length, I opted to hoist the functions list outside of the loop. It won’t save much but nice to not have it redefined for each root letter.</p>
+
+<h4 id="cleanup-pt-1-third-pass">Cleanup Pt 1: Third Pass</h4>
+
+<p>Reducers, the bain of any developer (save for intermediates. JUST KIDDING! you all do the important and necessary work, do it how you need to get it done).</p>
+
+<p>It’s commonplace to dislike reducers due to their syntax and the complexity understanding them involves. In this case, it is much more cryptic than the for loop with accumulator, but internally is small enough that it should be reasonable to keep in mind. A little more complexity can sometimes be worth it.</p>
+
+<p>In this case, the reducer is slightly faster than previous implementations, so a worthwhile tradeoff.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">solve</span> <span class="p">(</span><span class="nx">input</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">input2dArray</span> <span class="o">=</span> <span class="nf">parseInputToArray</span><span class="p">(</span><span class="nx">input</span><span class="p">)</span>
+  <span class="kd">const</span> <span class="nx">map</span> <span class="o">=</span> <span class="nf">findallLetterCoordiates</span><span class="p">(</span><span class="nx">input2dArray</span><span class="p">,</span> <span class="dl">'</span><span class="s1">X</span><span class="dl">'</span><span class="p">)</span>
+
+  <span class="kd">const</span> <span class="nx">fns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="nx">verticalBackwards</span><span class="p">,</span>
+    <span class="nx">upright</span><span class="p">,</span>
+    <span class="nx">horizontal</span><span class="p">,</span>
+    <span class="nx">downright</span><span class="p">,</span>
+    <span class="nx">vertical</span><span class="p">,</span>
+    <span class="nx">downleft</span><span class="p">,</span>
+    <span class="nx">horizontalBackwards</span><span class="p">,</span>
+    <span class="nx">upleft</span>
+  <span class="p">]</span>
+
+  <span class="kd">const</span> <span class="nx">count</span> <span class="o">=</span> <span class="nx">map</span><span class="p">.</span><span class="nf">reduce</span><span class="p">((</span><span class="nx">acc</span><span class="p">,</span> <span class="nx">coord</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">fns</span><span class="p">.</span><span class="nf">forEach</span><span class="p">(</span><span class="nx">fn</span> <span class="o">=&gt;</span> <span class="nf">fn</span><span class="p">(</span><span class="nx">input2dArray</span><span class="p">,</span> <span class="nx">coord</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">acc</span><span class="o">++</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="nx">acc</span>
+  <span class="p">},</span> <span class="mi">0</span><span class="p">)</span>
+
+  <span class="k">return</span> <span class="nx">count</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h4 id="cleanup-pt-1-fourth-pass">Cleanup Pt 1: Fourth Pass</h4>
+
+<p>It’s time to replace those functions with all the repeat word === XMAS logic.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">fn</span><span class="p">(</span><span class="nx">input</span><span class="p">,</span> <span class="p">[</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="p">])</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">matrix</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[[</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="nx">x</span><span class="p">],</span>   <span class="p">[</span><span class="nx">y</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="nx">x</span><span class="p">],</span>   <span class="p">[</span><span class="nx">y</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="nx">x</span><span class="p">]</span>  <span class="p">],</span> <span class="c1">// verticalBackwards</span>
+    <span class="p">[[</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="nx">x</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="nx">x</span><span class="o">+</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="nx">x</span><span class="o">+</span><span class="mi">3</span><span class="p">]],</span> <span class="c1">// upright</span>
+    <span class="p">[[</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span>   <span class="p">[</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="o">+</span><span class="mi">2</span><span class="p">],</span>   <span class="p">[</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="o">+</span><span class="mi">3</span><span class="p">]</span>  <span class="p">],</span> <span class="c1">// horizontal</span>
+    <span class="p">[[</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="nx">x</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span><span class="nx">x</span><span class="o">+</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span><span class="nx">x</span><span class="o">+</span><span class="mi">3</span><span class="p">]],</span> <span class="c1">// downright</span>
+    <span class="p">[[</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="nx">x</span><span class="p">],</span>   <span class="p">[</span><span class="nx">y</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span><span class="nx">x</span><span class="p">],</span>   <span class="p">[</span><span class="nx">y</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span><span class="nx">x</span><span class="p">]</span>  <span class="p">],</span> <span class="c1">// vertical</span>
+    <span class="p">[[</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="nx">x</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span><span class="nx">x</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span><span class="nx">x</span><span class="o">-</span><span class="mi">3</span><span class="p">]],</span> <span class="c1">// downleft</span>
+    <span class="p">[[</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>   <span class="p">[</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span>   <span class="p">[</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span>  <span class="p">],</span> <span class="c1">// horizontalBackwards</span>
+    <span class="p">[[</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="nx">x</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="nx">x</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="nx">x</span><span class="o">-</span><span class="mi">3</span><span class="p">]],</span> <span class="c1">// upleft</span>
+  <span class="p">]</span>
+
+  <span class="kd">let</span> <span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="k">for </span><span class="p">(</span><span class="kd">const</span> <span class="nx">lookups</span> <span class="k">of</span> <span class="nx">matrix</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">word</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for </span><span class="p">(</span><span class="kd">const</span> <span class="p">[</span><span class="nx">y</span><span class="p">,</span> <span class="nx">x</span><span class="p">]</span> <span class="k">of</span> <span class="nx">lookups</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">word</span> <span class="o">+=</span> <span class="nx">input</span><span class="p">[</span><span class="nx">y</span><span class="p">]?.[</span><span class="nx">x</span><span class="p">]</span>
+    <span class="p">}</span>
+
+    <span class="k">if </span><span class="p">(</span><span class="nx">word</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">XMAS</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">count</span><span class="o">++</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="nx">count</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>This isn’t “better” but it is dry-er (Remember, DRY is ok sometimes).</p>
+
+<p>What is nice about this change, is we can return the count from this function, removing the need to count in the caller. A little bit of encapsulation never hurt.</p>
+
+<p>So now the solver looks like this:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="kd">function</span> <span class="nf">p1a</span> <span class="p">(</span><span class="nx">input</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">input2dArray</span> <span class="o">=</span> <span class="nf">parseInputToArray</span><span class="p">(</span><span class="nx">input</span><span class="p">)</span>
+  <span class="kd">const</span> <span class="nx">map</span> <span class="o">=</span> <span class="nf">findallLetterCoordiates</span><span class="p">(</span><span class="nx">input2dArray</span><span class="p">,</span> <span class="dl">'</span><span class="s1">X</span><span class="dl">'</span><span class="p">)</span>
+
+  <span class="k">return</span> <span class="nx">map</span><span class="p">.</span><span class="nf">reduce</span><span class="p">((</span><span class="nx">acc</span><span class="p">,</span> <span class="nx">coord</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">acc</span> <span class="o">+=</span> <span class="nf">fn</span><span class="p">(</span><span class="nx">input2dArray</span><span class="p">,</span> <span class="nx">coord</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Well isn’t that nice to look at. With all the scary things hidden away.</p>
+
+<h4 id="cleanup-pt-1-fifth-pass">Cleanup Pt 1: Fifth Pass</h4>
+
+<p>Lets take it one step further.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">countValidWordsForCoord</span><span class="p">(</span><span class="nx">input</span><span class="p">,</span> <span class="p">[</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="p">])</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">matrix</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[[</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="nx">x</span><span class="p">],</span>   <span class="p">[</span><span class="nx">y</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="nx">x</span><span class="p">],</span>   <span class="p">[</span><span class="nx">y</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="nx">x</span><span class="p">]</span>  <span class="p">],</span> <span class="c1">// verticalBackwards</span>
+    <span class="p">[[</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="nx">x</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="nx">x</span><span class="o">+</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="nx">x</span><span class="o">+</span><span class="mi">3</span><span class="p">]],</span> <span class="c1">// upright</span>
+    <span class="p">[[</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span>   <span class="p">[</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="o">+</span><span class="mi">2</span><span class="p">],</span>   <span class="p">[</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="o">+</span><span class="mi">3</span><span class="p">]</span>  <span class="p">],</span> <span class="c1">// horizontal</span>
+    <span class="p">[[</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="nx">x</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span><span class="nx">x</span><span class="o">+</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span><span class="nx">x</span><span class="o">+</span><span class="mi">3</span><span class="p">]],</span> <span class="c1">// downright</span>
+    <span class="p">[[</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="nx">x</span><span class="p">],</span>   <span class="p">[</span><span class="nx">y</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span><span class="nx">x</span><span class="p">],</span>   <span class="p">[</span><span class="nx">y</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span><span class="nx">x</span><span class="p">]</span>  <span class="p">],</span> <span class="c1">// vertical</span>
+    <span class="p">[[</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="nx">x</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span><span class="nx">x</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span><span class="nx">x</span><span class="o">-</span><span class="mi">3</span><span class="p">]],</span> <span class="c1">// downleft</span>
+    <span class="p">[[</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>   <span class="p">[</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span>   <span class="p">[</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span>  <span class="p">],</span> <span class="c1">// horizontalBackwards</span>
+    <span class="p">[[</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="nx">x</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="nx">x</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="nx">x</span><span class="o">-</span><span class="mi">3</span><span class="p">]],</span> <span class="c1">// upleft</span>
+  <span class="p">]</span>
+
+  <span class="c1">// returns count of valid words</span>
+  <span class="k">return</span> <span class="nx">matrix</span><span class="p">.</span><span class="nf">reduce</span><span class="p">((</span><span class="nx">acc</span><span class="p">,</span> <span class="nx">coords</span><span class="p">)</span> <span class="o">=&gt;</span>
+    <span class="nx">acc</span> <span class="o">+=</span> <span class="p">(</span><span class="nf">wordFromCoords</span><span class="p">(</span><span class="nx">input</span><span class="p">,</span> <span class="nx">coords</span><span class="p">)</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">XMAS</span><span class="dl">'</span> <span class="o">&amp;&amp;</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// returns a string of letters from coordinates, eg: XMAS</span>
+<span class="kd">function</span> <span class="nf">wordFromCoords</span> <span class="p">(</span><span class="nx">input</span><span class="p">,</span> <span class="nx">coords</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// destructuring coord into [y, x] is slower than coord[0], coord[1] looups</span>
+  <span class="k">return</span> <span class="nx">coords</span><span class="p">.</span><span class="nf">reduce</span><span class="p">((</span><span class="nx">acc</span><span class="p">,</span> <span class="nx">coord</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">acc</span> <span class="o">+</span> <span class="nx">input</span><span class="p">[</span><span class="nx">coord</span><span class="p">[</span><span class="mi">0</span><span class="p">]]?.[</span><span class="nx">coord</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="dl">''</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="kd">function</span> <span class="nf">p1a</span> <span class="p">(</span><span class="nx">input</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">input2dArray</span> <span class="o">=</span> <span class="nf">parseInputToArray</span><span class="p">(</span><span class="nx">input</span><span class="p">)</span>
+  <span class="kd">const</span> <span class="nx">map</span> <span class="o">=</span> <span class="nf">findallLetterCoordiates</span><span class="p">(</span><span class="nx">input2dArray</span><span class="p">,</span> <span class="dl">'</span><span class="s1">X</span><span class="dl">'</span><span class="p">)</span>
+
+  <span class="k">return</span> <span class="nx">map</span><span class="p">.</span><span class="nf">reduce</span><span class="p">((</span><span class="nx">acc</span><span class="p">,</span> <span class="nx">coord</span><span class="p">)</span> <span class="o">=&gt;</span>
+    <span class="nx">acc</span> <span class="o">+=</span> <span class="nf">countValidWordsForCoord</span><span class="p">(</span><span class="nx">input2dArray</span><span class="p">,</span> <span class="nx">coord</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Introducing yet another reducer is not pleasant here, but makes the count function a little shorter - but now we have to jump around, so ergonmics and complexity are worse, but code is less. This does not seem like a valid trade off.</p>
+
+<p>Something that came out of this is the removal of destructuring, which turns out to be quite a bit slower than direct access through index. But is worse for readability, so, use where appropriate - like optimization steps of proven code.</p>
+
+<p>I think that’s enough reworking of Part 1’s solver.</p>
+
+<h4 id="cleanup-pt-2-first-pass">Cleanup Pt 2: First pass</h4>
+
+<p>First order of business is to replace [‘M’, ‘S’].includes check with direct === ‘M’ === ‘S’ checks which are faster for 2 entries.</p>
+
+<p>Next I questioned why do filting at all instead of just appending any value (incuding <code class="language-plaintext highlighter-rouge">undefined</code>) to the string of letters. The switch is pattern matching is simple, so we can remove the string preparations.</p>
+
+<p>This meant we could remove the results and count checks and within the switch body update count count instead of accumulating words, and checking length later.</p>
+
+<p>Using a reducer to accumulate the letters is short and simple enough so I think it’s ok here (especially compared to the Pt 1 reducers).</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">solve</span> <span class="p">(</span><span class="nx">input</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">input2dArray</span> <span class="o">=</span> <span class="nf">parseInputToArray</span><span class="p">(</span><span class="nx">input</span><span class="p">)</span>
+  <span class="kd">const</span> <span class="nx">map</span> <span class="o">=</span> <span class="nf">findallLetterCoordiates</span><span class="p">(</span><span class="nx">input2dArray</span><span class="p">,</span> <span class="dl">'</span><span class="s1">A</span><span class="dl">'</span><span class="p">)</span>
+
+  <span class="kd">let</span> <span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="k">for </span><span class="p">(</span><span class="kd">const</span> <span class="p">[</span><span class="nx">aY</span><span class="p">,</span> <span class="nx">aX</span><span class="p">]</span> <span class="k">of</span> <span class="nx">map</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// tl tr br bl</span>
+    <span class="kd">const</span> <span class="nx">quadrants</span> <span class="o">=</span> <span class="p">[</span>
+      <span class="p">[</span><span class="nx">aY</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">aX</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span>
+      <span class="p">[</span><span class="nx">aY</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">aX</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span>
+      <span class="p">[</span><span class="nx">aY</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">aX</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span>
+      <span class="p">[</span><span class="nx">aY</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">aX</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="p">]</span>
+
+    <span class="kd">const</span> <span class="nx">letters</span> <span class="o">=</span> <span class="nx">quadrants</span><span class="p">.</span><span class="nf">reduce</span><span class="p">((</span><span class="nx">acc</span><span class="p">,</span> <span class="nx">coord</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">acc</span> <span class="o">+</span> <span class="nx">input2dArray</span><span class="p">[</span><span class="nx">coord</span><span class="p">[</span><span class="mi">0</span><span class="p">]]?.[</span><span class="nx">coord</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+    <span class="p">},</span> <span class="dl">''</span><span class="p">)</span>
+
+    <span class="k">switch </span><span class="p">(</span><span class="nx">letters</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">case</span> <span class="dl">'</span><span class="s1">MMSS</span><span class="dl">'</span><span class="p">:</span>
+      <span class="k">case</span> <span class="dl">'</span><span class="s1">MSSM</span><span class="dl">'</span><span class="p">:</span>
+      <span class="k">case</span> <span class="dl">'</span><span class="s1">SSMM</span><span class="dl">'</span><span class="p">:</span>
+      <span class="k">case</span> <span class="dl">'</span><span class="s1">SMMS</span><span class="dl">'</span><span class="p">:</span>
+        <span class="nx">count</span><span class="o">++</span>
+      <span class="k">default</span><span class="p">:</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="nx">count</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Less loops, cleaner syntax, even with the cognitive cost of the reducer. It also performs much faster (2-3x by rough test speed)</p>
+
+<h4 id="cleaup-both-parts-final-pass">Cleaup Both Parts: Final Pass</h4>
+
+<p>Last thing that was bugging me was performing the input to 2d array, then iterating the matrix to find coordinates of target letters. This can be reduced to being done inline with the creation of the 2d array, where the lookups are only done against the length of each row.</p>
+
+<p>This doesn’t really change performance on either dataset, but is less code, so maybe that is a win for maintainability.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">parseInputToArray</span> <span class="p">(</span><span class="nx">input</span><span class="p">,</span> <span class="nx">target</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">map</span> <span class="o">=</span> <span class="p">[]</span>
+
+  <span class="kd">const</span> <span class="nx">matrix</span> <span class="o">=</span> <span class="nx">input</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="dl">'</span><span class="se">\n</span><span class="dl">'</span><span class="p">).</span><span class="nf">map</span><span class="p">((</span><span class="nx">row</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">letters</span> <span class="o">=</span> <span class="nx">row</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="dl">''</span><span class="p">)</span>
+
+    <span class="nx">letters</span><span class="p">.</span><span class="nf">forEach</span><span class="p">((</span><span class="nx">letter</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">if </span><span class="p">(</span><span class="nx">letter</span> <span class="o">===</span> <span class="nx">target</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">map</span><span class="p">.</span><span class="nf">push</span><span class="p">([</span><span class="nx">y</span><span class="p">,</span> <span class="nx">x</span><span class="p">])</span>
+      <span class="p">}</span>
+    <span class="p">})</span>
+
+    <span class="k">return</span> <span class="nx">letters</span>
+  <span class="p">})</span>
+
+  <span class="k">return</span> <span class="p">[</span><span class="nx">matrix</span><span class="p">,</span> <span class="nx">map</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>So now each parts solver can skip</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">input2dArray</span> <span class="o">=</span> <span class="nf">parseInputToArray</span><span class="p">(</span><span class="nx">input</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">map</span> <span class="o">=</span> <span class="nf">findallLetterCoordiates</span><span class="p">(</span><span class="nx">input2dArray</span><span class="p">,</span> <span class="dl">'</span><span class="s1">A</span><span class="dl">'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>And do this instead</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="p">[</span><span class="nx">input2dArray</span><span class="p">,</span> <span class="nx">map</span><span class="p">]</span> <span class="o">=</span> <span class="nf">parseInputToArray</span><span class="p">(</span><span class="nx">input</span><span class="p">,</span> <span class="dl">'</span><span class="s1">A</span><span class="dl">'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="summary--benchmarks">Summary &amp; Benchmarks</h3>
+
+<p>Approaching with a plan, and remembering the pain around [y,x] from previous work (especially game dev), made today’s challenge a breeze.</p>
+
+<p>I know there are branches of mathmatics and well defined algorithsm that make working with coordinate data easier, and faster, but I can’t remember them, and also chose to not look it up.</p>
+
+<p>Performance of the first implementations left a lot to be desired</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>part</th>
+      <th>time (ms)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1) sample data</td>
+      <td>1.798084</td>
+    </tr>
+    <tr>
+      <td>1) actual data</td>
+      <td>25.352125</td>
+    </tr>
+    <tr>
+      <td>2) sample data</td>
+      <td>0.760792</td>
+    </tr>
+    <tr>
+      <td>2) actual data</td>
+      <td>3.878375</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Overall not bad, but 25ms operation in Game dev means you’re at best getting 30fps - not good.</p>
+
+<p>After cleanup and optimizations</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>part</th>
+      <th>time (ms)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1) sample data</td>
+      <td>1.280416</td>
+    </tr>
+    <tr>
+      <td>1) actual data</td>
+      <td>7.645583</td>
+    </tr>
+    <tr>
+      <td>2) sample data</td>
+      <td>0.319542</td>
+    </tr>
+    <tr>
+      <td>2) actual data</td>
+      <td>2.491416</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Look at that, actual data for Part 1 is 1/3 the of the original, and Part 2 is 2/3 of the original.</p>
+
+<p>I’m sure with more efficient matrix operations all of these could be done in under 1ms. But I’m not doing that today.</p>]]></content><author><name></name></author><category term="post" /><category term="aoc" /><category term="nodejs" /></entry><entry><title type="html">Advent of Code 2024 - Day 3</title><link href="https://gregdaynes.com/post/2024/12/03/advent-of-code-day-03.html" rel="alternate" type="text/html" title="Advent of Code 2024 - Day 3" /><published>2024-12-03T05:27:00+00:00</published><updated>2024-12-03T05:27:00+00:00</updated><id>https://gregdaynes.com/post/2024/12/03/advent-of-code-day-03</id><content type="html" xml:base="https://gregdaynes.com/post/2024/12/03/advent-of-code-day-03.html"><![CDATA[<ul id="markdown-toc">
+  <li><a href="#part-1" id="markdown-toc-part-1">Part 1</a></li>
+  <li><a href="#part-2" id="markdown-toc-part-2">Part 2</a></li>
+</ul>
 
 <p>Code for <a href="https://github.com/gregdaynes/advent-of-code-2024/tree/day03">Day 03</a></p>
 
@@ -102,7 +679,9 @@
 
 <p><strong>ALWAYS BET ON REGEX</strong></p>
 
-<p>(unless to parse email, then avoid.)</p>]]></content><author><name></name></author><category term="post" /><category term="aoc" /><category term="nodejs" /><summary type="html"><![CDATA[Day 3]]></summary></entry><entry><title type="html">Advent of Code 2024 - Day 2</title><link href="https://gregdaynes.com/post/2024/12/03/advent-of-code-day-02.html" rel="alternate" type="text/html" title="Advent of Code 2024 - Day 2" /><published>2024-12-03T01:35:00+00:00</published><updated>2024-12-03T01:35:00+00:00</updated><id>https://gregdaynes.com/post/2024/12/03/advent-of-code-day-02</id><content type="html" xml:base="https://gregdaynes.com/post/2024/12/03/advent-of-code-day-02.html"><![CDATA[<h4 id="day-2">Day 2</h4>
+<p>(unless to parse email, then avoid.)</p>]]></content><author><name></name></author><category term="post" /><category term="aoc" /><category term="nodejs" /></entry><entry><title type="html">Advent of Code 2024 - Day 2</title><link href="https://gregdaynes.com/post/2024/12/03/advent-of-code-day-02.html" rel="alternate" type="text/html" title="Advent of Code 2024 - Day 2" /><published>2024-12-03T01:35:00+00:00</published><updated>2024-12-03T01:35:00+00:00</updated><id>https://gregdaynes.com/post/2024/12/03/advent-of-code-day-02</id><content type="html" xml:base="https://gregdaynes.com/post/2024/12/03/advent-of-code-day-02.html"><![CDATA[<ul id="markdown-toc">
+  <li><a href="#my-solution" id="markdown-toc-my-solution">My solution</a></li>
+</ul>
 
 <p>Code for <a href="https://github.com/gregdaynes/advent-of-code-2024/tree/day02">Day 02</a></p>
 
@@ -173,7 +752,7 @@
 
 <p>What’s incredibly frustrating about this challenge, is that the way to do it is through brute-force. I can’t imagine any other way to handle it. And the brute-force approach is tedious at best.</p>
 
-<p>I wouldn’t want to inherit this code, even with substantial tests and documentation. It would likely become marked with here-be-dragons and I would dread needing to make any change. It’s brittle, and has a high cognitive load.</p>]]></content><author><name></name></author><category term="post" /><category term="aoc" /><category term="nodejs" /><summary type="html"><![CDATA[Day 2]]></summary></entry><entry><title type="html">Advent of Code 2024 - Day 1</title><link href="https://gregdaynes.com/post/2024/12/01/advent-of-code-day-01.html" rel="alternate" type="text/html" title="Advent of Code 2024 - Day 1" /><published>2024-12-01T15:45:00+00:00</published><updated>2024-12-01T15:45:00+00:00</updated><id>https://gregdaynes.com/post/2024/12/01/advent-of-code-day-01</id><content type="html" xml:base="https://gregdaynes.com/post/2024/12/01/advent-of-code-day-01.html"><![CDATA[<ul id="markdown-toc">
+<p>I wouldn’t want to inherit this code, even with substantial tests and documentation. It would likely become marked with here-be-dragons and I would dread needing to make any change. It’s brittle, and has a high cognitive load.</p>]]></content><author><name></name></author><category term="post" /><category term="aoc" /><category term="nodejs" /></entry><entry><title type="html">Advent of Code 2024 - Day 1</title><link href="https://gregdaynes.com/post/2024/12/01/advent-of-code-day-01.html" rel="alternate" type="text/html" title="Advent of Code 2024 - Day 1" /><published>2024-12-01T15:45:00+00:00</published><updated>2024-12-01T15:45:00+00:00</updated><id>https://gregdaynes.com/post/2024/12/01/advent-of-code-day-01</id><content type="html" xml:base="https://gregdaynes.com/post/2024/12/01/advent-of-code-day-01.html"><![CDATA[<ul id="markdown-toc">
   <li><a href="#introduction" id="markdown-toc-introduction">Introduction</a></li>
   <li><a href="#solving-day-1" id="markdown-toc-solving-day-1">Solving Day 1</a>    <ul>
       <li><a href="#day-1-part-1" id="markdown-toc-day-1-part-1">Day 1: Part 1</a>        <ul>
@@ -993,38 +1572,4 @@ el.addEventListener('some-event', this)
 
 <p>The LCD is fixed (more than solder joints) to the main control board, which turns out is very fragile. I managed to crack the LCD even while attempting to be gentle, I didn’t touch the board except disconnect and reconnect of the rotary daughter board connector. Beware.</p>
 
-<p>I did not measure the stem prior to this repair, the donor rotary encoder stem was much longer. Beware of this and make sure to measure and find the appropriate stem. A long one of course workse, but the knob stands above the case now, and is easier for water to find ingress into the electronics.</p>]]></content><author><name></name></author><category term="project" /><summary type="html"><![CDATA[Outlining repair of the base for the Stag EKG Kettle by Fellow.]]></summary></entry><entry><title type="html">Hyde Decap</title><link href="https://gregdaynes.com/project/2023/12/22/hyde-decap.html" rel="alternate" type="text/html" title="Hyde Decap" /><published>2023-12-22T00:00:00+00:00</published><updated>2023-12-22T00:00:00+00:00</updated><id>https://gregdaynes.com/project/2023/12/22/hyde-decap</id><content type="html" xml:base="https://gregdaynes.com/project/2023/12/22/hyde-decap.html"><![CDATA[<p>A plugin for Jekyll that removes some of the setup and configuration when adding Decap CMS to a Jekyll site.</p>
-
-<p><em>The repository has instructions to get up and running.</em></p>
-
-<ul>
-  <li><a href="https://decapcms.org">Decap CMS</a></li>
-  <li><a href="https://github.com/gregdaynes/hyde-decap">Hyde Decap Repo</a></li>
-  <li><a href="https://rubygems.org/gems/hyde-decap">Ruby Gems</a></li>
-</ul>
-
-<h3 id="features">Features</h3>
-
-<ul>
-  <li>
-    <p>Automatic creation of the /admin (or custom page), which includes the Javascript and mountpoint for Decap to load.</p>
-  </li>
-  <li>
-    <p>It adds (Responsive Decap](https://github.com/hithismani/responsive-decap/) to provide a better mobile experience to Decap.</p>
-  </li>
-  <li>
-    <p>Configuration for Decap CMS is through YML which Hyde Decap gets from Jekyll’s <code class="language-plaintext highlighter-rouge">_config.yml</code> instead of a standalone config.</p>
-  </li>
-  <li>
-    <p>Provides a command for Jekyll CLI <code class="language-plaintext highlighter-rouge">jekyll decap</code> which acts like <code class="language-plaintext highlighter-rouge">jekyll serve</code>, but launches two processes, one for building and serving Jekyll and the other running a local backend for Decap CMS to connect to.</p>
-
-    <ol>
-      <li>
-        <p>Serve - This is the same command as calling <code class="language-plaintext highlighter-rouge">jekyll serve</code> and any options passed to <code class="language-plaintext highlighter-rouge">jekyll decap</code> will be forwarded to <code class="language-plaintext highlighter-rouge">serve</code></p>
-      </li>
-      <li>
-        <p><a href="https://www.npmjs.com/package/netlify-cms-proxy-server">Netlify CMS Proxy Server</a> - Facilitates local development by stubbing OAuth login and git management.</p>
-      </li>
-    </ol>
-  </li>
-</ul>]]></content><author><name></name></author><category term="project" /><summary type="html"><![CDATA[A plugin for Jekyll that removes some of the setup and configuration when adding Decap CMS to a Jekyll site.]]></summary></entry></feed>
+<p>I did not measure the stem prior to this repair, the donor rotary encoder stem was much longer. Beware of this and make sure to measure and find the appropriate stem. A long one of course workse, but the knob stands above the case now, and is easier for water to find ingress into the electronics.</p>]]></content><author><name></name></author><category term="project" /><summary type="html"><![CDATA[Outlining repair of the base for the Stag EKG Kettle by Fellow.]]></summary></entry></feed>
