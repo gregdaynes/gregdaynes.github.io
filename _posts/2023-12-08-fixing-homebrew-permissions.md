@@ -2,7 +2,7 @@
 layout: post
 categories:
   - note
-title: Fixing Hombrew permissions when using ASDF
+title: Fixing Homebrew permissions when using ASDF
 excerpt: Ruby Gem management with ASDF-VM sometimes encounters issues with permissions when using bundler to manage gems.
 ---
 

@@ -20,15 +20,15 @@ There's a few culprits to my abandonment.
 - _Steep Cliff_; the puzzles are a wall of text that I find intimidating.
 - _Imposter Syndrome_; I'm not good enough to do it good so I shouldn't do it at all.
 - _Learning languages_; I tend to want to pick up a new language, but get distracted by learning it instead of applying as I'm going.
-- But it's mostly work and freetime.
+- But it's mostly work and free time.
 
 This year is different. It overlaps with funemployment! Which means I don't have much preventing me from bashing out some terrible solutions.
 
 As solutions to the above:
 
 - I am going to do it in NodeJS, removing the language distraction.
-- Wall of text; behavioral changes are hard, reading comprehension on meandering text is a struggle. Perhaps a symptom of an undiagnosed attention problem.
-  Instead of trying to find problem solving algorithms; start with solving the problem. Make it better. Maybe an algorithm will emerge, this is practice and shoud be fun. So have at it!
+- Wall of text; behavioural changes are hard, reading comprehension on meandering text is a struggle. Perhaps a symptom of an undiagnosed attention problem.
+  Instead of trying to find problem solving algorithms; start with solving the problem. Make it better. Maybe an algorithm will emerge, this is practice and should be fun. So have at it!
 
 ### Solving Day 1
 
@@ -83,7 +83,7 @@ This is awful, doesn't scale well, but does solve the problem.
 
 The first offence is splitting the input on new line into an array. Already we've introduced memory issues - what if the input in many GBs? Looking at the known inputs, we're safe, so we don't have to be proactive (or defensive) here. If this was real-life code, I'd want more samples, or at least ask what the maximum size will be.
 
-Next are the creation of 2 arrays - seems harmless. Paired with iterating the split array, performing a split on each entry and then puting the values into the corrosponding array is probably fine.
+Next are the creation of 2 arrays - seems harmless. Paired with iterating the split array, performing a split on each entry and then putting the values into the corresponding array is probably fine.
 
 We then sort each array as a mutation. This could be done without the mutation, but we'd double up memory again. So now we have input string, input array, left array, right array.  We've iterated each array at once, meaning we've done 3*n operations.
 
@@ -247,9 +247,9 @@ function solve (input) {
 
 Being let down with the reducer, and regex, I spent a moment to think what a faster operation would be.
 
-_Why not count occurrances as we're iterating to produce the 2 arrays?_
+_Why not count occurrences as we're iterating to produce the 2 arrays?_
 
-Using a map, with the number as the key and the occurances as the value - each occurrance increments the value.
+Using a map, with the number as the key and the occurrences as the value - each occurrence increments the value.
 
 There's no need to store all the right numbers anymore, duplicates are removed. Awesome.
 

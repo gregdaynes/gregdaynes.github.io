@@ -9,7 +9,7 @@
   {% if include.sort %}
     {% assign orderedData = data.data | sort: include.sort | reverse %}
   {% else %}
-    {% assign orderedData = data.data | sort: 'datestart' | reverse %}
+    {% assign orderedData = data.data | sort: 'dateend' | reverse %}
   {% endif %}
 
 	{% for data in orderedData %}

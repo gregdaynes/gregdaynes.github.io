@@ -24,10 +24,10 @@ This may be a bad idea in the long run, but so far, it's been successful for the
 
 ### Features
 
-- Frontmatter option `css` or `js` which takes an array of file names in the `/assets/css` or `/assets/js` folder. Thes files are concatenated, minified and fingerprinted.
+- Frontmatter option `css` or `js` which takes an array of file names in the `/assets/css` or `/assets/js` folder. These files are concatenated, minified and fingerprinted.
 
 - Adds absolute urls to `page.css_files` or `page.js_files` for adding link tags to the page through liquid.
 
-- Heirarchy of Layouts - with Jekyll, a page may have 0 or more layouts, in a heriarchical fasion, for example: `base.html > blog.hmtl > post.html > page`
-  Each layout and page can have as many CSS/JS files as wanted, but will be concatenated to a single file per layout/page in the heirarchy.
+- Hierarchy of Layouts - with Jekyll, a page may have 0 or more layouts, in a hierarchical fashion, for example: `base.html > blog.hmtl > post.html > page`
+  Each layout and page can have as many CSS/JS files as wanted, but will be concatenated to a single file per layout/page in the hierarchy.
 

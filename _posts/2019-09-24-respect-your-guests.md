@@ -17,7 +17,7 @@ Likewise, you have probably also seen people touting going back to the old ways 
 
 There is a middle ground, web development has never been about extremes.
 Use your tools, and favourite frameworks all you want, you don't have to change that.
-But, consider the guests on on your website (or app).
+But, consider the guests on your website (or app).
 
 These are the people who you need to respect, you need to cater too, and who you want to come back.
 
@@ -38,7 +38,7 @@ When reaching your choice framework, ask yourself
 - Does it have keyboard support?
 
 The last point "keyboard support" is hugely impacting to guests who have trouble using a mouse due to any number of reasons. The depressing part about modern frontend frameworks, is keyboard support is usually a second class citizen, or not considered at all.
-When using that fancy, heavily customizable text input component from github, look to see if it does everything the native browser object does.
+When using that fancy, heavily customizable text input component from Github, look to see if it does everything the native browser object does.
 
 If it does, use it, love it, your guests will like it too. If it doesn't, look around for something else that does. Or reach back into the past, figure out how it was done before without a framework. Look to to projects like [The A11Y Project](https://a11yproject.com)
 

@@ -10,8 +10,8 @@ css:
 {{ data.content | markdownify }}
 
 {% assign experience = site.data.skills | where: 'name', 'Experience' | first %}
-{% include components/training.html data=experience name="experience" %}
 
+{% include components/training.html data=experience name="experience" %}
 
 {% contentfor sidebar %}
   {% assign nav = site.data.navigation | where: "title", "Linktree" | first %}
@@ -19,7 +19,9 @@ css:
 
   {% include components/training.html data=site.data.skills.education name="education" title_tag="span" %}
 
+    {% comment %}
 	{% include components/training.html data=site.data.skills.courses name="courses" title_tag="span"  %}
+    {% endcomment %}
 
 	{% include components/training.html data=site.data.skills.languages name="training" title_tag="span" display_grid="true" sort="level" %}
 

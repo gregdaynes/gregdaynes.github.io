@@ -14,7 +14,7 @@ Code for [Day 03](https://github.com/gregdaynes/advent-of-code-2024/tree/day03)
 
 Wow. After Day 2 pt 2, I was sure I'd be cooked and not be able to continue on. Oh how wrong Greg from a 4 hours ago was.
 
-Todays challenge involves filtering through "corrupted data" looking for recognizable operations and performing them.
+Today's challenge involves filtering through "corrupted data" looking for recognizable operations and performing them.
 
 I didn't even bother with a separate file, instead wrote each solver in tests.
 
@@ -50,7 +50,7 @@ Part 2 introduced 2 new "uncorrupted" operations to pay attention to.
 
 They act as flags to disable and enable future operations.
 
-The default state is to perform the opeartions
+The default state is to perform the operations
 
 We can think in terms of _gating_ or _switching_ to understand the logic.
 
@@ -86,9 +86,9 @@ test('pt2 sample dataset', async t => {
 })
 ```
 
-An adustment to the RegEx from Part 1 is needed
+An adjustment to the RegEx from Part 1 is needed
 
-1. Wraping the whole matcher in a group
+1. Wrapping the whole matcher in a group
 2. Use `|` to define alternate group matchers for `don't()` and `do()`
 
 This gives a Regex pattern that has 3 possible matches for the group.

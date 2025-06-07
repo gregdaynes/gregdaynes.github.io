@@ -12,13 +12,13 @@ tags:
 
 Code for [Day 04](https://github.com/gregdaynes/advent-of-code-2024/tree/day04)
 
-Today's challenge is based around matricies, or in JS, 2D arrays and coordinates. This kind of challenge is when I wish there was a better standard library, as well as matrix operations.
+Today's challenge is based around matrices, or in JS, 2D arrays and coordinates. This kind of challenge is when I wish there was a better standard library, as well as matrix operations.
 
 
 #### Part 1
 
 Crossword style challenge
-From given input, find all occurrances of XMAS
+From given input, find all occurrences of XMAS
 Can be horizontal, vertical, or diagonal - this includes backwards
 
 Today I decided to think about the problem and write out a plan before coding.
@@ -37,7 +37,7 @@ when converting to 2d array, index all X positions
  sum all matches
 ```
 
-Makes sense. The next thing to do is remember that coordinates will be in [y,x] not [x,y]. One of those human things where we think horizontally first, where as the easiest operations are row first. Maybe a transform would be a good brain saving step, but would take more time and memory to perform instead of removing the problem before code - fix the human programmer.
+Makes sense. The next thing to do is remember that coordinates will be in [y,x] not [x,y]. One of those human things where we think horizontally first, whereas the easiest operations are row first. Maybe a transform would be a good brain saving step, but would take more time and memory to perform instead of removing the problem before code - fix the human programmer.
 
 ```js
 function verticalBackwards([y,x]) {
@@ -133,7 +133,7 @@ Theres lots of loops here, 8 if I'm counting correctly. This can be cleaned up l
 
 Of course it wouldn't be Advent of Code if the second part didn't crush all your hard work of the first part.
 
-This time the task is to look for X-MAS, which is the word MAS in an X like shape (2 MAS with A in the center).
+This time the task is to look for X-MAS, which is the word MAS in an X like shape (2 MAS with A in the centre).
 
 Immediately we can scrap the horizontal and vertical checks, meaning we have 4 directions to check.
 
@@ -309,7 +309,7 @@ In addition to removing filter, push, flat, length, I opted to hoist the functio
 
 #### Cleanup Pt 1: Third Pass
 
-Reducers, the bain of any developer (save for intermediates. JUST KIDDING! you all do the important and necessary work, do it how you need to get it done).
+Reducers, the bane of any developer (save for intermediates. JUST KIDDING! you all do the important and necessary work, do it how you need to get it done).
 
 It's commonplace to dislike reducers due to their syntax and the complexity understanding them involves. In this case, it is much more cryptic than the for loop with accumulator, but internally is small enough that it should be reasonable to keep in mind. A little more complexity can sometimes be worth it.
 
@@ -396,7 +396,7 @@ Well isn't that nice to look at. With all the scary things hidden away.
 
 #### Cleanup Pt 1: Fifth Pass
 
-Lets take it one step further.
+Let's take it one step further.
 
 ```js
 function countValidWordsForCoord(input, [y,x]) {
@@ -431,7 +431,7 @@ export function p1a (input) {
 }
 ```
 
-Introducing yet another reducer is not pleasant here, but makes the count function a little shorter - but now we have to jump around, so ergonmics and complexity are worse, but code is less. This does not seem like a valid trade off.
+Introducing yet another reducer is not pleasant here, but makes the count function a little shorter - but now we have to jump around, so ergonomics and complexity are worse, but code is less. This does not seem like a valid trade off.
 
 Something that came out of this is the removal of destructuring, which turns out to be quite a bit slower than direct access through index. But is worse for readability, so, use where appropriate - like optimization steps of proven code.
 
@@ -442,9 +442,9 @@ I think that's enough reworking of Part 1's solver.
 
 First order of business is to replace ['M', 'S'].includes check with direct === 'M' === 'S' checks which are faster for 2 entries.
 
-Next I questioned why do filting at all instead of just appending any value (incuding `undefined`) to the string of letters. The switch is pattern matching is simple, so we can remove the string preparations.
+Next I questioned why do filtering at all instead of just appending any value (including `undefined`) to the string of letters. The switch is pattern matching is simple, so we can remove the string preparations.
 
-This meant we could remove the results and count checks and within the switch body update count count instead of accumulating words, and checking length later.
+This meant we could remove the results and count checks and within the switch body update count instead of accumulating words, and checking length later.
 
 Using a reducer to accumulate the letters is short and simple enough so I think it's ok here (especially compared to the Pt 1 reducers).
 
@@ -485,7 +485,7 @@ function solve (input) {
 Less loops, cleaner syntax, even with the cognitive cost of the reducer. It also performs much faster (2-3x by rough test speed)
 
 
-#### Cleaup Both Parts: Final Pass
+#### Cleanup Both Parts: Final Pass
 
 Last thing that was bugging me was performing the input to 2d array, then iterating the matrix to find coordinates of target letters. This can be reduced to being done inline with the creation of the 2d array, where the lookups are only done against the length of each row.
 
@@ -529,7 +529,7 @@ const [input2dArray, map] = parseInputToArray(input, 'A')
 
 Approaching with a plan, and remembering the pain around [y,x] from previous work (especially game dev), made today's challenge a breeze.
 
-I know there are branches of mathmatics and well defined algorithsm that make working with coordinate data easier, and faster, but I can't remember them, and also chose to not look it up.
+I know there are branches of mathematics and well defined algorithms that make working with coordinate data easier, and faster, but I can't remember them, and also chose to not look it up.
 
 Performance of the first implementations left a lot to be desired
 

@@ -14,7 +14,7 @@ A _mostly_ complete example for a monolith, which is also suitable for building 
 - Replacing the database with SQLite when testing has been a positive choice for fast development (TDD). Given the choice again I would opt to use an in-memory-tuned instance of the production database for integration testing.
 - No workspaces. I ran into an issue with other developers NPM not working with the _then new_ workspace feature (NPM @ 7). Yarn would have worked for this, as well as PNPM.
 - Hygen for generating code based on `ejs` templates - [copy-template-dir](https://www.npmjs.com/package/copy-template-dir) or similar.
-- CLI came after most of the application and web interface was complete. Nowadays I would build the CLI in parallel with the application logic. This benefits development by not having to remember REPL commands or building out administration uis.
+- CLI came after most of the application and web interface was complete. Nowadays I would build the CLI in parallel with the application logic. This benefits development by not having to remember REPL commands or building out administration UIs.
 
 The repository contains `app-example-requests.paw` and `app-example-requests-postman.json` for interacting with the api through Paw or Postman.
 

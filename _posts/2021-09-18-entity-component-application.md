@@ -17,9 +17,9 @@ $ npm start
 $ npm run profile
 ```
 
-While not as performant as the original implementation. EC proved to be a happy in-between performance and maintainability. I found it to be like [Function Composition](/function-composition) as well as way more memory efficient (this is where EC proves it’s value).
+While not as performant as the original implementation. EC proved to be a happy in-between performance and maintainability. I found it to be like [Function Composition](/function-composition) as well as way more memory efficient (this is where EC proves its value).
 
-The concept is for entites to act as containers of data with a global unique dentifier. The logic exists outside of the entities in systems. Each system operates on entities which have the components the system knows about. Usually a system performs arithmetic, which makes it fast and efficient.
+The concept is for entities to act as containers of data with a global unique identifier. The logic exists outside of the entities in systems. Each system operates on entities which have the components the system knows about. Usually a system performs arithmetic, which makes it fast and efficient.
 
 This served as a place to experiment with the new [Performance Hooks](https://nodejs.org/dist/latest-v16.x/docs/api/perf_hooks.html#perf_hooks_performance_measurement_apis) API.
 

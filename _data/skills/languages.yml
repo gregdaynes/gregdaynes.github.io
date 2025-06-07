@@ -1,20 +1,24 @@
 ---
 name: Languages
 data:
-  - title: HTML
-    level: 5
-    datestart: ""
-    dateend: ""
-  - title: CSS
-    level: 5
-    datestart: ""
-    dateend: ""
   - title: Javascript
     level: 5
     datestart: ""
     dateend: ""
   - title: Typescript
     level: 3
+    datestart: ""
+    dateend: ""
+  - title: Golang
+    level: 4
+    datestart: ""
+    dateend: ""
+  - title: HTML
+    level: 5
+    datestart: ""
+    dateend: ""
+  - title: CSS
+    level: 5
     datestart: ""
     dateend: ""
   - title: Shell

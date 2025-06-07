@@ -16,7 +16,7 @@ The base is held together with 4 screws, and 8 clips. The clips are easy to rele
 
 _In my looking for the screws, I removed the feet, which caused the rubber to tear. They're easy enough to glue back on._
 
-The rotary encoder is situated on a daughter board fixed with 2 philips screws and connected with a ribbon cable to the main board. The cable disconnects from a JST port on the mainboard, but is soldered on the daughter board.
+The rotary encoder is situated on a daughter board fixed with 2 phillips screws and connected with a ribbon cable to the main board. The cable disconnects from a JST port on the mainboard, but is soldered on the daughter board.
 
 Rotary Encoder Details:
 
@@ -28,7 +28,7 @@ I used [these encoders](https://www.amazon.ca/dp/B07T3672VK) from Amazon.
 
 Desoldering the rotary encoder was straight forward, I used a solder-sucker and wick to remove and prepare the pads. I did have to have fairly high temperature on my iron around 740 to get the factory solder to warm up.
 
-Re-assembly is disassembly in reverse, be mindful of the thin wires routing around the center. Use a bit of Kapton tape to keep things in place.
+Re-assembly is disassembly in reverse, be mindful of the thin wires routing around the centre. Use a bit of Kapton tape to keep things in place.
 
 ### Outcome
 

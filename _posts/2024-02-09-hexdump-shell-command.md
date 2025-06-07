@@ -23,7 +23,7 @@ This is my breakdown
 `0x&,` is then used to surround the 2 characters matched. `0x` is the prefix, `&` is the stand in for the matched characters, and `,` is the suffix
 `g` is the flag to run against all, not just the first match.
 
-So this script it converting a multiline hexdump, into a single line, then prefixing each character pair with the the numerical constant in hex.
+So this script is converting a multiline hexdump, into a single line, then prefixing each character pair with the the numerical constant in hex.
 
 `echo '1' | xxd -p` outputs `310a`.
 `1` is `31` in hex `0a` is end of line.

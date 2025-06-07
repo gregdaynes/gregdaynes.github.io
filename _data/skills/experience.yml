@@ -2,18 +2,18 @@
 name: Experience
 data:
   - datestart: 2014-11-01T07:00:00.000Z
-    dateend: ""
-    title: Software Consultancy
-    subtitle: Fractional CTO / Developer / Sysadmin
+    dateend: "Today"
+    title: Greg Daynes Consulting
+    subtitle: Senior Software Developer / Sysadmin / Devops / Project Management
     content: >-
-      Providing support and augmentation to development teams, recover unmaintained/acquired software, greenfield project developement, sysadmin and devops.
+      Providing support and augmentation to development teams, recover unmaintained/acquired software, greenfield project development, sysadmin and devops.
     notes:
+      - Long term maintenance (> 10 years) on Britsh Columbia Golf association platform. In 2025 I was contracted to rebuild it to support another 10 years.
+      - Application security, threat protection, preventative planning, development of proven backup procedures for fast recovery, AI abuse, audit and postmortem reporting.
+      - Augmented a medium-sized Shopify theme development company to raise their engineering standards, practices, and accelerate development.
       - Created a Digital Art Management System for distribution of unity and unreal game content
-
-      - Successfully recovered development of abandonned Shopify application after acquisition.
-
-      - Develop and maintain a tool for time and asset management in film industry. Currently used by Netflix, Disney, SyFy, and independent studios.
-
+      - Recovered development of abandoned Shopify application after acquisition. Furthering development for 2 years.
+      - Developed a time & asset management platform in use by Netflix, Disney, SyFy, and independent studios.
       - Development and maintenance of a dozen news media and interest sites for British Columbia Golf Association, PGA of BC, Western Canada Turfgrass Association.
 
   - dateend: 2023-03-31T07:00:00.000Z
@@ -25,9 +25,9 @@ data:
     notes:
       - Lead development for logistics planning and maintenance visualization tools for multi-decade cycles
 
-      - Lead engineering for an internal tool to assist with educators creation of learning courses utilising Augmented/Virtual reality and motion platform based training.
+      - Lead engineering for an internal tool to assist with educators creation of learning courses utilizing Augmented/Virtual reality and motion platform based training.
 
-      - Assisting Virual Training team to deliver client projects in Unity and Unreal engines.
+      - Assisting Virtual Training team to deliver client projects in Unity and Unreal engines.
 
       - Research, Develop and Report on numerous topics such-as client vulnerabilities, auditable systems, data privacy.
 
@@ -52,7 +52,7 @@ data:
     content: >-
       An annual semi-formal conference around DevOps, Sysadmin and Infrastructure in Victoria, BC.
     notes:
-      - As a member of a team of 6, I had to juggle many responsiblities to deliver a high-quality conference to attendees, including audio and visual production, design and branding, production coordination and admission
+      - As a member of a team of 6, I had to juggle many responsibilities to deliver a high-quality conference to attendees, including audio and visual production, design and branding, production coordination and admission
 
   - dateend: 2019-08-31T07:00:00.000Z
     datestart: 2017-02-02T06:30:56.345Z
@@ -62,7 +62,7 @@ data:
       Stembolt was the official maintainer of Solidus E-commerce platform, and provided consulting services to many large, high profile clients.
 
 
-      My role was as a consultant, embeded in client in-house teams to augment their development of Solidus based stores.
+      My role was as a consultant, embedded in client in-house teams to augment their development of Solidus based stores.
 
 
       Stembolt was acquired by Juul Labs in 2018.
@@ -71,7 +71,7 @@ data:
       - Integration with 3rd party vendors providing Age Verification for online JUUL store and second generation device. This included travelling to South Korea to work directly with vendors on a tight schedule.
       - Built phone verification system for 2FA, Track & Trace of purchases across international e-commerce shops and brick & mortar stores.
       - Worked as a consultant for clients, embedded in their in-house development teams to help their project succeed.
-      - Migration of e-commerce sitess form Magento to Solidus.
+      - Migration of e-commerce sites form Magento to Solidus.
 
   - dateend: 2017-01-31T08:00:00.000Z
     datestart: 2014-11-02T05:31:00.000Z
@@ -79,8 +79,8 @@ data:
     subtitle: Developer
     content: ""
     notes:
-      - Primary developer on a Advertising Demand Side Platform for high-volume auction markets. Architecture was focused on performance, reliability and maintainability. Strict performance and uptime requirements required heavy optmization and testing.
-      - Planning & development on infratstructure architecture around Containers, SmartOS, AWS, and CI/CD pipelines.
+      - Primary developer on a Advertising Demand Side Platform for high-volume auction markets. Architecture was focused on performance, reliability and maintainability. Strict performance and uptime requirements required heavy optimization and testing.
+      - Planning & development on infrastructure architecture around Containers, SmartOS, AWS, and CI/CD pipelines.
       - Lead training, education, and peer review of current and upcoming practices to keep the development team productive and up-to-date.
 
   - dateend: 2014-11-30T08:00:00.00Z
@@ -88,9 +88,9 @@ data:
     title: "Inside Golf Inc."
     subtitle: Head of Design & Development, Sysadmin, Office IT
     content: >-
-      Inside Golf Inc is a leading provider of regional Golf News across Western Canada, Provviding design services and web development to various Associations and developments.
+      Inside Golf Inc is a leading provider of regional Golf News across Western Canada, Providing design services and web development to various Associations and developments.
     notes:
       - Creation of advertising, and production coordination for full colour, gloss magazines.
       - Lead design on large scale gang runs of printed products, coordinating multiple printing facilities to deliver high quality print productions with very tight timelines.
       - Developed and maintained web properties, including marking sites, invoice payment gateways, news aggregators, Joomla! sites, and CRM databases.
----
+        ---

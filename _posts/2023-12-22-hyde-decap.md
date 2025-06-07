@@ -15,7 +15,7 @@ _The repository has instructions to get up and running._
 
 ### Features
 
-- Automatic creation of the /admin (or custom page), which includes the Javascript and mountpoint for Decap to load.
+- Automatic creation of the /admin (or custom page), which includes the Javascript and mount-point for Decap to load.
 
 - It adds (Responsive Decap](https://github.com/hithismani/responsive-decap/) to provide a better mobile experience to Decap.
 

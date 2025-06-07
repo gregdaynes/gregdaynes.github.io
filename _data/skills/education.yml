@@ -1,6 +1,12 @@
 ---
 name: Education
 data:
+  - datestart: 2011-10-01T16:34:35.849Z
+    dateend: 2011-12-31T08:00:00.000Z
+    title: ML Class / Coursera
+    notes:
+      - Machine Learning
+      - Database Design & Architecture
   - datestart: 2001-09-01T07:00:00.000Z
     dateend: 2004-06-30T07:00:00.000Z
     title: Cowichan Secondary School
@@ -9,7 +15,7 @@ data:
       - Design Department & Staff assistant
       - Honor & various service awards
   - datestart: 2003-07-01T07:00:00.000Z
-    dateend: 2003-07-31T07:00:00.000Z
+    dateend: 2003-08-31T07:00:00.000Z
     title: Vancouver Island University
     notes:
       - Summer Courses

@@ -16,7 +16,7 @@ _The repository has instructions to get up and running._
 
 - Utilizes a configuration file to specify fonts and variants to include in your site.
 
-- Creates CSS declrations for each font.
+- Creates CSS declarations for each font.
    - This can be included as a file or inline with other CSS on your site.
 
    - Exposes a liquid tag `{% raw %}{% hyde_fonts link %}{% endraw %}` to include  the fonts in your site using a link tag. Or `{% raw %}{% hyde_fonts inline %}{% endraw %}` to include the CSS for inclusion in other CSS files or `<style>` tags.
