@@ -1,4 +1,100 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://gregdaynes.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://gregdaynes.com/" rel="alternate" type="text/html" /><updated>2025-06-07T21:23:57+00:00</updated><id>https://gregdaynes.com/feed.xml</id><entry><title type="html">Advent of Code 2024 - Day 4</title><link href="https://gregdaynes.com/post/2024/12/04/advent-of-code-day-04.html" rel="alternate" type="text/html" title="Advent of Code 2024 - Day 4" /><published>2024-12-04T18:28:00+00:00</published><updated>2024-12-04T18:28:00+00:00</updated><id>https://gregdaynes.com/post/2024/12/04/advent-of-code-day-04</id><content type="html" xml:base="https://gregdaynes.com/post/2024/12/04/advent-of-code-day-04.html"><![CDATA[<ul id="markdown-toc">
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://gregdaynes.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://gregdaynes.com/" rel="alternate" type="text/html" /><updated>2025-06-07T21:26:54+00:00</updated><id>https://gregdaynes.com/feed.xml</id><entry><title type="html">What’s Going On - Where have I been</title><link href="https://gregdaynes.com/post/2025/06/07/whats-going-on.html" rel="alternate" type="text/html" title="What’s Going On - Where have I been" /><published>2025-06-07T19:41:00+00:00</published><updated>2025-06-07T19:41:00+00:00</updated><id>https://gregdaynes.com/post/2025/06/07/whats-going-on</id><content type="html" xml:base="https://gregdaynes.com/post/2025/06/07/whats-going-on.html"><![CDATA[<p>It’s been a while. Where’s AOC ‘24 articles after the 4th? What have I been up to since December? Let’s go!</p>
+
+<h2 id="december-aoc--disks">December AOC &amp; Disks</h2>
+
+<p>Back in December, a contract I had ended, work as delivered, projects successfully out on the market (save for one, more in a moment). Time to breathe, or so I thought.</p>
+
+<p>While I was cleaning up the computer I had been using for this work and personal projects (the joys of consulting - single computer if you want). The disk failed. Not in a nice, recoverable way. Like fully properly failed. This was a Macbook Pro M1. Recovery was attempted, but no luck - I didn’t stick it in a freezer if you’re thinking I should have tried that - doesn’t work with NAND like old spinning rust.</p>
+
+<p>Luckily, all my work is backed up in many ways and places. I use git, I have time-machine on a NAS, I have rsync scripts to another networked disk, and I have another script that backs up some projects to my Desktop (which is sync’d to Apple Drive). Lots of redundancy, though not all client work has all this enabled.</p>
+
+<p>I lost my AOC articles from the 5-14, both challenges per day. This was heartbreaking because I spent a lot of time and effort on those solutions and documentation. I was frustrated, and lost the drive to restart and finish. Maybe 2025 will be the year I do all of AOC?</p>
+
+<h3 id="that-one-project-that-didnt-get-delivered-but-did">That one project that didn’t get delivered (but did)</h3>
+
+<p>During the fall of 2024, I had taken on a task to do exploration of exponential growth of data usage and remedies. This wasn’t part of my daily work, more of a curiosity, but was a data problem, and of course I love data problems. I started work in my Projects/Scratch directory, which is where I write throwaway code, and is not backed up. I continued working on it, evenings and weekends, whenever I had some time, or a spark of inspiration.</p>
+
+<p>The experiment was successful and handled the problem very well. Once I learned my contract would be ending, I wanted to hand over the codebase so the company could use it to deal with their data problem. But people and timelines are always trouble. For weeks the hand-off was delayed, from illness to vacations, end of the year and all.</p>
+
+<p>Then the disk failed and the project was lost.</p>
+
+<p>I think other developers, may have responded with “oh well” and moved on. But I was proud of this work - and I made the conscious choice to rebuild it, hand it off as if nothing happened. And I did. Because I write everything in my logbook, most of the concepts were there, the ways I solved the problems and the specific techniques used, It took me from afternoon to the wee-hours of the morning (around 14 hours in total). And it was better than before.</p>
+
+<p>I’ll detail this project in another post, but let this be a warning - Backup everything, always. But more importantly</p>
+
+<blockquote>
+  <p>MAINTAIN AN ENGINEERING LOGBOOK!!!</p>
+</blockquote>
+
+<h2 id="winter">Winter</h2>
+
+<p>Back in the September, a long time client, had come to me to finally start on the modernization of their website &amp; publishing platform. We had been talking over the last few years about the project, but never started.</p>
+
+<p>Throughout December, I worked on creating a prototype design for their site, based on the briefs with the Director of Communication. This was many, many iterations of work. To make it simple, I used the same stack that powers this site - Jekyll and my 3 plugins for html, css, and javascript enhancements. This allowed me to move quickly and efficiently, even live coding with the Project Manager to try out ideas.</p>
+
+<p>Sign off was quick, and I was off to design the system and content model.</p>
+
+<p>My plan for this being 2 months of work, quickly imploded from time commitment conflicts, to bike-shedding, to feedback from other people.</p>
+
+<p>But, we progressed where possible - while waiting. This gave me a ton of time for doing other research and development, and brushing up on the latest PHP 8.3/4 (The original site was made in PHP 5.4, and over the years I upgraded, and refactored to PHP 8.1).</p>
+
+<h3 id="learning-go">Learning Go</h3>
+
+<p>A side quest I picked up in January, was to learn Golang. I had been working on a project management app called <em>Project Spy</em>.</p>
+
+<p>Up until January, it was written in my trusted stack of Node JS and Fastify. It worked well for development, and testing things out, but it fell short in how do I get people to install it, let alone, how do I install it and use it locally (NPM global is fine, but not really friendly). I explored the current state of making a single file binary, <a href="/note/2021/09/18/node-binary-artifacts.html">which I wrote previously about in 2021</a>. The problems I had in 2021 were still persistent, and I tried to contribute improvements to make it work, but wasn’t successful.</p>
+
+<p>Let’s Go!</p>
+
+<p>I decided to explore languages that would produce the artifact - Rust and Go were my top choices, of course C# was there (but no). Rust probably would have been a good choice, but given my distain for the syntax I settled on Go.</p>
+
+<p>I have had some exposure in the past, in 2019-2020 I worked on a fork of Battle Snake for 2020 competition (Covid-19 in the end prevented that). It was ok, but a little weird for me at the time.</p>
+
+<p>I worked through both of <a href="https://lets-go.alexedwards.net">Alex Edward’s Let’s Go</a> and <a href="https://lets-go-further.alexedwards.net">Let’s Go Further</a> (These are great books to learn Go). Then I picked up <a href="https://www.oreilly.com/library/view/learning-go-2nd/9781098139285">Jon Bodner’s Learning Go, 2nd Edition</a>, and finally <a href="https://quii.gitbook.io/learn-go-with-tests">Learn Go with Tests</a>. There was also a lot of reading <a href="https://go.dev">the official site Go.dev</a> and various blogs.</p>
+
+<p>After a few weeks, I had the core of the app written in Go, and I started using it to manage my client projects.</p>
+
+<h2 id="spring">Spring</h2>
+
+<p>Spring was essentially, a continuation of Winter, focused on building and delivery of the platform. The work focused on building out the content, and the support for it, a few small embeddable applications, training for the new platform. Overall nothing was complex, only time consuming.</p>
+
+<p>There was still room in the day for other side projects, and especially Project Spy.</p>
+
+<h3 id="project-spy--go">Project Spy &amp; Go</h3>
+
+<p>This is when things really picked up for tinkering, and improving Project Spy. As I used the app to manage work, I found deficiencies in the workflows, and made improvements. Even being mostly fresh to Go, it makes for quick development cycles (still slower than writing in Node, it’s going to take years before I’m that efficient).</p>
+
+<p>Something interesting about my personal use of Go, I love to do coding drills in it - Leet code style questions. I find them less daunting in Go, a language I only have a little experience in. And that I believe is the reason. Because I don’t know it inside-out, I fallback to writing the most basic code, for loops and conditionals. I’m sure I could make things more efficient using advanced techniques, but not knowing the options, makes solving things quick. And I enjoy it!</p>
+
+<h3 id="job-hunting">Job hunting</h3>
+
+<p>I like consulting. I like time keeping, I like record management, I like writing software. I do not like finding clients. I am not good about marketing, or reaching out to prospective companies. This is a known deficiency of mine, that I don’t wish to remedy at the moment. So I’ve been looking for full-time employment, but not really actively. I had a recruiter reach out (first time in quite a while), had some chats, and did technical interviews. Mostly things went well, but ended with someone else. Sadly, but no problem.</p>
+
+<p>While I was interviewing with the above, another recruiter reached out, for a company I’ve followed for years (and recommended as a resource for other developers because of their wealth of knowledge and technical content). We chatted a few times, and then I was ghosted. I tried reaching out again and nothing. Needless to say, I have stopped following and recommending them, and have warned other devs in my network.</p>
+
+<p>Companies / Recruiters - please send any form of communication that you’re no longer interested. Even if it’s an automated email from a no-reply.</p>
+
+<h2 id="summer">Summer</h2>
+
+<p>It’s now June, which means it’s hot. And my 2 month project has now taken 5. Still under budget thankfully, but I’m feeling the stress of needing to get it out the door so I’m free to move onto either new clients, or full-time employment.</p>
+
+<p>The content platform is done, live, and serving thousands of visitors a day!</p>
+
+<p>There was a hiccup at the end though. A newsletter template I developed wasn’t rendering correctly on some outlook versions. The original template was made with MJML.io to get the layout blocked in, then run through the content platform to populate. I had wrongly assumed the layout would account for Outlook styling. After testing with Litmus, I saw the problems, and the only fix was to start again.</p>
+
+<p>Have you ever written a responsive email template, that supports from Outlook 2009 - OL 365? It’s a nightmare. You still have to support HTML 4.01 through Trident (but not even the recent versions, essentially a broken IE 6). I had experienced this in 2012 when I made the last template for the same client.</p>
+
+<p>So, queue a mad sprint of 23 hours (over 2 sessions) to re-write from scratch the newsletter. In 2012, I used Mailchimp’s no-code editor to do the layout, then hacked it up. I did the same thing again, though for the 2025 version, things are way more complex, with interleaving sponsorships, and decorative borders. Still, same process worked. There are so many tables, and tables in tables, and tables in tables, in tables (this can go on forever). I however was able to deliver it, on time for the first newsletter to go out.</p>
+
+<p><em>On <a href="https://litmus.com">Litmus</a>. If you need to test emails in all clients, there is no better place. It’s worked for years, and I can’t recommend them enough. Though, if you want to cancel your subscription, you have to use Chrome, so remove 1 star from my review. Otherwise, if you’re making email templates, the cost is worth it.</em></p>
+
+<h2 id="whats-next">What’s next?</h2>
+
+<p>Not resting, that’s for sure.</p>
+
+<p>I’m on now actively searching for work. I’m stressed about it, because so are many thousands of developers. I hope they all find success and wish them luck. We’ll get through this, even with generative AIs trying to take our work (I have lots of thoughts on GenAI, but this is not the post for it)</p>
+
+<p>In my quest for a job, I am working on updating this site, side projects, research / experimentation, and gardening - everyone needs some time outdoors. Especially wildflower season.</p>]]></content><author><name></name></author><category term="post" /><category term="personal" /><category term="consulting" /><category term="development" /><category term="failure" /><summary type="html"><![CDATA[It’s been a while. Where’s AOC ‘24 articles after the 4th? What have I been up to since December? Let’s go!]]></summary></entry><entry><title type="html">Advent of Code 2024 - Day 4</title><link href="https://gregdaynes.com/post/2024/12/04/advent-of-code-day-04.html" rel="alternate" type="text/html" title="Advent of Code 2024 - Day 4" /><published>2024-12-04T18:28:00+00:00</published><updated>2024-12-04T18:28:00+00:00</updated><id>https://gregdaynes.com/post/2024/12/04/advent-of-code-day-04</id><content type="html" xml:base="https://gregdaynes.com/post/2024/12/04/advent-of-code-day-04.html"><![CDATA[<ul id="markdown-toc">
   <li><a href="#part-1" id="markdown-toc-part-1">Part 1</a></li>
   <li><a href="#part-2" id="markdown-toc-part-2">Part 2</a></li>
   <li><a href="#cleanup-time" id="markdown-toc-cleanup-time">Cleanup Time</a>    <ul>
@@ -1534,42 +1630,4 @@ el.addEventListener('some-event', this)
 
 <p>What are your goals for 2024?</p>
 
-<p><em>I started out by writing a rant around Business growth, economic layoffs, Generative AIs/LLMS, burnout and lack of caring that’s causing maintainbility and sustainable softare development to fall to the wayside, but it was really just me yelling at the clouds. I’m trying to be more proactive.</em></p>]]></content><author><name></name></author><category term="post" /><summary type="html"><![CDATA[Happy New Year - Welcome to 2024!]]></summary></entry><entry><title type="html">Fellow Stagg Repair</title><link href="https://gregdaynes.com/project/2023/12/28/fellow-stagg-repair.html" rel="alternate" type="text/html" title="Fellow Stagg Repair" /><published>2023-12-28T00:00:00+00:00</published><updated>2023-12-28T00:00:00+00:00</updated><id>https://gregdaynes.com/project/2023/12/28/fellow-stagg-repair</id><content type="html" xml:base="https://gregdaynes.com/project/2023/12/28/fellow-stagg-repair.html"><![CDATA[<h3 id="problem">Problem</h3>
-
-<p>The control knob on the base was not registering presses (which turn the kettle on and off). The kettle itself was working fine, and the temperature control was working.</p>
-
-<h3 id="solution">Solution</h3>
-
-<p>The base is held together with 4 screws, and 8 clips. The clips are easy to release with a flathead screwdriver. The screws are hidden under the sticker on the bottom - <em>Not the rubber pads</em>.</p>
-
-<p><em>In my looking for the screws, I removed the feet, which caused the rubber to tear. They’re easy enough to glue back on.</em></p>
-
-<p>The rotary encoder is situated on a daughter board fixed with 2 phillips screws and connected with a ribbon cable to the main board. The cable disconnects from a JST port on the mainboard, but is soldered on the daughter board.</p>
-
-<p>Rotary Encoder Details:</p>
-
-<ul>
-  <li>5V</li>
-  <li>20 pulses</li>
-  <li>13mm x 14mm</li>
-</ul>
-
-<p>I used <a href="https://www.amazon.ca/dp/B07T3672VK">these encoders</a> from Amazon.</p>
-
-<p>Desoldering the rotary encoder was straight forward, I used a solder-sucker and wick to remove and prepare the pads. I did have to have fairly high temperature on my iron around 740 to get the factory solder to warm up.</p>
-
-<p>Re-assembly is disassembly in reverse, be mindful of the thin wires routing around the centre. Use a bit of Kapton tape to keep things in place.</p>
-
-<h3 id="outcome">Outcome</h3>
-
-<p>I can use my kettle again. I broke the display, but it works enough to not warrant a replacement base $100 USD from their parts shop, which when factored in CAD and shipping, is more than new kettle from a Canadian distributer.</p>
-
-<p>I like my Fellow Stagg EKG Kettle, but I don’t think I will buy another Fellow product with electronics (I love the Prismo - Aeropress accessory).</p>
-
-<h3 id="notes">Notes</h3>
-
-<p>The screws use a triangle security bit, which I didn’t have on hand, however a T-6 Torx bit worked well.</p>
-
-<p>The LCD is fixed (more than solder joints) to the main control board, which turns out is very fragile. I managed to crack the LCD even while attempting to be gentle, I didn’t touch the board except disconnect and reconnect of the rotary daughter board connector. Beware.</p>
-
-<p>I did not measure the stem prior to this repair, the donor rotary encoder stem was much longer. Beware of this and make sure to measure and find the appropriate stem. A long one of course workse, but the knob stands above the case now, and is easier for water to find ingress into the electronics.</p>]]></content><author><name></name></author><category term="project" /><summary type="html"><![CDATA[Outlining repair of the base for the Stag EKG Kettle by Fellow.]]></summary></entry></feed>
+<p><em>I started out by writing a rant around Business growth, economic layoffs, Generative AIs/LLMS, burnout and lack of caring that’s causing maintainbility and sustainable softare development to fall to the wayside, but it was really just me yelling at the clouds. I’m trying to be more proactive.</em></p>]]></content><author><name></name></author><category term="post" /><summary type="html"><![CDATA[Happy New Year - Welcome to 2024!]]></summary></entry></feed>
