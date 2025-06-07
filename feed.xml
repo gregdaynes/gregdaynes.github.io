@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://gregdaynes.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://gregdaynes.com/" rel="alternate" type="text/html" /><updated>2024-12-05T01:30:01+00:00</updated><id>https://gregdaynes.com/feed.xml</id><entry><title type="html">Advent of Code 2024 - Day 4</title><link href="https://gregdaynes.com/post/2024/12/04/advent-of-code-day-04.html" rel="alternate" type="text/html" title="Advent of Code 2024 - Day 4" /><published>2024-12-04T18:28:00+00:00</published><updated>2024-12-04T18:28:00+00:00</updated><id>https://gregdaynes.com/post/2024/12/04/advent-of-code-day-04</id><content type="html" xml:base="https://gregdaynes.com/post/2024/12/04/advent-of-code-day-04.html"><![CDATA[<ul id="markdown-toc">
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://gregdaynes.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://gregdaynes.com/" rel="alternate" type="text/html" /><updated>2025-06-07T19:28:44+00:00</updated><id>https://gregdaynes.com/feed.xml</id><entry><title type="html">Advent of Code 2024 - Day 4</title><link href="https://gregdaynes.com/post/2024/12/04/advent-of-code-day-04.html" rel="alternate" type="text/html" title="Advent of Code 2024 - Day 4" /><published>2024-12-04T18:28:00+00:00</published><updated>2024-12-04T18:28:00+00:00</updated><id>https://gregdaynes.com/post/2024/12/04/advent-of-code-day-04</id><content type="html" xml:base="https://gregdaynes.com/post/2024/12/04/advent-of-code-day-04.html"><![CDATA[<ul id="markdown-toc">
   <li><a href="#part-1" id="markdown-toc-part-1">Part 1</a></li>
   <li><a href="#part-2" id="markdown-toc-part-2">Part 2</a></li>
   <li><a href="#cleanup-time" id="markdown-toc-cleanup-time">Cleanup Time</a>    <ul>
@@ -8,7 +8,7 @@
       <li><a href="#cleanup-pt-1-fourth-pass" id="markdown-toc-cleanup-pt-1-fourth-pass">Cleanup Pt 1: Fourth Pass</a></li>
       <li><a href="#cleanup-pt-1-fifth-pass" id="markdown-toc-cleanup-pt-1-fifth-pass">Cleanup Pt 1: Fifth Pass</a></li>
       <li><a href="#cleanup-pt-2-first-pass" id="markdown-toc-cleanup-pt-2-first-pass">Cleanup Pt 2: First pass</a></li>
-      <li><a href="#cleaup-both-parts-final-pass" id="markdown-toc-cleaup-both-parts-final-pass">Cleaup Both Parts: Final Pass</a></li>
+      <li><a href="#cleanup-both-parts-final-pass" id="markdown-toc-cleanup-both-parts-final-pass">Cleanup Both Parts: Final Pass</a></li>
     </ul>
   </li>
   <li><a href="#summary--benchmarks" id="markdown-toc-summary--benchmarks">Summary &amp; Benchmarks</a></li>
@@ -16,12 +16,12 @@
 
 <p>Code for <a href="https://github.com/gregdaynes/advent-of-code-2024/tree/day04">Day 04</a></p>
 
-<p>Today’s challenge is based around matricies, or in JS, 2D arrays and coordinates. This kind of challenge is when I wish there was a better standard library, as well as matrix operations.</p>
+<p>Today’s challenge is based around matrices, or in JS, 2D arrays and coordinates. This kind of challenge is when I wish there was a better standard library, as well as matrix operations.</p>
 
 <h4 id="part-1">Part 1</h4>
 
 <p>Crossword style challenge
-From given input, find all occurrances of XMAS
+From given input, find all occurrences of XMAS
 Can be horizontal, vertical, or diagonal - this includes backwards</p>
 
 <p>Today I decided to think about the problem and write out a plan before coding.</p>
@@ -39,7 +39,7 @@ when converting to 2d array, index all X positions
  sum all matches
 </code></pre></div></div>
 
-<p>Makes sense. The next thing to do is remember that coordinates will be in [y,x] not [x,y]. One of those human things where we think horizontally first, where as the easiest operations are row first. Maybe a transform would be a good brain saving step, but would take more time and memory to perform instead of removing the problem before code - fix the human programmer.</p>
+<p>Makes sense. The next thing to do is remember that coordinates will be in [y,x] not [x,y]. One of those human things where we think horizontally first, whereas the easiest operations are row first. Maybe a transform would be a good brain saving step, but would take more time and memory to perform instead of removing the problem before code - fix the human programmer.</p>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">verticalBackwards</span><span class="p">([</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="p">])</span> <span class="p">{</span>
   <span class="k">return</span> <span class="p">[[</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="nx">x</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="nx">x</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="nx">x</span><span class="p">]]</span>
@@ -133,7 +133,7 @@ when converting to 2d array, index all X positions
 
 <p>Of course it wouldn’t be Advent of Code if the second part didn’t crush all your hard work of the first part.</p>
 
-<p>This time the task is to look for X-MAS, which is the word MAS in an X like shape (2 MAS with A in the center).</p>
+<p>This time the task is to look for X-MAS, which is the word MAS in an X like shape (2 MAS with A in the centre).</p>
 
 <p>Immediately we can scrap the horizontal and vertical checks, meaning we have 4 directions to check.</p>
 
@@ -301,7 +301,7 @@ when converting to 2d array, index all X positions
 
 <h4 id="cleanup-pt-1-third-pass">Cleanup Pt 1: Third Pass</h4>
 
-<p>Reducers, the bain of any developer (save for intermediates. JUST KIDDING! you all do the important and necessary work, do it how you need to get it done).</p>
+<p>Reducers, the bane of any developer (save for intermediates. JUST KIDDING! you all do the important and necessary work, do it how you need to get it done).</p>
 
 <p>It’s commonplace to dislike reducers due to their syntax and the complexity understanding them involves. In this case, it is much more cryptic than the for loop with accumulator, but internally is small enough that it should be reasonable to keep in mind. A little more complexity can sometimes be worth it.</p>
 
@@ -383,7 +383,7 @@ when converting to 2d array, index all X positions
 
 <h4 id="cleanup-pt-1-fifth-pass">Cleanup Pt 1: Fifth Pass</h4>
 
-<p>Lets take it one step further.</p>
+<p>Let’s take it one step further.</p>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">countValidWordsForCoord</span><span class="p">(</span><span class="nx">input</span><span class="p">,</span> <span class="p">[</span><span class="nx">y</span><span class="p">,</span><span class="nx">x</span><span class="p">])</span> <span class="p">{</span>
   <span class="kd">const</span> <span class="nx">matrix</span> <span class="o">=</span> <span class="p">[</span>
@@ -417,7 +417,7 @@ when converting to 2d array, index all X positions
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>Introducing yet another reducer is not pleasant here, but makes the count function a little shorter - but now we have to jump around, so ergonmics and complexity are worse, but code is less. This does not seem like a valid trade off.</p>
+<p>Introducing yet another reducer is not pleasant here, but makes the count function a little shorter - but now we have to jump around, so ergonomics and complexity are worse, but code is less. This does not seem like a valid trade off.</p>
 
 <p>Something that came out of this is the removal of destructuring, which turns out to be quite a bit slower than direct access through index. But is worse for readability, so, use where appropriate - like optimization steps of proven code.</p>
 
@@ -427,9 +427,9 @@ when converting to 2d array, index all X positions
 
 <p>First order of business is to replace [‘M’, ‘S’].includes check with direct === ‘M’ === ‘S’ checks which are faster for 2 entries.</p>
 
-<p>Next I questioned why do filting at all instead of just appending any value (incuding <code class="language-plaintext highlighter-rouge">undefined</code>) to the string of letters. The switch is pattern matching is simple, so we can remove the string preparations.</p>
+<p>Next I questioned why do filtering at all instead of just appending any value (including <code class="language-plaintext highlighter-rouge">undefined</code>) to the string of letters. The switch is pattern matching is simple, so we can remove the string preparations.</p>
 
-<p>This meant we could remove the results and count checks and within the switch body update count count instead of accumulating words, and checking length later.</p>
+<p>This meant we could remove the results and count checks and within the switch body update count instead of accumulating words, and checking length later.</p>
 
 <p>Using a reducer to accumulate the letters is short and simple enough so I think it’s ok here (especially compared to the Pt 1 reducers).</p>
 
@@ -468,7 +468,7 @@ when converting to 2d array, index all X positions
 
 <p>Less loops, cleaner syntax, even with the cognitive cost of the reducer. It also performs much faster (2-3x by rough test speed)</p>
 
-<h4 id="cleaup-both-parts-final-pass">Cleaup Both Parts: Final Pass</h4>
+<h4 id="cleanup-both-parts-final-pass">Cleanup Both Parts: Final Pass</h4>
 
 <p>Last thing that was bugging me was performing the input to 2d array, then iterating the matrix to find coordinates of target letters. This can be reduced to being done inline with the creation of the 2d array, where the lookups are only done against the length of each row.</p>
 
@@ -508,7 +508,7 @@ when converting to 2d array, index all X positions
 
 <p>Approaching with a plan, and remembering the pain around [y,x] from previous work (especially game dev), made today’s challenge a breeze.</p>
 
-<p>I know there are branches of mathmatics and well defined algorithsm that make working with coordinate data easier, and faster, but I can’t remember them, and also chose to not look it up.</p>
+<p>I know there are branches of mathematics and well defined algorithms that make working with coordinate data easier, and faster, but I can’t remember them, and also chose to not look it up.</p>
 
 <p>Performance of the first implementations left a lot to be desired</p>
 
@@ -581,7 +581,7 @@ when converting to 2d array, index all X positions
 
 <p>Wow. After Day 2 pt 2, I was sure I’d be cooked and not be able to continue on. Oh how wrong Greg from a 4 hours ago was.</p>
 
-<p>Todays challenge involves filtering through “corrupted data” looking for recognizable operations and performing them.</p>
+<p>Today’s challenge involves filtering through “corrupted data” looking for recognizable operations and performing them.</p>
 
 <p>I didn’t even bother with a separate file, instead wrote each solver in tests.</p>
 
@@ -615,7 +615,7 @@ when converting to 2d array, index all X positions
 
 <p>They act as flags to disable and enable future operations.</p>
 
-<p>The default state is to perform the opeartions</p>
+<p>The default state is to perform the operations</p>
 
 <p>We can think in terms of <em>gating</em> or <em>switching</em> to understand the logic.</p>
 
@@ -650,10 +650,10 @@ when converting to 2d array, index all X positions
 <span class="p">})</span>
 </code></pre></div></div>
 
-<p>An adustment to the RegEx from Part 1 is needed</p>
+<p>An adjustment to the RegEx from Part 1 is needed</p>
 
 <ol>
-  <li>Wraping the whole matcher in a group</li>
+  <li>Wrapping the whole matcher in a group</li>
   <li>Use <code class="language-plaintext highlighter-rouge">|</code> to define alternate group matchers for <code class="language-plaintext highlighter-rouge">don't()</code> and <code class="language-plaintext highlighter-rouge">do()</code></li>
 </ol>
 
@@ -787,7 +787,7 @@ when converting to 2d array, index all X positions
   <li><em>Steep Cliff</em>; the puzzles are a wall of text that I find intimidating.</li>
   <li><em>Imposter Syndrome</em>; I’m not good enough to do it good so I shouldn’t do it at all.</li>
   <li><em>Learning languages</em>; I tend to want to pick up a new language, but get distracted by learning it instead of applying as I’m going.</li>
-  <li>But it’s mostly work and freetime.</li>
+  <li>But it’s mostly work and free time.</li>
 </ul>
 
 <p>This year is different. It overlaps with funemployment! Which means I don’t have much preventing me from bashing out some terrible solutions.</p>
@@ -796,8 +796,8 @@ when converting to 2d array, index all X positions
 
 <ul>
   <li>I am going to do it in NodeJS, removing the language distraction.</li>
-  <li>Wall of text; behavioral changes are hard, reading comprehension on meandering text is a struggle. Perhaps a symptom of an undiagnosed attention problem.
-Instead of trying to find problem solving algorithms; start with solving the problem. Make it better. Maybe an algorithm will emerge, this is practice and shoud be fun. So have at it!</li>
+  <li>Wall of text; behavioural changes are hard, reading comprehension on meandering text is a struggle. Perhaps a symptom of an undiagnosed attention problem.
+Instead of trying to find problem solving algorithms; start with solving the problem. Make it better. Maybe an algorithm will emerge, this is practice and should be fun. So have at it!</li>
 </ul>
 
 <h3 id="solving-day-1">Solving Day 1</h3>
@@ -851,7 +851,7 @@ Return the sum of the distances.</p>
 
 <p>The first offence is splitting the input on new line into an array. Already we’ve introduced memory issues - what if the input in many GBs? Looking at the known inputs, we’re safe, so we don’t have to be proactive (or defensive) here. If this was real-life code, I’d want more samples, or at least ask what the maximum size will be.</p>
 
-<p>Next are the creation of 2 arrays - seems harmless. Paired with iterating the split array, performing a split on each entry and then puting the values into the corrosponding array is probably fine.</p>
+<p>Next are the creation of 2 arrays - seems harmless. Paired with iterating the split array, performing a split on each entry and then putting the values into the corresponding array is probably fine.</p>
 
 <p>We then sort each array as a mutation. This could be done without the mutation, but we’d double up memory again. So now we have input string, input array, left array, right array.  We’ve iterated each array at once, meaning we’ve done 3*n operations.</p>
 
@@ -1026,9 +1026,9 @@ Finally sum the scores.</p>
 
 <p>Being let down with the reducer, and regex, I spent a moment to think what a faster operation would be.</p>
 
-<p><em>Why not count occurrances as we’re iterating to produce the 2 arrays?</em></p>
+<p><em>Why not count occurrences as we’re iterating to produce the 2 arrays?</em></p>
 
-<p>Using a map, with the number as the key and the occurances as the value - each occurrance increments the value.</p>
+<p>Using a map, with the number as the key and the occurrences as the value - each occurrence increments the value.</p>
 
 <p>There’s no need to store all the right numbers anymore, duplicates are removed. Awesome.</p>
 
@@ -1231,9 +1231,9 @@ Finally sum the scores.</p>
 
 <p>Overall, first day was fun! I learned some things about the approaches, and in writing this blog post out, I learned some things about myself.</p>]]></content><author><name></name></author><category term="post" /><category term="aoc" /><category term="nodejs" /></entry><entry><title type="html">2024 Refresh</title><link href="https://gregdaynes.com/post/2024/10/26/2024-refresh.html" rel="alternate" type="text/html" title="2024 Refresh" /><published>2024-10-26T20:26:00+00:00</published><updated>2024-10-26T20:26:00+00:00</updated><id>https://gregdaynes.com/post/2024/10/26/2024-refresh</id><content type="html" xml:base="https://gregdaynes.com/post/2024/10/26/2024-refresh.html"><![CDATA[<p>It’s October, I’m on vacation after a very long, arduous stint building a new Theme for Shopify. Staying in a small single room cabin on the edge of the Pacific Ocean with a limited internet connection, what better place to catch up on sleep, reading, and putting some of those readings to practice.</p>
 
-<p><em>For context, building a theme for Shopify Theme Store is a large task, there are infinite variables to consider, and choices to be made. There is no knowing what a merchant will actually want or try to do, so the code needs to be stable, resiliant and incredibly flexible. This has given my skills in HTML (Liquid), CSS and Javascript a real world push, mastering the new (baseline availability) techniques available.</em></p>
+<p><em>For context, building a theme for Shopify Theme Store is a large task, there are infinite variables to consider, and choices to be made. There is no knowing what a merchant will actually want or try to do, so the code needs to be stable, resilient and incredibly flexible. This has given my skills in HTML (Liquid), CSS and Javascript a real world push, mastering the new (baseline availability) techniques available.</em></p>
 
-<p>At the outset of this refresh, the goal was to apply more modern CSS approaches to last years design, removing anything that isn’t necessary, and cleaning up the design. It should still be the same old design, where decorative elements are replaced with space, JS replaced with CSS, and HTML rigerously refined to be the bare minimum required to represent each page.</p>
+<p>At the outset of this refresh, the goal was to apply more modern CSS approaches to last year’s design, removing anything that isn’t necessary, and cleaning up the design. It should still be the same old design, where decorative elements are replaced with space, JS replaced with CSS, and HTML rigorously refined to be the bare minimum required to represent each page.</p>
 
 <h2 id="collecting-resource">Collecting Resource</h2>
 
@@ -1247,11 +1247,11 @@ Finally sum the scores.</p>
 
 <p>This refresh utilized the Sidebar layout this year, and abandoned the Stack approach from last year (also from Every Layout).</p>
 
-<p>Similarily continuing use of Utopia<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">6</a></sup> generators to produce spacing, and typography, though I found I didn’t need much of the spacing custom properties.</p>
+<p>Similarly continuing use of Utopia<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">6</a></sup> generators to produce spacing, and typography, though I found I didn’t need much of the spacing custom properties.</p>
 
 <h2 id="markup">Markup</h2>
 
-<p>In my spare time, I’ve been working on a SaaS idea (that I won’t go into details about now). I set out a goal there to move fast (it’s been anything but), however the UI is where I’ve been the most productive. It started out with Tailwind (Yes, I know. It was for the component library). Then onto Bootstrap (because it’s familiar, less annoying that Tailwind, and had all the components I really needed). Both being chonky and unfriendly to write, I did some bespoke CSS, but realized it was slowing me down. I landed on Pico.css<sup id="fnref:12" role="doc-noteref"><a href="#fn:12" class="footnote" rel="footnote">7</a></sup>, I have to admit it’s fantastic. The classless approach to using semantic markup to produce a MVP UI is definitely worth it.</p>
+<p>In my spare time, I’ve been working on a SaaS idea (that I won’t go into details about now). I set out a goal there to move fast (it’s been anything but), however the UI is where I’ve been the most productive. It started out with Tailwind (Yes, I know. It was for the component library). Then onto Bootstrap (because it’s familiar, less annoying than Tailwind, and had all the components I really needed). Both being chonky and unfriendly to write, I did some bespoke CSS, but realized it was slowing me down. I landed on Pico.css<sup id="fnref:12" role="doc-noteref"><a href="#fn:12" class="footnote" rel="footnote">7</a></sup>, I have to admit it’s fantastic. The classless approach to using semantic markup to produce a MVP UI is definitely worth it.</p>
 
 <p>Huh? What does some SaaS and CSS frameworks have to do with the refresh?</p>
 
@@ -1284,13 +1284,13 @@ Finally sum the scores.</p>
 
 <p>CSS reset? Gone. No need for many of the rules in most/all resets. Even Andy Bell’s Modern Reset<sup id="fnref:14" role="doc-noteref"><a href="#fn:14" class="footnote" rel="footnote">11</a></sup> (which is great, and you should review it).</p>
 
-<p>I did keep the colors from the previous design. Though it could still use work to reduce the contrast.</p>
+<p>I did keep the colours from the previous design. Though it could still use work to reduce the contrast.</p>
 
 <p><code class="language-plaintext highlighter-rouge">text-wrap: balance</code> made an appearance now, simplifying places I’d use flexbox to wrap reasonably. No need to manage the box model now!</p>
 
 <p>Font stacks were removed, not replaced. <code class="language-plaintext highlighter-rouge">sans-serif</code> and <code class="language-plaintext highlighter-rouge">impact</code> are viable enough for everywhere.</p>
 
-<p>Table of Contents with it’s fancy dotted lines between the link and the created/published date, replaced with an approach using less markup, even if less reliable for all layouts. I felt this was a tradeoff worth making.</p>
+<p>Table of Contents with its fancy dotted lines between the link and the created/published date, replaced with an approach using less markup, even if less reliable for all layouts. I felt this was a tradeoff worth making.</p>
 
 <p>Every Layout<sup id="fnref:1:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">3</a></sup> - Sidebar layout gave a minimal, but capable 2 column layout (or main with sidebar). Like the previous design, but less overhead of markup and styling to achieve the same effect.</p>
 
@@ -1302,13 +1302,13 @@ Finally sum the scores.</p>
 
 <p>But what about Gzip / Brotli?</p>
 
-<p>The previous design, of course fell into the 1 packet threshold before, at ~9 kB compressed. But the new design starting at under 9 kB? it’s now 3 kB (2.3 kB with Brotli). We’re under 1/4 of the available space in the packet, meaning we have a lot of room for content. My article on <a href="https://gregdaynes.com/post/2018/09/08/getting-started-with-minitest.html">Minitest</a> which is the largest on the site comes in at 11.5 kB transferred. Still within the 1 packet. My <a href="https://gregdaynes.com/resume">Resume</a> complete with the silly SVG icons that <em>should</em> be removed, comes in at 6.62 kB. I might even be able to squeeze a headshot into the leftover space.</p>
+<p>The previous design, of course fell into the 1 packet threshold before, at ~9 kB compressed. But the new design is starting at under 9 kB? it’s now 3 kB (2.3 kB with Brotli). We’re under 1/4 of the available space in the packet, meaning we have a lot of room for content. My article on <a href="https://gregdaynes.com/post/2018/09/08/getting-started-with-minitest.html">Minitest</a> which is the largest on the site comes in at 11.5 kB transferred. Still within the 1 packet. My <a href="https://gregdaynes.com/resume">Resume</a> complete with the silly SVG icons that <em>should</em> be removed, comes in at 6.62 kB. I might even be able to squeeze a headshot into the leftover space.</p>
 
 <h2 id="what-else">What else?</h2>
 
 <p>That’s pretty much it.</p>
 
-<p>I made some miscellaneous changes to data structures for other refactorings, reuse of liquid snippets. Bumped Jekyll, and fixed a bug in my gems used to build and optimize CSS and HTML.</p>
+<p>I made some miscellaneous changes to data structures for other refactoring, reuse of liquid snippets. Bumped Jekyll, and fixed a bug in my gems used to build and optimize CSS and HTML.</p>
 
 <p>One thing I haven’t done yet, other than this post, is revisit the content. It’s time for a new Bio and introductory text, and some new posts about things that have been in my mind. But for now, vacation should be the only thing on my mind (this is not reasonable).</p>
 
@@ -1457,7 +1457,7 @@ el.addEventListener('some-event', this)
 <code class="language-plaintext highlighter-rouge">0x&amp;,</code> is then used to surround the 2 characters matched. <code class="language-plaintext highlighter-rouge">0x</code> is the prefix, <code class="language-plaintext highlighter-rouge">&amp;</code> is the stand in for the matched characters, and <code class="language-plaintext highlighter-rouge">,</code> is the suffix
 <code class="language-plaintext highlighter-rouge">g</code> is the flag to run against all, not just the first match.</p>
 
-<p>So this script it converting a multiline hexdump, into a single line, then prefixing each character pair with the the numerical constant in hex.</p>
+<p>So this script is converting a multiline hexdump, into a single line, then prefixing each character pair with the the numerical constant in hex.</p>
 
 <p><code class="language-plaintext highlighter-rouge">echo '1' | xxd -p</code> outputs <code class="language-plaintext highlighter-rouge">310a</code>.
 <code class="language-plaintext highlighter-rouge">1</code> is <code class="language-plaintext highlighter-rouge">31</code> in hex <code class="language-plaintext highlighter-rouge">0a</code> is end of line.
@@ -1468,9 +1468,9 @@ el.addEventListener('some-event', this)
 
 <p>2023 brought a lot of changes in technology, with the availability of LLM and Generative AIs for public consumption, to the <a href="https://pluralistic.net/2023/01/21/potemkin-ai/">enshittification</a> of everything.</p>
 
-<p>I spent much of the year as a consultant, mostly in Shopify e-commerce, location based entertainment, interactive education, and physical literacy. After leaving my research &amp; development role within the Canadian defense industry.</p>
+<p>I spent much of the year as a consultant, mostly in Shopify e-commerce, location based entertainment, interactive education, and physical literacy. After leaving my research &amp; development role within the Canadian defence industry.</p>
 
-<p>In my work and areas of reasearch, several technical themes kept reappearing throughout 2023 - outside of AI of course:</p>
+<p>In my work and areas of research, several technical themes kept reappearing throughout 2023 - outside of AI of course:</p>
 
 <ol>
   <li>Software Maintainability</li>
@@ -1479,7 +1479,7 @@ el.addEventListener('some-event', this)
   <li>Reduced role of Active-Computing</li>
 </ol>
 
-<p>While 1, 2 are self explanitory and something that will forever be a topic of discussion and professional pursuit, 3 &amp; 4 are not new, but have a renewed focus.</p>
+<p>While 1, 2 are self explanatory and something that will forever be a topic of discussion and professional pursuit, 3 &amp; 4 are not new, but have a renewed focus.</p>
 
 <h3 id="fediverse-and-the-exodus---bring-on-the-indieweb">Fediverse and the Exodus - Bring on the <a href="https://indieweb.org">Indieweb</a></h3>
 
@@ -1491,9 +1491,9 @@ el.addEventListener('some-event', this)
 
 <p>A subject I’ve been ruminating over this past year, is the role Active computing takes in our lives. Between deep work, or mindless doomscrolling, we’re actively engaging with computers to do things. This requires our time and attention to perform actions however menial. Computers are surprisingly good at doing things repeatedly and scheduled. So why do we need to actively engage to get what we want? Why isn’t it available for us when we think about it or pass by?</p>
 
-<p>Phone lockscreens are one way to achieve this. It’s personal, and with you most of the time, but that comes with the mental burden of having the device with you and looking at it. Physical information dashboards like <a href="">magic mirrors</a> and <a href="">e-ink calendars</a> are potentially more appropriate for passive information.</p>
+<p>Phone lock screens are one way to achieve this. It’s personal, and with you most of the time, but that comes with the mental burden of having the device with you and looking at it. Physical information dashboards like <a href="">magic mirrors</a> and <a href="">e-ink calendars</a> are potentially more appropriate for passive information.</p>
 
-<p>Communication channels: Slack, Discord, Texting/SMS are all asynchronous communication but have certain expectations to be synchronous. This puts a burden on us to have our phones or laptops at the ready, to be willing to jump to answer any question asked. Bring back email, things can wait for a few hours, or days. Nothing needs immediate resoltion, and if it does, pick up the phone and call.</p>
+<p>Communication channels: Slack, Discord, Texting/SMS are all asynchronous communication but have certain expectations to be synchronous. This puts a burden on us to have our phones or laptops at the ready, to be willing to jump to answer any question asked. Bring back email, things can wait for a few hours, or days. Nothing needs immediate resolution, and if it does, pick up the phone and call.</p>
 
 <p><em>Email, I never thought I’d say I wanted more email, but here we are.</em></p>
 
@@ -1509,7 +1509,7 @@ el.addEventListener('some-event', this)
 
 <p>This has reduced my phone use, and increased my focus on work, and life away from technology however it is still active-computing.</p>
 
-<p>Something I haven’t explored enough yet, alert-only systems. Maybe these apps could have thresholds for when something is sent to the consumer? We use this for application monitoring when you’re network is saturated or response time exceeds 500ms, financial trading does this, so why not daily life things?</p>
+<p>Something I haven’t explored enough yet, alert-only systems. Maybe these apps could have thresholds for when something is sent to the consumer? We use this for application monitoring when your network is saturated or response time exceeds 500ms, financial trading does this, so why not daily life things?</p>
 
 <p>Schedule for the day starts earlier than usual, notification when you are getting ready for the day. Air Quality is abnormal - notification to don a mask. UV index is high and you are outside for more than a few minutes, notification put on sunscreen or seek cover. Breaking news events, aggregate and send as an email near the end of the day.</p>
 
@@ -1544,7 +1544,7 @@ el.addEventListener('some-event', this)
 
 <p><em>In my looking for the screws, I removed the feet, which caused the rubber to tear. They’re easy enough to glue back on.</em></p>
 
-<p>The rotary encoder is situated on a daughter board fixed with 2 philips screws and connected with a ribbon cable to the main board. The cable disconnects from a JST port on the mainboard, but is soldered on the daughter board.</p>
+<p>The rotary encoder is situated on a daughter board fixed with 2 phillips screws and connected with a ribbon cable to the main board. The cable disconnects from a JST port on the mainboard, but is soldered on the daughter board.</p>
 
 <p>Rotary Encoder Details:</p>
 
@@ -1558,7 +1558,7 @@ el.addEventListener('some-event', this)
 
 <p>Desoldering the rotary encoder was straight forward, I used a solder-sucker and wick to remove and prepare the pads. I did have to have fairly high temperature on my iron around 740 to get the factory solder to warm up.</p>
 
-<p>Re-assembly is disassembly in reverse, be mindful of the thin wires routing around the center. Use a bit of Kapton tape to keep things in place.</p>
+<p>Re-assembly is disassembly in reverse, be mindful of the thin wires routing around the centre. Use a bit of Kapton tape to keep things in place.</p>
 
 <h3 id="outcome">Outcome</h3>
 
