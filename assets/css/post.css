@@ -24,3 +24,12 @@ pre {
 .footnotes p {
     margin-block-end: 0;
 }
+
+/* Blockquote */
+blockquote {
+    border-inline-start: 4px solid;
+    padding-inline-start: 1rem;
+    margin-inline: auto;
+    font-weight: bold;
+    font-style: italic;
+}
