@@ -1,4 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://gregdaynes.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://gregdaynes.com/" rel="alternate" type="text/html" /><updated>2025-06-08T06:25:00+00:00</updated><id>https://gregdaynes.com/feed.xml</id><entry><title type="html">Earthquakes with Leaflet.js &amp;amp; Go</title><link href="https://gregdaynes.com/project/2025/06/08/earthquakes.html" rel="alternate" type="text/html" title="Earthquakes with Leaflet.js &amp;amp; Go" /><published>2025-06-08T04:41:00+00:00</published><updated>2025-06-08T04:41:00+00:00</updated><id>https://gregdaynes.com/project/2025/06/08/earthquakes</id><content type="html" xml:base="https://gregdaynes.com/project/2025/06/08/earthquakes.html"><![CDATA[<p>Living on the Juan de Fuca plate means earthquakes happen every day. Sometimes multiple times. While we wait for <em>the big one</em>, why not visualize some of the quakes.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://gregdaynes.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://gregdaynes.com/" rel="alternate" type="text/html" /><updated>2025-06-08T06:27:35+00:00</updated><id>https://gregdaynes.com/feed.xml</id><entry><title type="html">Earthquakes with Leaflet.js &amp;amp; Go</title><link href="https://gregdaynes.com/project/2025/06/08/earthquakes.html" rel="alternate" type="text/html" title="Earthquakes with Leaflet.js &amp;amp; Go" /><published>2025-06-08T04:41:00+00:00</published><updated>2025-06-08T04:41:00+00:00</updated><id>https://gregdaynes.com/project/2025/06/08/earthquakes</id><content type="html" xml:base="https://gregdaynes.com/project/2025/06/08/earthquakes.html"><![CDATA[<p>Living on the Juan de Fuca plate means earthquakes happen every day. Sometimes multiple times. While we wait for <em>the big one</em>, why not visualize some of the quakes.</p>
+
+<style>
+quake-map {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1/1;
+}
+</style>
+
+<quake-map data-api="https://quake.app.gregdaynes.com/api/v1/" data-marker-icon="/assets/images/marker-icon.png" data-marker-shadow="/assets/images/marker-shadow.png"></quake-map>
+<script type="module" src="/assets/js/quake.js"></script>
 
 <p>The stack consists of</p>
 
@@ -73,21 +86,6 @@ WantedBy=multi-user.target
 <p>This is all that’s needed to render the map and markers on the page.</p>
 
 <p>It’s built using Vite<sup id="fnref:11" role="doc-noteref"><a href="#fn:11" class="footnote" rel="footnote">11</a></sup>, but is an unnecessary step (because it’s in a single file to start) but it makes for a nicer time developing.</p>
-
-<h2 id="demo">Demo</h2>
-
-<style>
-quake-map {
-    position: relative;
-    display: block;
-    width: 100%;
-    height: auto;
-    aspect-ratio: 1/1;
-}
-</style>
-
-<quake-map data-api="https://quake.app.gregdaynes.com/api/v1/" data-marker-icon="/assets/images/marker-icon.png" data-marker-shadow="/assets/images/marker-shadow.png"></quake-map>
-<script type="module" src="/assets/js/quake.js"></script>
 
 <p>As always, let me know what you think through <a href="email@gregdaynes.com">email@gregdaynes.com</a></p>
 
