@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://gregdaynes.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://gregdaynes.com/" rel="alternate" type="text/html" /><updated>2025-06-08T17:33:38+00:00</updated><id>https://gregdaynes.com/feed.xml</id><entry><title type="html">Earthquakes with Leaflet.js &amp;amp; Go</title><link href="https://gregdaynes.com/project/2025/06/08/earthquakes.html" rel="alternate" type="text/html" title="Earthquakes with Leaflet.js &amp;amp; Go" /><published>2025-06-08T04:41:00+00:00</published><updated>2025-06-08T04:41:00+00:00</updated><id>https://gregdaynes.com/project/2025/06/08/earthquakes</id><content type="html" xml:base="https://gregdaynes.com/project/2025/06/08/earthquakes.html"><![CDATA[<p>Living on the Juan de Fuca plate means earthquakes happen every day. Sometimes multiple times. While we wait for <em>the big one</em>, why not visualize some of the quakes.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://gregdaynes.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://gregdaynes.com/" rel="alternate" type="text/html" /><updated>2025-06-08T17:56:41+00:00</updated><id>https://gregdaynes.com/feed.xml</id><entry><title type="html">Earthquakes with Leaflet.js &amp;amp; Go</title><link href="https://gregdaynes.com/project/2025/06/08/earthquakes.html" rel="alternate" type="text/html" title="Earthquakes with Leaflet.js &amp;amp; Go" /><published>2025-06-08T04:41:00+00:00</published><updated>2025-06-08T04:41:00+00:00</updated><id>https://gregdaynes.com/project/2025/06/08/earthquakes</id><content type="html" xml:base="https://gregdaynes.com/project/2025/06/08/earthquakes.html"><![CDATA[<p>Living on the Juan de Fuca plate means earthquakes happen every day. Sometimes multiple times. While we wait for <em>the big one</em>, why not visualize some of the quakes.</p>
 
 <style>
 quake-map {
@@ -23,17 +23,17 @@ quake-map {
 
 <h2 id="the-go-service">The Go service</h2>
 
-<p>Designed to be simple to operate. It uses the stdlib <code class="language-plaintext highlighter-rouge">http/ServeMux</code><sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup> library for it’s request/responses, exposes 2 endpoints <code class="language-plaintext highlighter-rouge">/api/v1/</code> and <code class="language-plaintext highlighter-rouge">/api/v1/update</code>.<code class="language-plaintext highlighter-rouge">modernc/sqlite</code><sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup> for the SQLite driver, and <code class="language-plaintext highlighter-rouge">GoFeed</code><sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote" rel="footnote">3</a></sup> for handling the ATOM feed.</p>
+<p>Designed to be simple to operate. It uses the stdlib <code class="language-plaintext highlighter-rouge">http/ServeMux</code><sup id="fnref:1"><a href="#fn:1" class="footnote" rel="footnote" role="doc-noteref">1</a></sup> library for it’s request/responses, exposes 2 endpoints <code class="language-plaintext highlighter-rouge">/api/v1/</code> and <code class="language-plaintext highlighter-rouge">/api/v1/update</code>.<code class="language-plaintext highlighter-rouge">modernc/sqlite</code><sup id="fnref:2"><a href="#fn:2" class="footnote" rel="footnote" role="doc-noteref">2</a></sup> for the SQLite driver, and <code class="language-plaintext highlighter-rouge">GoFeed</code><sup id="fnref:3"><a href="#fn:3" class="footnote" rel="footnote" role="doc-noteref">3</a></sup> for handling the ATOM feed.</p>
 
 <h3 id="updating--refreshing-the-data">Updating &amp; Refreshing the Data</h3>
 
-<p>The <code class="language-plaintext highlighter-rouge">/api/v1/update</code> endpoint, when called, triggers the fetch, parse, and store of the RSS feed. While the endpoint can be triggered by any request, the intended method is through cURL<sup id="fnref:4" role="doc-noteref"><a href="#fn:4" class="footnote" rel="footnote">4</a></sup> from a local crontab<sup id="fnref:5" role="doc-noteref"><a href="#fn:5" class="footnote" rel="footnote">5</a></sup>.</p>
+<p>The <code class="language-plaintext highlighter-rouge">/api/v1/update</code> endpoint, when called, triggers the fetch, parse, and store of the RSS feed. While the endpoint can be triggered by any request, the intended method is through cURL<sup id="fnref:4"><a href="#fn:4" class="footnote" rel="footnote" role="doc-noteref">4</a></sup> from a local crontab<sup id="fnref:5"><a href="#fn:5" class="footnote" rel="footnote" role="doc-noteref">5</a></sup>.</p>
 
 <p><em>The endpoint maintains in-memory state of the last fetch timestamp, ensuring we don’t fetch the data through public access.</em></p>
 
 <h3 id="persistence">Persistence</h3>
 
-<p>The data received from the RSS/ATOM feed, is stored in a local SQLite database. For applications like this, you can’t beat it (maybe writing to disk yourself). It’s fast, small, and works well with most languages. Node.js<sup id="fnref:6" role="doc-noteref"><a href="#fn:6" class="footnote" rel="footnote">6</a></sup> recently started bundling it in, and I miss that with Golang, however its setup is simple, with the stdlib DB library, and the available drivers.</p>
+<p>The data received from the RSS/ATOM feed, is stored in a local SQLite database. For applications like this, you can’t beat it (maybe writing to disk yourself). It’s fast, small, and works well with most languages. Node.js<sup id="fnref:6"><a href="#fn:6" class="footnote" rel="footnote" role="doc-noteref">6</a></sup> recently started bundling it in, and I miss that with Golang, however its setup is simple, with the stdlib DB library, and the available drivers.</p>
 
 <p>This is also the first time using my <a href="https://github.com/gregdaynes/earthquake-service/blob/3c39487dc1c63c6807891f3a4d8c2426b777eb31/backend/cmd/web/db.go">schema based migration module</a> in production - which I started working on a while ago for various other project.The idea is that provided a schema in SQL, it will automatically apply the schema changes, and recreate indexes, like in Rails, and Directus.</p>
 
@@ -41,7 +41,7 @@ quake-map {
 
 <p>This is the first time I’m hosting a Go service for myself, so I took this opportunity to think about a low-maintenance approach.</p>
 
-<p>Instead of putting the app in Docker, I run the service with SystemD<sup id="fnref:7" role="doc-noteref"><a href="#fn:7" class="footnote" rel="footnote">7</a></sup>. This handles the starting, stopping, and restarting the service on failure.</p>
+<p>Instead of putting the app in Docker, I run the service with SystemD<sup id="fnref:7"><a href="#fn:7" class="footnote" rel="footnote" role="doc-noteref">7</a></sup>. This handles the starting, stopping, and restarting the service on failure.</p>
 
 <pre><code class="language-unit">[Unit]
 Description=Quake App
@@ -61,9 +61,9 @@ WantedBy=multi-user.target
 <pre><code class="language-crontab">*/30 * * * * curl https://quake.app.gregdaynes.com/api/v1/update
 </code></pre>
 
-<p>I opted for Caddy<sup id="fnref:8" role="doc-noteref"><a href="#fn:8" class="footnote" rel="footnote">8</a></sup> instead of Nginx<sup id="fnref:9" role="doc-noteref"><a href="#fn:9" class="footnote" rel="footnote">9</a></sup> for a reverse proxy. I have been playing with it for a few years, and I think it’s time to make the switch. Automatic SSL is nice, and the very simple configuration in Caddyfile is quite friendly.</p>
+<p>I opted for Caddy<sup id="fnref:8"><a href="#fn:8" class="footnote" rel="footnote" role="doc-noteref">8</a></sup> instead of Nginx<sup id="fnref:9"><a href="#fn:9" class="footnote" rel="footnote" role="doc-noteref">9</a></sup> for a reverse proxy. I have been playing with it for a few years, and I think it’s time to make the switch. Automatic SSL is nice, and the very simple configuration in Caddyfile is quite friendly.</p>
 
-<p>The SQLite database is backed up and restored through Litestream<sup id="fnref:10" role="doc-noteref"><a href="#fn:10" class="footnote" rel="footnote">10</a></sup>. Which if you’re working on services backed with SQLite, it’s a must.</p>
+<p>The SQLite database is backed up and restored through Litestream<sup id="fnref:10"><a href="#fn:10" class="footnote" rel="footnote" role="doc-noteref">10</a></sup>. Which if you’re working on services backed with SQLite, it’s a must.</p>
 
 <p>After warmup of 100k requests hitting around 3500req/s from my laptop, Caddy is running at 64M, and the Quake service at 20M. That’s pretty nifty when compared to Node.js which usually starts around 80M and Nginx 22M for basic 80/443 configurations.</p>
 
@@ -85,7 +85,7 @@ WantedBy=multi-user.target
 
 <p>This is all that’s needed to render the map and markers on the page.</p>
 
-<p>It’s built using Vite<sup id="fnref:11" role="doc-noteref"><a href="#fn:11" class="footnote" rel="footnote">11</a></sup>, but is an unnecessary step (because it’s in a single file to start) but it makes for a nicer time developing.</p>
+<p>It’s built using Vite<sup id="fnref:11"><a href="#fn:11" class="footnote" rel="footnote" role="doc-noteref">11</a></sup>, but is an unnecessary step (because it’s in a single file to start) but it makes for a nicer time developing.</p>
 
 <p>As always, let me know what you think through <a href="email@gregdaynes.com">email@gregdaynes.com</a></p>
 
@@ -93,37 +93,37 @@ WantedBy=multi-user.target
 
 <div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:1" role="doc-endnote">
+    <li id="fn:1">
       <p><a href="https://pkg.go.dev/net/http#ServeMux">Golang http/ServeMux</a> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:2" role="doc-endnote">
+    <li id="fn:2">
       <p><a href="https://pkg.go.dev/modernc.org/sqlite">modernc/sqlite</a> <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:3" role="doc-endnote">
+    <li id="fn:3">
       <p><a href="https://pkg.go.dev/github.com/mmcdole/gofeed">GoFeed</a> <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:4" role="doc-endnote">
+    <li id="fn:4">
       <p><a href="https://curl.se/docs/manpage.html">cURL</a> <a href="#fnref:4" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:5" role="doc-endnote">
+    <li id="fn:5">
       <p><a href="https://www.man7.org/linux/man-pages/man5/crontab.5.html">crontab</a> <a href="#fnref:5" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:6" role="doc-endnote">
+    <li id="fn:6">
       <p><a href="https://nodejs.org/docs/latest/api/sqlite.html">Node.js SQLite</a> <a href="#fnref:6" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:7" role="doc-endnote">
+    <li id="fn:7">
       <p><a href="https://systemd.io">SystemD</a> <a href="#fnref:7" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:8" role="doc-endnote">
+    <li id="fn:8">
       <p><a href="http://caddyserver.com">Caddy</a> <a href="#fnref:8" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:9" role="doc-endnote">
+    <li id="fn:9">
       <p><a href="https://nginx.org">Nginx</a> <a href="#fnref:9" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:10" role="doc-endnote">
+    <li id="fn:10">
       <p><a href="https://litestream.io">Litestream</a> <a href="#fnref:10" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:11" role="doc-endnote">
+    <li id="fn:11">
       <p><a href="https://vite.dev">Vite</a> <a href="#fnref:11" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
@@ -1462,27 +1462,27 @@ Finally sum the scores.</p>
 
 <h2 id="collecting-resource">Collecting Resource</h2>
 
-<p>I started thinking about an update back in July. Roman Komarov wrote a post on how to achieve text that scales to the container width<sup id="fnref:4" role="doc-noteref"><a href="#fn:4" class="footnote" rel="footnote">1</a></sup>. The header of <a href="https://gregdaynes.com">gregdaynes.com</a> site uses Fitty<sup id="fnref:5" role="doc-noteref"><a href="#fn:5" class="footnote" rel="footnote">2</a></sup> in the header for the title and subtitle. Fitty works, but requires Javascript, and has a flicker on load when rendering. So this technique kicked off the whole thing, but I wouldn’t get around to trying it out until yesterday.</p>
+<p>I started thinking about an update back in July. Roman Komarov wrote a post on how to achieve text that scales to the container width<sup id="fnref:4"><a href="#fn:4" class="footnote" rel="footnote" role="doc-noteref">1</a></sup>. The header of <a href="https://gregdaynes.com">gregdaynes.com</a> site uses Fitty<sup id="fnref:5"><a href="#fn:5" class="footnote" rel="footnote" role="doc-noteref">2</a></sup> in the header for the title and subtitle. Fitty works, but requires Javascript, and has a flicker on load when rendering. So this technique kicked off the whole thing, but I wouldn’t get around to trying it out until yesterday.</p>
 
 <p>Throughout the year, reading posts, books, toots, newsletters, anything around current frontend trends. There are were definitely a few stand out pieces and tools.</p>
 
 <h2 id="layout">Layout</h2>
 
-<p>I finally got around to reading through Every Layout<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">3</a></sup> from Andy Bell<sup id="fnref:8" role="doc-noteref"><a href="#fn:8" class="footnote" rel="footnote">4</a></sup> and Heydon Pickering<sup id="fnref:11" role="doc-noteref"><a href="#fn:11" class="footnote" rel="footnote">5</a></sup>. It’s definitely worth the money, and time to catch up on modern approaches to layouts. The book-site has generators, and the applied / practical approaches laid out are fantastic.</p>
+<p>I finally got around to reading through Every Layout<sup id="fnref:1"><a href="#fn:1" class="footnote" rel="footnote" role="doc-noteref">3</a></sup> from Andy Bell<sup id="fnref:8"><a href="#fn:8" class="footnote" rel="footnote" role="doc-noteref">4</a></sup> and Heydon Pickering<sup id="fnref:11"><a href="#fn:11" class="footnote" rel="footnote" role="doc-noteref">5</a></sup>. It’s definitely worth the money, and time to catch up on modern approaches to layouts. The book-site has generators, and the applied / practical approaches laid out are fantastic.</p>
 
 <p>This refresh utilized the Sidebar layout this year, and abandoned the Stack approach from last year (also from Every Layout).</p>
 
-<p>Similarly continuing use of Utopia<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">6</a></sup> generators to produce spacing, and typography, though I found I didn’t need much of the spacing custom properties.</p>
+<p>Similarly continuing use of Utopia<sup id="fnref:2"><a href="#fn:2" class="footnote" rel="footnote" role="doc-noteref">6</a></sup> generators to produce spacing, and typography, though I found I didn’t need much of the spacing custom properties.</p>
 
 <h2 id="markup">Markup</h2>
 
-<p>In my spare time, I’ve been working on a SaaS idea (that I won’t go into details about now). I set out a goal there to move fast (it’s been anything but), however the UI is where I’ve been the most productive. It started out with Tailwind (Yes, I know. It was for the component library). Then onto Bootstrap (because it’s familiar, less annoying than Tailwind, and had all the components I really needed). Both being chonky and unfriendly to write, I did some bespoke CSS, but realized it was slowing me down. I landed on Pico.css<sup id="fnref:12" role="doc-noteref"><a href="#fn:12" class="footnote" rel="footnote">7</a></sup>, I have to admit it’s fantastic. The classless approach to using semantic markup to produce a MVP UI is definitely worth it.</p>
+<p>In my spare time, I’ve been working on a SaaS idea (that I won’t go into details about now). I set out a goal there to move fast (it’s been anything but), however the UI is where I’ve been the most productive. It started out with Tailwind (Yes, I know. It was for the component library). Then onto Bootstrap (because it’s familiar, less annoying than Tailwind, and had all the components I really needed). Both being chonky and unfriendly to write, I did some bespoke CSS, but realized it was slowing me down. I landed on Pico.css<sup id="fnref:12"><a href="#fn:12" class="footnote" rel="footnote" role="doc-noteref">7</a></sup>, I have to admit it’s fantastic. The classless approach to using semantic markup to produce a MVP UI is definitely worth it.</p>
 
 <p>Huh? What does some SaaS and CSS frameworks have to do with the refresh?</p>
 
 <p>Pico.css got me into the groove of writing less selectors, less divs, less everything.</p>
 
-<p>Coincidentally, I also sat down to read all of Jens Oliver Meiert<sup id="fnref:7" role="doc-noteref"><a href="#fn:7" class="footnote" rel="footnote">8</a></sup> Upgrade your HTML series<sup id="fnref:13" role="doc-noteref"><a href="#fn:13" class="footnote" rel="footnote">9</a></sup>. They’re quick little looks at writing HTML and how to rethink old practices which you may still be stuck on. These tips all reinforced the idea of removing as much as possible from the markup, until it is lean.</p>
+<p>Coincidentally, I also sat down to read all of Jens Oliver Meiert<sup id="fnref:7"><a href="#fn:7" class="footnote" rel="footnote" role="doc-noteref">8</a></sup> Upgrade your HTML series<sup id="fnref:13"><a href="#fn:13" class="footnote" rel="footnote" role="doc-noteref">9</a></sup>. They’re quick little looks at writing HTML and how to rethink old practices which you may still be stuck on. These tips all reinforced the idea of removing as much as possible from the markup, until it is lean.</p>
 
 <p><strong>Which was the first optimization for the refresh - Remove everything that doesn’t matter.</strong></p>
 
@@ -1495,7 +1495,7 @@ Finally sum the scores.</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  &lt;link rel="icon" href="data:;base64,iVBORw0KGgo="&gt;
 </code></pre></div></div>
 
-<p>Jekyll SEO was a good idea, at one point in time. But we’re in the age of bad AI and LLM everything. Google and Bing do everything they can to <em>not</em> crawl websites anymore. I was mostly using it for Open Graph and metadata generation. Jens once again to the rescue with a look at Minimal Social Markup<sup id="fnref:15" role="doc-noteref"><a href="#fn:15" class="footnote" rel="footnote">10</a></sup>. Going from 15-20 metatags to 5 is great. But I also lost <code class="language-plaintext highlighter-rouge">&lt;title&gt;</code> and <code class="language-plaintext highlighter-rouge">description</code>, so those were added manually.</p>
+<p>Jekyll SEO was a good idea, at one point in time. But we’re in the age of bad AI and LLM everything. Google and Bing do everything they can to <em>not</em> crawl websites anymore. I was mostly using it for Open Graph and metadata generation. Jens once again to the rescue with a look at Minimal Social Markup<sup id="fnref:15"><a href="#fn:15" class="footnote" rel="footnote" role="doc-noteref">10</a></sup>. Going from 15-20 metatags to 5 is great. But I also lost <code class="language-plaintext highlighter-rouge">&lt;title&gt;</code> and <code class="language-plaintext highlighter-rouge">description</code>, so those were added manually.</p>
 
 <p>After that, I looked at all the elements in use, and systematically removed or replaced the ones that didn’t matter anymore.</p>
 
@@ -1507,7 +1507,7 @@ Finally sum the scores.</p>
 
 <p>Without class selectors in the markup, those could all be removed.</p>
 
-<p>CSS reset? Gone. No need for many of the rules in most/all resets. Even Andy Bell’s Modern Reset<sup id="fnref:14" role="doc-noteref"><a href="#fn:14" class="footnote" rel="footnote">11</a></sup> (which is great, and you should review it).</p>
+<p>CSS reset? Gone. No need for many of the rules in most/all resets. Even Andy Bell’s Modern Reset<sup id="fnref:14"><a href="#fn:14" class="footnote" rel="footnote" role="doc-noteref">11</a></sup> (which is great, and you should review it).</p>
 
 <p>I did keep the colours from the previous design. Though it could still use work to reduce the contrast.</p>
 
@@ -1517,13 +1517,13 @@ Finally sum the scores.</p>
 
 <p>Table of Contents with its fancy dotted lines between the link and the created/published date, replaced with an approach using less markup, even if less reliable for all layouts. I felt this was a tradeoff worth making.</p>
 
-<p>Every Layout<sup id="fnref:1:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">3</a></sup> - Sidebar layout gave a minimal, but capable 2 column layout (or main with sidebar). Like the previous design, but less overhead of markup and styling to achieve the same effect.</p>
+<p>Every Layout<sup id="fnref:1:1"><a href="#fn:1" class="footnote" rel="footnote" role="doc-noteref">3</a></sup> - Sidebar layout gave a minimal, but capable 2 column layout (or main with sidebar). Like the previous design, but less overhead of markup and styling to achieve the same effect.</p>
 
 <p>After all the work refactoring the CSS, the home page went from 18.09 kB to 8.94 kB. I’ll say 50%.</p>
 
 <h2 id="more-on-page-size">More on page size</h2>
 
-<p>50% request transfer reduction is great. Getting to less than 14 kB<sup id="fnref:16" role="doc-noteref"><a href="#fn:16" class="footnote" rel="footnote">12</a></sup> is important and a great achievement. Now we have single HTTP Request with a single packet response. Think of all the routing infrastructure between your device, and this site’s host. Now it’s only got 1 packet to loose (bad) but only 1 packet to retry (good).</p>
+<p>50% request transfer reduction is great. Getting to less than 14 kB<sup id="fnref:16"><a href="#fn:16" class="footnote" rel="footnote" role="doc-noteref">12</a></sup> is important and a great achievement. Now we have single HTTP Request with a single packet response. Think of all the routing infrastructure between your device, and this site’s host. Now it’s only got 1 packet to loose (bad) but only 1 packet to retry (good).</p>
 
 <p>But what about Gzip / Brotli?</p>
 
@@ -1543,46 +1543,46 @@ Finally sum the scores.</p>
 
 <div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:4" role="doc-endnote">
+    <li id="fn:4">
       <p><a href="https://kizu.dev/fit-to-width">Kizu.dev/fit-to-width</a> <a href="#fnref:4" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:5" role="doc-endnote">
+    <li id="fn:5">
       <p><a href="https://github.com/rikschennink/fitty">Fitty</a> <a href="#fnref:5" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:1" role="doc-endnote">
+    <li id="fn:1">
       <p><a href="https://every-layout.dev">Every Layout</a> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a> <a href="#fnref:1:1" class="reversefootnote" role="doc-backlink">&#8617;<sup>2</sup></a></p>
     </li>
-    <li id="fn:8" role="doc-endnote">
+    <li id="fn:8">
       <p><a href="https://piccalil.li">Andy Bell</a> <a href="#fnref:8" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:11" role="doc-endnote">
+    <li id="fn:11">
       <p><a href="https://heydonworks.com">Heydon Pickering</a> <a href="#fnref:11" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:2" role="doc-endnote">
+    <li id="fn:2">
       <p><a href="https://buildexcellentwebsit.es">Build Excellent Websites</a> <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:12" role="doc-endnote">
+    <li id="fn:12">
       <p><a href="https://picocss.com">Pico.css</a> <a href="#fnref:12" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:7" role="doc-endnote">
+    <li id="fn:7">
       <p><a href="https://meiert.com">Jens Oliver Meiert</a> <a href="#fnref:7" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:13" role="doc-endnote">
+    <li id="fn:13">
       <p><a href="https://leanpub.com/u/j9t">Upgrade your HTML</a> <a href="#fnref:13" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:15" role="doc-endnote">
+    <li id="fn:15">
       <p><a href="https://meiert.com/en/blog/minimal-social-markup">Minimal Social Markup</a> <a href="#fnref:15" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:14" role="doc-endnote">
+    <li id="fn:14">
       <p><a href="https://piccalil.li/blog/a-more-modern-css-reset">A More Modern CSS Reset</a> <a href="#fnref:14" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:16" role="doc-endnote">
+    <li id="fn:16">
       <p><a href="https://endtimes.dev/why-your-website-should-be-under-14kb-in-size/">Why your website should be under 14kB in size</a> <a href="#fnref:16" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>]]></content><author><name></name></author><category term="post" /><summary type="html"><![CDATA[It’s October, I’m on vacation after a very long, arduous stint building a new Theme for Shopify. Staying in a small single room cabin on the edge of the Pacific Ocean with a limited internet connection, what better place to catch up on sleep, reading, and putting some of those readings to practice.]]></summary></entry><entry><title type="html">Callable Class Instance</title><link href="https://gregdaynes.com/note/2024/07/30/callable-class-instance.html" rel="alternate" type="text/html" title="Callable Class Instance" /><published>2024-07-30T01:55:00+00:00</published><updated>2024-07-30T01:55:00+00:00</updated><id>https://gregdaynes.com/note/2024/07/30/callable-class-instance</id><content type="html" xml:base="https://gregdaynes.com/note/2024/07/30/callable-class-instance.html"><![CDATA[<p>I encountered a situation in Javascript, where I needed a Class instance that could be called like a function.</p>
 
-<p>StackOverflow to the rescue<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup></p>
+<p>StackOverflow to the rescue<sup id="fnref:1"><a href="#fn:1" class="footnote" rel="footnote" role="doc-noteref">1</a></sup></p>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">test</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">node:test</span><span class="dl">'</span>
 <span class="k">import</span> <span class="nx">assert</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">node:assert/strict</span><span class="dl">'</span>
@@ -1623,19 +1623,19 @@ Finally sum the scores.</p>
 <span class="p">})</span>
 </code></pre></div></div>
 
-<p>This approach breaks sharing Prototype Shapes, so too many of these will be problematic for memory<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup><sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote" rel="footnote">3</a></sup>.</p>
+<p>This approach breaks sharing Prototype Shapes, so too many of these will be problematic for memory<sup id="fnref:2"><a href="#fn:2" class="footnote" rel="footnote" role="doc-noteref">2</a></sup><sup id="fnref:3"><a href="#fn:3" class="footnote" rel="footnote" role="doc-noteref">3</a></sup>.</p>
 
 <h2 id="references">References</h2>
 
 <div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:1" role="doc-endnote">
+    <li id="fn:1">
       <p><a href="https://stackoverflow.com/questions/49279702/calling-class-instance-as-a-function-in-javascript">Calling class instance as a function in JavaScript</a> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:2" role="doc-endnote">
+    <li id="fn:2">
       <p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain">MDN</a> <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:3" role="doc-endnote">
+    <li id="fn:3">
       <p><a href="https://mathiasbynens.be/notes/shapes-ics#shapes">JavaScript engine fundamentals: Shapes and Inline Caches</a> <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
@@ -1656,13 +1656,13 @@ Debinding events works the same, pass <code class="language-plaintext highlighte
 el.addEventListener('some-event', this)
 </code></pre></div></div>
 
-<p>This can lead to much simpler component markup, especially when debinding events<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup></p>
+<p>This can lead to much simpler component markup, especially when debinding events<sup id="fnref:1"><a href="#fn:1" class="footnote" rel="footnote" role="doc-noteref">1</a></sup></p>
 
 <h2 id="references">References</h2>
 
 <div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:1" role="doc-endnote">
+    <li id="fn:1">
       <p><a href="https://gomakethings.com/the-handleevent-method-is-the-absolute-best-way-to-handle-events-in-web-components">The handleEvent() method is the absolute best way to handle events in Web Components</a> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
