@@ -10,6 +10,7 @@ tags:
   - development
   - failure
 ---
+{% include components/post/toc.html %}
 
 It's been a while. Where's AOC '24 articles after the 4th? What have I been up to since December? Let's go!
 
