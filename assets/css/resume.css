@@ -3,6 +3,18 @@ div:has(> progress) {
   grid-template-columns: 1fr 1fr;
 }
 
+[data-component="education"] {
+    li p {
+        margin-block-end: 0;
+    }
+}
+
+[data-component="experience"] {
+    small {
+        display: block;
+    }
+}
+
 @media screen {
   .print:not(.screen) {
     display: none;
