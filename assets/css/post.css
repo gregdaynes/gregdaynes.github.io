@@ -17,4 +17,5 @@ pre {
   margin-block: 0;
   padding: var(--s-1);
   border-radius: 3px;
+  overflow-x: auto;
 }
