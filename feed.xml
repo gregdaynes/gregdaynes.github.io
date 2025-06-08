@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://gregdaynes.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://gregdaynes.com/" rel="alternate" type="text/html" /><updated>2025-06-08T17:56:41+00:00</updated><id>https://gregdaynes.com/feed.xml</id><entry><title type="html">Earthquakes with Leaflet.js &amp;amp; Go</title><link href="https://gregdaynes.com/project/2025/06/08/earthquakes.html" rel="alternate" type="text/html" title="Earthquakes with Leaflet.js &amp;amp; Go" /><published>2025-06-08T04:41:00+00:00</published><updated>2025-06-08T04:41:00+00:00</updated><id>https://gregdaynes.com/project/2025/06/08/earthquakes</id><content type="html" xml:base="https://gregdaynes.com/project/2025/06/08/earthquakes.html"><![CDATA[<p>Living on the Juan de Fuca plate means earthquakes happen every day. Sometimes multiple times. While we wait for <em>the big one</em>, why not visualize some of the quakes.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://gregdaynes.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://gregdaynes.com/" rel="alternate" type="text/html" /><updated>2025-06-08T18:06:41+00:00</updated><id>https://gregdaynes.com/feed.xml</id><entry><title type="html">Earthquakes with Leaflet.js &amp;amp; Go</title><link href="https://gregdaynes.com/project/2025/06/08/earthquakes.html" rel="alternate" type="text/html" title="Earthquakes with Leaflet.js &amp;amp; Go" /><published>2025-06-08T04:41:00+00:00</published><updated>2025-06-08T04:41:00+00:00</updated><id>https://gregdaynes.com/project/2025/06/08/earthquakes</id><content type="html" xml:base="https://gregdaynes.com/project/2025/06/08/earthquakes.html"><![CDATA[<p>Living on the Juan de Fuca plate means earthquakes happen every day. Sometimes multiple times. While we wait for <em>the big one</em>, why not visualize some of the quakes.</p>
 
 <style>
 quake-map {
@@ -127,7 +127,25 @@ WantedBy=multi-user.target
       <p><a href="https://vite.dev">Vite</a> <a href="#fnref:11" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
-</div>]]></content><author><name></name></author><category term="project" /><summary type="html"><![CDATA[Living on the Juan de Fuca plate means earthquakes happen every day. Sometimes multiple times. While we wait for the big one, why not visualize some of the quakes.]]></summary></entry><entry><title type="html">What’s Going On - Where have I been</title><link href="https://gregdaynes.com/post/2025/06/07/whats-going-on.html" rel="alternate" type="text/html" title="What’s Going On - Where have I been" /><published>2025-06-07T19:41:00+00:00</published><updated>2025-06-07T19:41:00+00:00</updated><id>https://gregdaynes.com/post/2025/06/07/whats-going-on</id><content type="html" xml:base="https://gregdaynes.com/post/2025/06/07/whats-going-on.html"><![CDATA[<p>It’s been a while. Where’s AOC ‘24 articles after the 4th? What have I been up to since December? Let’s go!</p>
+</div>]]></content><author><name></name></author><category term="project" /><summary type="html"><![CDATA[Living on the Juan de Fuca plate means earthquakes happen every day. Sometimes multiple times. While we wait for the big one, why not visualize some of the quakes.]]></summary></entry><entry><title type="html">What’s Going On - Where have I been</title><link href="https://gregdaynes.com/post/2025/06/07/whats-going-on.html" rel="alternate" type="text/html" title="What’s Going On - Where have I been" /><published>2025-06-07T19:41:00+00:00</published><updated>2025-06-07T19:41:00+00:00</updated><id>https://gregdaynes.com/post/2025/06/07/whats-going-on</id><content type="html" xml:base="https://gregdaynes.com/post/2025/06/07/whats-going-on.html"><![CDATA[<ul id="markdown-toc">
+  <li><a href="#december-aoc--disks" id="markdown-toc-december-aoc--disks">December AOC &amp; Disks</a>    <ul>
+      <li><a href="#that-one-project-that-didnt-get-delivered-but-did" id="markdown-toc-that-one-project-that-didnt-get-delivered-but-did">That one project that didn’t get delivered (but did)</a></li>
+    </ul>
+  </li>
+  <li><a href="#winter" id="markdown-toc-winter">Winter</a>    <ul>
+      <li><a href="#learning-go" id="markdown-toc-learning-go">Learning Go</a></li>
+    </ul>
+  </li>
+  <li><a href="#spring" id="markdown-toc-spring">Spring</a>    <ul>
+      <li><a href="#project-spy--go" id="markdown-toc-project-spy--go">Project Spy &amp; Go</a></li>
+      <li><a href="#job-hunting" id="markdown-toc-job-hunting">Job hunting</a></li>
+    </ul>
+  </li>
+  <li><a href="#summer" id="markdown-toc-summer">Summer</a></li>
+  <li><a href="#whats-next" id="markdown-toc-whats-next">What’s next?</a></li>
+</ul>
+
+<p>It’s been a while. Where’s AOC ‘24 articles after the 4th? What have I been up to since December? Let’s go!</p>
 
 <h2 id="december-aoc--disks">December AOC &amp; Disks</h2>
 
@@ -223,7 +241,7 @@ WantedBy=multi-user.target
 
 <p>I’m on now actively searching for work. I’m stressed about it, because so are many thousands of developers. I hope they all find success and wish them luck. We’ll get through this, even with generative AIs trying to take our work (I have lots of thoughts on GenAI, but this is not the post for it)</p>
 
-<p>In my quest for a job, I am working on updating this site, side projects, research / experimentation, and gardening - everyone needs some time outdoors. Especially wildflower season.</p>]]></content><author><name></name></author><category term="post" /><category term="personal" /><category term="consulting" /><category term="development" /><category term="failure" /><summary type="html"><![CDATA[It’s been a while. Where’s AOC ‘24 articles after the 4th? What have I been up to since December? Let’s go!]]></summary></entry><entry><title type="html">Advent of Code 2024 - Day 4</title><link href="https://gregdaynes.com/post/2024/12/04/advent-of-code-day-04.html" rel="alternate" type="text/html" title="Advent of Code 2024 - Day 4" /><published>2024-12-04T18:28:00+00:00</published><updated>2024-12-04T18:28:00+00:00</updated><id>https://gregdaynes.com/post/2024/12/04/advent-of-code-day-04</id><content type="html" xml:base="https://gregdaynes.com/post/2024/12/04/advent-of-code-day-04.html"><![CDATA[<ul id="markdown-toc">
+<p>In my quest for a job, I am working on updating this site, side projects, research / experimentation, and gardening - everyone needs some time outdoors. Especially wildflower season.</p>]]></content><author><name></name></author><category term="post" /><category term="personal" /><category term="consulting" /><category term="development" /><category term="failure" /></entry><entry><title type="html">Advent of Code 2024 - Day 4</title><link href="https://gregdaynes.com/post/2024/12/04/advent-of-code-day-04.html" rel="alternate" type="text/html" title="Advent of Code 2024 - Day 4" /><published>2024-12-04T18:28:00+00:00</published><updated>2024-12-04T18:28:00+00:00</updated><id>https://gregdaynes.com/post/2024/12/04/advent-of-code-day-04</id><content type="html" xml:base="https://gregdaynes.com/post/2024/12/04/advent-of-code-day-04.html"><![CDATA[<ul id="markdown-toc">
   <li><a href="#part-1" id="markdown-toc-part-1">Part 1</a></li>
   <li><a href="#part-2" id="markdown-toc-part-2">Part 2</a></li>
   <li><a href="#cleanup-time" id="markdown-toc-cleanup-time">Cleanup Time</a>    <ul>
