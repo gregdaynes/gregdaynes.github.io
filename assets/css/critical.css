@@ -124,6 +124,11 @@ header {
   nav {
     font-size: var(--s1);
     margin-block: var(--s1);
+    border-block: 1px solid;
+    padding-block: var(--s-2);
+    word-spacing: var(--s-2);
+    text-wrap: initial;
+    line-height: 1.2;
   }
 
   .current {
@@ -134,8 +139,12 @@ header {
 footer {
   /* push footer to bottom of page if screen taller than content */
   margin-block-start: auto;
-	text-align: center;
+  text-align: center;
   text-wrap: balance;
+}
+
+footer p {
+  line-height: 1.1;
 }
 
 /* Utilities -------------------------------------------------------- */
