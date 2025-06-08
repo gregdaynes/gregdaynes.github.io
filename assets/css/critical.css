@@ -134,8 +134,12 @@ header {
 footer {
   /* push footer to bottom of page if screen taller than content */
   margin-block-start: auto;
-	text-align: center;
+  text-align: center;
   text-wrap: balance;
+}
+
+footer p {
+  line-height: 1.1;
 }
 
 /* Utilities -------------------------------------------------------- */
