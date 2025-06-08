@@ -4,7 +4,7 @@ data:
   - datestart: 2014-11-01T07:00:00.000Z
     dateend: "Today"
     title: Greg Daynes Consulting
-    subtitle: Senior Software Developer / Sysadmin / Devops / Project Management
+    subtitle: Senior Developer / Sys Admin / Project Manager
     content: >-
       Providing support and augmentation to development teams, recover unmaintained/acquired software, greenfield project development, sysadmin and devops.
     notes:
