@@ -124,6 +124,11 @@ header {
   nav {
     font-size: var(--s1);
     margin-block: var(--s1);
+    border-block: 1px solid;
+    padding-block: var(--s-2);
+    word-spacing: var(--s-2);
+    text-wrap: initial;
+    line-height: 1.2;
   }
 
   .current {
