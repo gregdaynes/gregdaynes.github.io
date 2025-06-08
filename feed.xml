@@ -1,4 +1,135 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://gregdaynes.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://gregdaynes.com/" rel="alternate" type="text/html" /><updated>2025-06-07T21:26:54+00:00</updated><id>https://gregdaynes.com/feed.xml</id><entry><title type="html">What’s Going On - Where have I been</title><link href="https://gregdaynes.com/post/2025/06/07/whats-going-on.html" rel="alternate" type="text/html" title="What’s Going On - Where have I been" /><published>2025-06-07T19:41:00+00:00</published><updated>2025-06-07T19:41:00+00:00</updated><id>https://gregdaynes.com/post/2025/06/07/whats-going-on</id><content type="html" xml:base="https://gregdaynes.com/post/2025/06/07/whats-going-on.html"><![CDATA[<p>It’s been a while. Where’s AOC ‘24 articles after the 4th? What have I been up to since December? Let’s go!</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://gregdaynes.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://gregdaynes.com/" rel="alternate" type="text/html" /><updated>2025-06-08T06:25:00+00:00</updated><id>https://gregdaynes.com/feed.xml</id><entry><title type="html">Earthquakes with Leaflet.js &amp;amp; Go</title><link href="https://gregdaynes.com/project/2025/06/08/earthquakes.html" rel="alternate" type="text/html" title="Earthquakes with Leaflet.js &amp;amp; Go" /><published>2025-06-08T04:41:00+00:00</published><updated>2025-06-08T04:41:00+00:00</updated><id>https://gregdaynes.com/project/2025/06/08/earthquakes</id><content type="html" xml:base="https://gregdaynes.com/project/2025/06/08/earthquakes.html"><![CDATA[<p>Living on the Juan de Fuca plate means earthquakes happen every day. Sometimes multiple times. While we wait for <em>the big one</em>, why not visualize some of the quakes.</p>
+
+<p>The stack consists of</p>
+
+<ul>
+  <li>RSS/Atom feed from <a href="https://www.earthquakescanada.nrcan.gc.ca/index-en.php">Earthquakes Canada</a></li>
+  <li><a href="https://github.com/gregdaynes/earthquake-service/tree/main/backend">Go service</a></li>
+  <li><a href="https://github.com/gregdaynes/earthquake-service/tree/main/frontend">Plain web component</a></li>
+</ul>
+
+<h2 id="the-go-service">The Go service</h2>
+
+<p>Designed to be simple to operate. It uses the stdlib <code class="language-plaintext highlighter-rouge">http/ServeMux</code><sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup> library for it’s request/responses, exposes 2 endpoints <code class="language-plaintext highlighter-rouge">/api/v1/</code> and <code class="language-plaintext highlighter-rouge">/api/v1/update</code>.<code class="language-plaintext highlighter-rouge">modernc/sqlite</code><sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup> for the SQLite driver, and <code class="language-plaintext highlighter-rouge">GoFeed</code><sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote" rel="footnote">3</a></sup> for handling the ATOM feed.</p>
+
+<h3 id="updating--refreshing-the-data">Updating &amp; Refreshing the Data</h3>
+
+<p>The <code class="language-plaintext highlighter-rouge">/api/v1/update</code> endpoint, when called, triggers the fetch, parse, and store of the RSS feed. While the endpoint can be triggered by any request, the intended method is through cURL<sup id="fnref:4" role="doc-noteref"><a href="#fn:4" class="footnote" rel="footnote">4</a></sup> from a local crontab<sup id="fnref:5" role="doc-noteref"><a href="#fn:5" class="footnote" rel="footnote">5</a></sup>.</p>
+
+<p><em>The endpoint maintains in-memory state of the last fetch timestamp, ensuring we don’t fetch the data through public access.</em></p>
+
+<h3 id="persistence">Persistence</h3>
+
+<p>The data received from the RSS/ATOM feed, is stored in a local SQLite database. For applications like this, you can’t beat it (maybe writing to disk yourself). It’s fast, small, and works well with most languages. Node.js<sup id="fnref:6" role="doc-noteref"><a href="#fn:6" class="footnote" rel="footnote">6</a></sup> recently started bundling it in, and I miss that with Golang, however its setup is simple, with the stdlib DB library, and the available drivers.</p>
+
+<p>This is also the first time using my <a href="https://github.com/gregdaynes/earthquake-service/blob/3c39487dc1c63c6807891f3a4d8c2426b777eb31/backend/cmd/web/db.go">schema based migration module</a> in production - which I started working on a while ago for various other project.The idea is that provided a schema in SQL, it will automatically apply the schema changes, and recreate indexes, like in Rails, and Directus.</p>
+
+<h3 id="hosting">Hosting</h3>
+
+<p>This is the first time I’m hosting a Go service for myself, so I took this opportunity to think about a low-maintenance approach.</p>
+
+<p>Instead of putting the app in Docker, I run the service with SystemD<sup id="fnref:7" role="doc-noteref"><a href="#fn:7" class="footnote" rel="footnote">7</a></sup>. This handles the starting, stopping, and restarting the service on failure.</p>
+
+<pre><code class="language-unit">[Unit]
+Description=Quake App
+
+[Service]
+Environment="QUAKE_ARGS=-port=9001"
+ExecStart=/var/apps/quakes.linux_amd64 $QUAKE_ARGS
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+
+<p>Refreshing the data is done every 30 minutes through <code class="language-plaintext highlighter-rouge">cron</code></p>
+
+<pre><code class="language-crontab">*/30 * * * * curl https://quake.app.gregdaynes.com/api/v1/update
+</code></pre>
+
+<p>I opted for Caddy<sup id="fnref:8" role="doc-noteref"><a href="#fn:8" class="footnote" rel="footnote">8</a></sup> instead of Nginx<sup id="fnref:9" role="doc-noteref"><a href="#fn:9" class="footnote" rel="footnote">9</a></sup> for a reverse proxy. I have been playing with it for a few years, and I think it’s time to make the switch. Automatic SSL is nice, and the very simple configuration in Caddyfile is quite friendly.</p>
+
+<p>The SQLite database is backed up and restored through Litestream<sup id="fnref:10" role="doc-noteref"><a href="#fn:10" class="footnote" rel="footnote">10</a></sup>. Which if you’re working on services backed with SQLite, it’s a must.</p>
+
+<p>After warmup of 100k requests hitting around 3500req/s from my laptop, Caddy is running at 64M, and the Quake service at 20M. That’s pretty nifty when compared to Node.js which usually starts around 80M and Nginx 22M for basic 80/443 configurations.</p>
+
+<p>I should note at the time of writing, this is hosted in Toronto, Canada through Digital Ocean on AMD64 1GB/1VCPU @2.0GHz. There’s lots of room on this server if everything is going to be so light on resources.</p>
+
+<h3 id="fetching-data">Fetching Data</h3>
+
+<p>Nothing interesting about this, it’s an endpoint that receives diagonal coordinates, and returns JSON describing all the points inside the provided bounds. This is not designed to be robust, it does not feature paginated data, query limiting, or anything fancy. The data is Canada specific, so while you can request any coordinates, it will always be limited to Canada.</p>
+
+<h2 id="web-component">Web Component</h2>
+
+<p>I love plain, vanilla HTML web components. I think they’re the way to build components, multi-page applications, and even single page applications going forward. They’re robust, supported across all browsers, and aren’t yet another framework to learn.</p>
+
+<p>The component itself is not pretty. I wasn’t going for greatness, just viable. It’s <a href="https://leafletjs.com/2025/05/18/leaflet-2.0.0-alpha.html">leaflet 2.0-alpha</a>, jammed into a single component, using Shadow DOM, and inlined CSS. Did any of this need to be done? No. But, I have a shiny new tag to place on my site.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;quake-map</span> <span class="na">data-api=</span><span class="s">"/api/v1/"</span><span class="nt">&gt;&lt;/quake-map&gt;</span>
+<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"module"</span> <span class="na">src=</span><span class="s">"/assets/js/quake.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</code></pre></div></div>
+
+<p>This is all that’s needed to render the map and markers on the page.</p>
+
+<p>It’s built using Vite<sup id="fnref:11" role="doc-noteref"><a href="#fn:11" class="footnote" rel="footnote">11</a></sup>, but is an unnecessary step (because it’s in a single file to start) but it makes for a nicer time developing.</p>
+
+<h2 id="demo">Demo</h2>
+
+<style>
+quake-map {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1/1;
+}
+</style>
+
+<quake-map data-api="https://quake.app.gregdaynes.com/api/v1/" data-marker-icon="/assets/images/marker-icon.png" data-marker-shadow="/assets/images/marker-shadow.png"></quake-map>
+<script type="module" src="/assets/js/quake.js"></script>
+
+<p>As always, let me know what you think through <a href="email@gregdaynes.com">email@gregdaynes.com</a></p>
+
+<hr />
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p><a href="https://pkg.go.dev/net/http#ServeMux">Golang http/ServeMux</a> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:2" role="doc-endnote">
+      <p><a href="https://pkg.go.dev/modernc.org/sqlite">modernc/sqlite</a> <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:3" role="doc-endnote">
+      <p><a href="https://pkg.go.dev/github.com/mmcdole/gofeed">GoFeed</a> <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:4" role="doc-endnote">
+      <p><a href="https://curl.se/docs/manpage.html">cURL</a> <a href="#fnref:4" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:5" role="doc-endnote">
+      <p><a href="https://www.man7.org/linux/man-pages/man5/crontab.5.html">crontab</a> <a href="#fnref:5" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:6" role="doc-endnote">
+      <p><a href="https://nodejs.org/docs/latest/api/sqlite.html">Node.js SQLite</a> <a href="#fnref:6" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:7" role="doc-endnote">
+      <p><a href="https://systemd.io">SystemD</a> <a href="#fnref:7" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:8" role="doc-endnote">
+      <p><a href="http://caddyserver.com">Caddy</a> <a href="#fnref:8" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:9" role="doc-endnote">
+      <p><a href="https://nginx.org">Nginx</a> <a href="#fnref:9" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:10" role="doc-endnote">
+      <p><a href="https://litestream.io">Litestream</a> <a href="#fnref:10" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:11" role="doc-endnote">
+      <p><a href="https://vite.dev">Vite</a> <a href="#fnref:11" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>]]></content><author><name></name></author><category term="project" /><summary type="html"><![CDATA[Living on the Juan de Fuca plate means earthquakes happen every day. Sometimes multiple times. While we wait for the big one, why not visualize some of the quakes.]]></summary></entry><entry><title type="html">What’s Going On - Where have I been</title><link href="https://gregdaynes.com/post/2025/06/07/whats-going-on.html" rel="alternate" type="text/html" title="What’s Going On - Where have I been" /><published>2025-06-07T19:41:00+00:00</published><updated>2025-06-07T19:41:00+00:00</updated><id>https://gregdaynes.com/post/2025/06/07/whats-going-on</id><content type="html" xml:base="https://gregdaynes.com/post/2025/06/07/whats-going-on.html"><![CDATA[<p>It’s been a while. Where’s AOC ‘24 articles after the 4th? What have I been up to since December? Let’s go!</p>
 
 <h2 id="december-aoc--disks">December AOC &amp; Disks</h2>
 
@@ -1560,74 +1691,4 @@ el.addEventListener('some-event', this)
 <code class="language-plaintext highlighter-rouge">echo '1' | xxd -p | tr -d '\n'</code> outputs <code class="language-plaintext highlighter-rouge">310a%</code>  removing the line breaks from the hex dump.
 <code class="language-plaintext highlighter-rouge">echo '1' | xxd -p | tr -d '\n' | sed -E 's/.{2}/0x&amp;,/g'</code> outputs <code class="language-plaintext highlighter-rouge">0x31,0x0a,</code></p>
 
-<p>I found this task deeply enjoyable, hopefully my understanding is correct.</p>]]></content><author><name></name></author><category term="note" /><summary type="html"><![CDATA[I was asked to help understand the following command]]></summary></entry><entry><title type="html">2024 Return of the personal life</title><link href="https://gregdaynes.com/post/2024/01/02/return-of-the-personal-site.html" rel="alternate" type="text/html" title="2024 Return of the personal life" /><published>2024-01-02T07:03:00+00:00</published><updated>2024-01-02T07:03:00+00:00</updated><id>https://gregdaynes.com/post/2024/01/02/return-of-the-personal-site</id><content type="html" xml:base="https://gregdaynes.com/post/2024/01/02/return-of-the-personal-site.html"><![CDATA[<p>Happy New Year - Welcome to 2024!</p>
-
-<p>2023 brought a lot of changes in technology, with the availability of LLM and Generative AIs for public consumption, to the <a href="https://pluralistic.net/2023/01/21/potemkin-ai/">enshittification</a> of everything.</p>
-
-<p>I spent much of the year as a consultant, mostly in Shopify e-commerce, location based entertainment, interactive education, and physical literacy. After leaving my research &amp; development role within the Canadian defence industry.</p>
-
-<p>In my work and areas of research, several technical themes kept reappearing throughout 2023 - outside of AI of course:</p>
-
-<ol>
-  <li>Software Maintainability</li>
-  <li>Sustainable Development</li>
-  <li>Fediverse and Platform Exodus</li>
-  <li>Reduced role of Active-Computing</li>
-</ol>
-
-<p>While 1, 2 are self explanatory and something that will forever be a topic of discussion and professional pursuit, 3 &amp; 4 are not new, but have a renewed focus.</p>
-
-<h3 id="fediverse-and-the-exodus---bring-on-the-indieweb">Fediverse and the Exodus - Bring on the <a href="https://indieweb.org">Indieweb</a></h3>
-
-<p>I’m not sure I like the term indieweb, but it works for now. I’ve missed the internet of the 90s/00s, but it didn’t disappear, our attention was misplaced elsewhere. Events in 2022 and 2023 have brought the independent web back into view as some people are rebelling against centralized platforms.</p>
-
-<p>Those platforms aren’t going to disappear anytime soon, but we can make concerted efforts to prioritize and utilize the free and open web to control our own content and publish as we see fit. The <a href="https://www.theverge.com/2023/10/23/23928550/posse-posting-activitypub-standard-twitter-tumblr-mastodon">POSSE</a> protocol is a good guidance for moving on in 2024.</p>
-
-<h3 id="reduced-role-of-active-computing">Reduced role of Active Computing</h3>
-
-<p>A subject I’ve been ruminating over this past year, is the role Active computing takes in our lives. Between deep work, or mindless doomscrolling, we’re actively engaging with computers to do things. This requires our time and attention to perform actions however menial. Computers are surprisingly good at doing things repeatedly and scheduled. So why do we need to actively engage to get what we want? Why isn’t it available for us when we think about it or pass by?</p>
-
-<p>Phone lock screens are one way to achieve this. It’s personal, and with you most of the time, but that comes with the mental burden of having the device with you and looking at it. Physical information dashboards like <a href="">magic mirrors</a> and <a href="">e-ink calendars</a> are potentially more appropriate for passive information.</p>
-
-<p>Communication channels: Slack, Discord, Texting/SMS are all asynchronous communication but have certain expectations to be synchronous. This puts a burden on us to have our phones or laptops at the ready, to be willing to jump to answer any question asked. Bring back email, things can wait for a few hours, or days. Nothing needs immediate resolution, and if it does, pick up the phone and call.</p>
-
-<p><em>Email, I never thought I’d say I wanted more email, but here we are.</em></p>
-
-<p>During Summer 2023, I was writing small applications that would fetch data from various services. My goal for each of these applications was to be fast, simple, and out of the way. They’re CLIs, which requires inputting the command into a terminal, and viewing the results. Fast + Simple were covered, single responsibility and ASCII output means there’s not a lot of room for feature creep and bloat.</p>
-
-<p>But they were very much in-the-way, and required active computing.</p>
-
-<p>Enter <code class="language-plaintext highlighter-rouge">cron</code>, My favourite scheduling tool from 1975. Unchanged, and unequalled for 48 years.</p>
-
-<p><em>Did you know cron jobs will email the output of the job upon completion? Usually it’s to the local inbox on your computer, but you can configure sending to an external email address.</em></p>
-
-<p>Pairing cron + my little CLIs, I now get emails of daily events, weather, air quality, alerts, and news without having to open separate apps, or refresh screens. I can now consume the data on my own time and schedule, that’s independent of the application.</p>
-
-<p>This has reduced my phone use, and increased my focus on work, and life away from technology however it is still active-computing.</p>
-
-<p>Something I haven’t explored enough yet, alert-only systems. Maybe these apps could have thresholds for when something is sent to the consumer? We use this for application monitoring when your network is saturated or response time exceeds 500ms, financial trading does this, so why not daily life things?</p>
-
-<p>Schedule for the day starts earlier than usual, notification when you are getting ready for the day. Air Quality is abnormal - notification to don a mask. UV index is high and you are outside for more than a few minutes, notification put on sunscreen or seek cover. Breaking news events, aggregate and send as an email near the end of the day.</p>
-
-<p>The last one is not actionable, it does not impact you, you can’t do anything to affect it, so move it to something you can look at when you feel like it. This is where LLMs can come in somewhat handy, rough 1-2 sentence summary of daily events, in an aggregate email. now you don’t need to check your RSS reader periodically.</p>
-
-<p>I have more thoughts on this which I will write about as I can. If you have suggestions for apps that could be a good fit, please let me know! I’d love more of this in my life.</p>
-
-<h3 id="where-im-going">Where I’m going</h3>
-
-<p>Instead of resolutions for 2024, I have my goals.</p>
-
-<p>They are to:</p>
-
-<ul>
-  <li>Own my personal platforms (this website)</li>
-  <li>Automate any software task that should not need my attention or instruction to complete.</li>
-  <li>Read and write more emails.</li>
-  <li>Put the phone down and spend time with purpose.</li>
-  <li>Reduce computer usage in favour of work and play.</li>
-  <li>Make an effort to use boring and low-tech computing.</li>
-</ul>
-
-<p>What are your goals for 2024?</p>
-
-<p><em>I started out by writing a rant around Business growth, economic layoffs, Generative AIs/LLMS, burnout and lack of caring that’s causing maintainbility and sustainable softare development to fall to the wayside, but it was really just me yelling at the clouds. I’m trying to be more proactive.</em></p>]]></content><author><name></name></author><category term="post" /><summary type="html"><![CDATA[Happy New Year - Welcome to 2024!]]></summary></entry></feed>
+<p>I found this task deeply enjoyable, hopefully my understanding is correct.</p>]]></content><author><name></name></author><category term="note" /><summary type="html"><![CDATA[I was asked to help understand the following command]]></summary></entry></feed>
