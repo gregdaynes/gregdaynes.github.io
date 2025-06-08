@@ -19,3 +19,8 @@ pre {
   border-radius: 3px;
   overflow-x: auto;
 }
+
+/* Footnotes */
+.footnotes p {
+    margin-block-end: 0;
+}
