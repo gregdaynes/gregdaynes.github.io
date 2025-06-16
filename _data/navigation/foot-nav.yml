@@ -13,6 +13,6 @@ data:
     href: /sitemap.xml
   - text: RSS
     href: /feed.xml
-  - text: Anayltics
+  - text: Analytics
     href: /stats
 ---
