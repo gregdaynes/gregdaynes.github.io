@@ -1,1 +1,2 @@
 <body class="{% if page %}page {% if page.class %}page-{{ page.class }}{% elsif page.title %}{{ page.title | downcase | replace: " ", "-" }}{% endif %}{% endif %}">
+<img src="{{ site.analytics }}?type=image&page={{page.url}}" width=0 height=0 />

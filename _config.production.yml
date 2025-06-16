@@ -1,4 +1,5 @@
 incremental: false
+analytics: https://analytics.app.gregdaynes.com
 
 hyde_page_js:
   dev_mode: false
