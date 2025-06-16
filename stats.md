@@ -27,11 +27,14 @@ js:
     }
 </style>
 
-{% assign data = site.data.pages.stats %}
+## Site Analytics
 
-{{ data.content | markdownify }}
+This page is a weekly report on the visitors of [gregdaynes.com](//gregdaynes.com). 
 
-<stats-display data-url="{{site.analytics}}/report">
+I wanted to see how I would implement site analytics, but with hard rules around privacy and open information. You can [read more about the project](https://gregdaynes.com/post/2025/06/16/stats-and-reporting.html)
+
+
+<stats-display data-url="https://analytics.app.gregdaynes.com/report">
 	<date-header></date-header>
 	<unique-visitors></unique-visitors>
 	<total-visits></total-visits>
