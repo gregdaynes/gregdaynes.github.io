@@ -1,16 +1,13 @@
 Privacy Policy for https://gregdaynes.com
-Last update: 2025-06-09 05:51:34 +0000
+Last update: 2025-06-16 18:00:26 +0000
 
-This may come as a surprise on the modern web, but
-- This website does not collect your data.
+This probably doesn't come as a surprise on the modern web, but
 - This website does not use cookies to collect your data.
 - This website does not want your data.
 - You should not want anyone to have your data.
-
-Furthermore
-- This website does not have tracking.
-- This website does not have analytics.
-- This website does not know if you have visited this website.
+- This website does, collect your data. 
+- Data collected is anonymized and personal information is not logged.
+- All collected data is aggregated, and presented publicly at https://gregdaynes.com/stats
 
 This website links to many other places on the web, including Amazon and other retail stores. It does not use affiliate links, and aims to remove all identifiers and params from the linking URL. If you see a link that has anything funny, please contact me so I can correct it immediately.
 
