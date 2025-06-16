@@ -4,22 +4,29 @@
 <html lang="{{site.data.config.data.lang}}">
 {% include html/head.html %}
 {% include fragment/body-tag.html %}
-  {% include components/header.html %}
-  <div class="with-sidebar">
-    <main>
-      {{ content }}
-    </main>
+    {% include components/header.html %}
 
-    <aside>
-      {% ifhascontent sidebar %}
-        {% contentblock sidebar %}
-      {% endifhascontent %}
+  {% ifhascontent fullpage %}
+    {% contentblock fullpage %}
+  {% endifhascontent %}
 
-      {% ifnothascontent sidebar %}
-        {% include components/sidebar.html %}
-      {% endifnothascontent %}
-    </aside>
-  </div>
+  {% ifnothascontent fullpage %}
+    <div class="with-sidebar">
+      <main>
+        {{ content }}
+      </main>
+
+      <aside>
+        {% ifhascontent sidebar %}
+          {% contentblock sidebar %}
+        {% endifhascontent %}
+
+        {% ifnothascontent sidebar %}
+          {% include components/sidebar.html %}
+        {% endifnothascontent %}
+      </aside>
+    </div>
+{% endifnothascontent %}
 
   {% include components/footer.html %}
   {% include html/scripts.html %}
