@@ -82,7 +82,10 @@ var sn=Object.defineProperty;var us=s=>{throw TypeError(s)};var nn=(s,t,e)=>t in
       justify-content: space-between;
       position: relative;
       line-height: 2;
-      overflow-x: scroll;
+      overflow-x: auto;
+      &::-webkit-scrollbar {
+          display: none;
+      }
     }
 
     li span:last-child {
