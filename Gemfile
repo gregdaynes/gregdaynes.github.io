@@ -1,36 +1,13 @@
 source "https://rubygems.org"
-# Hello! This is where you manage which Jekyll version is used to run.
-# When you want to use a different version, change it below, save the
-# file and run `bundle install`. Run Jekyll with `bundle exec`, like so:
-#
-#     bundle exec jekyll serve
-#
-# This will help ensure the proper Jekyll version is running.
-# Happy Jekylling!
-gem "jekyll", "~> 4.3"
-# This is the default theme for new Jekyll sites. You may change this to anything you like.
-# If you want to use GitHub Pages, remove the "gem "jekyll"" above and
-# uncomment the line below. To upgrade, run `bundle update github-pages`.
-# gem "github-pages", group: :jekyll_plugins
-# If you have any plugins, put them here!
+
+gem "jekyll", git: 'https://github.com/jekyll/jekyll', tag: 'v4.4.1'
+
 group :jekyll_plugins do
-  gem "jekyll-feed"
-  gem "jekyll-sitemap"
-  gem "jekyll-compose"
-  gem "jekyll-contentblocks"
-  gem "hyde-page-css"
-  gem "hyde-page-html"
-  gem "hyde-page-js"
-  gem "hyde-decap"
+  gem "jekyll-feed", git: 'https://github.com/jekyll/jekyll-feed', tag: 'v0.17.0'
+  gem "jekyll-sitemap", git: 'https://github.com/jekyll/jekyll-sitemap', tag: 'v1.4.0'
+  gem "jekyll-compose", git: 'https://github.com/jekyll/jekyll-compose', tag: 'v0.12.0'
+  gem "jekyll-contentblocks", git: 'https://github.com/rustygeldmacher/jekyll-contentblocks', tag: 'v1.2.0'
+  gem "hyde-page-css", git: 'https://github.com/gregdaynes/hyde-page-css', ref: 'b9719e5e12d6ae5d2ad025007f13209da1c3b87c'
+  gem "hyde-page-html", git: 'https://github.com/gregdaynes/hyde-page-html', ref: 'c2f67e48157d5fa4aa8f4c282476af231753fe4a'
+  gem "hyde-page-js", git: 'https://github.com/gregdaynes/hyde-page-js', ref: '280df1657c589e04a3977fa6a0aac851007df3fb'
 end
-
-# Windows and JRuby does not include zoneinfo files, so bundle the tzinfo-data gem
-# and associated library.
-platforms :mingw, :x64_mingw, :mswin, :jruby do
-  gem "tzinfo", ">= 1", "< 3"
-  gem "tzinfo-data"
-end
-
-# Lock `http_parser.rb` gem to `v0.6.x` on JRuby builds since newer versions of the gem
-# do not have a Java counterpart.
-gem "http_parser.rb", "~> 0.6.0", :platforms => [:jruby]
